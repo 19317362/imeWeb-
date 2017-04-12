@@ -1,0 +1,26 @@
+{{!-- 首页关注文档展示模板 --}}
+{{#each this}}
+	<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ditaBookShowItem" id="{{masterOid}}" onclick="pageHome.ditaBookShowItemOnclick(this);">
+		<div class='dashboard-stat2 bordered'>
+			<div class='display'>
+				<div class='number'>
+					<h3 class='progress-bar-font-{{@index}}'><span data-counter='counterup' data-value={{name}}>{{name}}</span><small class='font-green-sharp'></small></h3><small>{{childCountNumber}}个文档单元</small>
+				</div>
+				<div class='icon'>
+					<i class='iconfont icon-{{recentShowIcon softtype}}'></i>
+				</div>
+			</div>
+			<div class='progress-info'>
+				<div class='progress'>
+					<span style='width: {{finishedRatio}}%;' class='progress-bar progress-bar-{{@index}}'>
+						<span class='sr-only'>76% </span>
+					</span>
+				</div>
+				<div class='status'>
+					<div class='status-title'> 进度</div>
+					<div class='status-number'> {{finishedRatio}}%</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{{/each}}

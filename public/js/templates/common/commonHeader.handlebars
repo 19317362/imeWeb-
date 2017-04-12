@@ -1,0 +1,85 @@
+{{! 公共组件header }}
+{{#each this}}
+	<div class="page-header navbar navbar-fixed-top">
+	    <div class="page-header-inner ">
+	        {{! 页面LOGO }}
+	        <div class="page-logo">
+	            <a href="index.html">
+	                <img src="img/logo.png" alt="logo" class="logo-default" /> </a>
+	            <div class="menu-toggler sidebar-toggler">
+	                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+	            </div>
+	        </div>
+
+	        {{! sidebar开关 }}
+	        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"></a>
+			
+	        <div class="page-top">
+	            {{! 搜索框 }}
+	            <form id="common-header_search" class="search-form keepopen open " >
+	                <div class="input-group">
+	                    <input type="text" class="form-control input-sm" placeholder="Search..." name="title">
+	                    <span class="input-group-btn">
+	                        <a href="javascript:;" class="btn submit">
+	                            <i class="icon-magnifier"></i>
+	                        </a>
+	                    </span>
+	                </div>
+	            </form>
+	            
+	            <div class="top-menu">
+	                <ul class="nav navbar-nav pull-right">
+						{{! 顶部工具栏 }}
+	                    <div class="top-menu-tool-group">
+	                    </div>
+	                    {{! 顶部用户下拉菜单 }}
+	                    <li class="dropdown dropdown-user dropdown-dark">
+	                   		{{! 用户名 }}
+	                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+	                            <span class="username username-hide-on-mobile font-white"> NaN </span>
+	                            <img alt="" class="img-circle username-img" src="img/user-img/undefined.jpg" />
+	                        </a>
+	                        <ul class="dropdown-menu dropdown-menu-default">
+	                            {{! 用户设置 }}
+	                            <li>
+	                                <a href="#">
+	                                    <i class="icon-user"></i> <font key="i18n.userConfig"></font>
+	                                </a>
+	                            </li>
+	                            {{! 语言切换 }}
+	                            <li>
+	                                <a href="javascript:imeWeb.i18n.changeLanguage();">
+	                                    <i class="fa fa-language"></i> <font key="i18n.languageswitching"></font>
+	                                </a>
+	                            </li>
+	                            {{! 站点切换 }}
+	                            <li>
+	                                <a href="javascript:imeWeb.selectSetSessionDomain();">
+	                                    <i class="fa fa-cubes"></i> <font key="i18n.domainSwitching"></font>
+	                                </a>
+	                            </li>
+	                            {{! 分割线 }}
+	                            <li>
+	                            <li class="divider"> </li>
+	                            {{! 退出 }}
+	                            <li>
+	                                <a href="javascript:imeWeb.logout();">
+	                                    <i class="icon-key"></i> <font key="i18n.logout"></font> </a>
+	                            </li>
+	                        </ul>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="clearfix"> </div>
+	<div class="page-container">
+	    {{! sidebar }}
+	    <div class="page-sidebar-wrapper">
+	    </div>
+	    {{! content }}
+	    <div class="page-content-wrapper">
+	    </div>
+	</div>
+{{/each}}

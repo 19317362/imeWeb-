@@ -1,0 +1,21 @@
+ {{#each this}}
+<!---->
+ {{#if ./name}}
+ <li>
+ <a href="javascript:;">{{name}}</a>
+</li>
+{{/if}}
+<!--存储库-->
+ {{#if ./containername}}
+ <li data-value={{containerid}}>
+ <a href="javascript:;" >{{containername}}</a>
+</li>
+{{/if}}
+<!--类型-->
+ {{#if ./text}}
+ <li data-value={{value}}>
+ <a href="javascript:;">{{text}}</a>
+</li>
+{{/if}}
+{{/each}}
+

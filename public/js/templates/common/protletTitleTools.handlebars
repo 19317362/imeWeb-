@@ -1,0 +1,14 @@
+{{! 顶部工具栏 }}
+{{#each this}}
+<div class="tools">
+	{{#if remove}}
+    	<a class="remove"></a>
+    {{/if}}
+	{{#if child-page-close}}
+    	<a class="fa fa-close child-page-close"></a>
+    {{/if}}
+    {{#if refresh}}
+    	<a class="fa fa-refresh page-data-refresh"></a>
+    {{/if}}
+</div>
+{{/each}}

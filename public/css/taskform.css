@@ -1,0 +1,55 @@
+div#taskform div.table-scrollable {
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+@media screen and (max-width: 1700px) {
+  div#taskform div.table-scrollable {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+  }
+}
+div#taskform div.table-scrollable table a {
+  color: black;
+}
+div#taskform div.table-scrollable table td {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+div#taskform div.table-scrollable table td i.icon-jinji {
+  font-size: 1.5em;
+}
+div#taskform div.table-scrollable table td i.icon-jinji.icon-red {
+  color: #e7505a;
+}
+div#taskform div.table-scrollable table div.btn-group + div.btn-group {
+  margin-left: 5%;
+}
+div#taskform div.table-scrollable table div.btn-group:first-child {
+  margin-left: 35%;
+}
+div#taskform div.table-scrollable table div.btn-group ul.dropdown-menu {
+  padding: 2px 0;
+  left: auto !important;
+  right: 0 !important;
+  min-width: 140px !important;
+}
+div#taskform div.table-scrollable table div.btn-group ul.dropdown-menu i {
+  padding-right: 3px;
+}
+div#taskform div.table-scrollable table div.btn-group ul.dropdown-menu .divider {
+  margin: 6px 0;
+}
+div#taskform div.table-scrollable table div.btn-group ul.dropdown-menu li a {
+  padding: 6px 10px;
+}
+div#taskform div.pagenition {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+div#taskform div.pagenition div.dataTables_info {
+  margin: 20px 0;
+}
+div#taskform div.pagenition ul li.active a {
+  border-color: #32c5d2;
+  background-color: #32c5d2;
+}

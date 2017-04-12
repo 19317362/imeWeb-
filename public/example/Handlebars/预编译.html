@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>handlebars --- 预编译</title>
+</head>
+<body>
+    <table>
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>年龄</th>
+        </tr>
+      </thead>
+      <tbody id="tableList">
+    	
+      </tbody>
+    </table>
+
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+	<script src="js/handlebars.js" type="text/javascript"></script>
+  <script src="js/template/template.hbs.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        // json对象
+        var data = {
+                    "student": [
+                        {
+                            "name": "张三",
+                            "sex": "0",
+                            "age": 18
+                        },
+                        {
+                            "name": "李四",
+                            "sex": "0",
+                            "age": 22
+                        },
+                        {
+                            "name": "妞妞",
+                            "sex": "1",
+                            "age": 18
+                        }
+                    ]
+                };
+                
+        $('#tableList').html(Handlebars.templates.template(data));
+
+      });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+{{! sidebar-menu中存储库模板 }}
+{{#each this}}
+	<li class='nav-item container-item' id={{containerid}} onclick='pageCommon.container_onclick(this)' options_loaded='0'>
+		<a href="javascript:;" class='nav-link nav-toggle'>
+			<i class='icon-wallet'></i>
+			<span class='title'>{{containername}}</span>
+			<span class='arrow'></span>
+		</a>
+		<ul class='sub-menu sub-menu-container'>
+		</ul>
+	</li>
+{{/each}}

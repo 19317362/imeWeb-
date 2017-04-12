@@ -1,0 +1,57 @@
+/*.mt-element-step .step-line .mt-step-number {*/
+    /*font-size: 14px;*/
+    /*padding: 8px;*/
+    /*height: 40px;*/
+    /*width: 40px;*/
+    /*margin: auto auto 5px;*/
+/*}*/
+/*.mt-element-step .step-line .mt-step-title {*/
+    /*font-size: 14px;*/
+/*}*/
+/*.mt-element-step .step-line .mt-step-title:after, .mt-element-step .step-line .mt-step-title:before{*/
+    /*top: -25px;*/
+/*}*/
+.mt-element-step .step-thin .mt-step-col {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.mt-element-step .row {
+    margin: 0 0 20px 0;
+}
+.mt-element-step .step-thin .mt-step-title {
+    font-size: 14px;
+    /* font-weight: 500; */
+    padding-left: 90px;
+    margin-top: 7px;
+    margin-bottom: 8px;
+}
+.mt-element-step .step-thin .mt-step-number {
+    font-size: 16px;
+    border-radius: 50%!important;
+    float: left;
+    margin-left: 20px;
+    padding: 5px 12px;
+}
+.nav-tabs {
+    border-bottom: none;
+}
+
+#myModalGroupForm .form-group {
+    margin-bottom: 30px;
+}
+
+.text-white{
+    color: white;!important;
+}
+.space{
+    margin-bottom: 30px;
+}
+.tr-dark{
+    background-color: #e7ecf1 !important;
+}
+#usersList table.dataTable.order-column tbody tr{
+    background:none;!important;
+}
+#usersList table.dataTable td.sorting_1, table.dataTable td.sorting_2, table.dataTable td.sorting_3, table.dataTable th.sorting_1, table.dataTable th.sorting_2, table.dataTable th.sorting_3{
+    background:none;!important;
+}

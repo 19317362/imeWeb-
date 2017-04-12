@@ -1,0 +1,55 @@
+{{!-- nav导航容器 --}}
+{{#each this}}
+{{!-- BEGIN CONTENT BODY --}}
+<div class="page-content" id="navpage">
+    {{!-- BEGIN PAGE HEAD --}}
+    <div class="page-head">
+        <div class="page-title">
+            <h1>艾美技术资料平台
+                <small>宗旨</small>
+            </h1>
+        </div>
+    </div>
+    {{!-- END PAGE HEAD --}}
+    {{!-- BEGIN PAGE BREADCRUMB --}}
+    <ul class="page-breadcrumb breadcrumb">
+        <li>
+            <a href="javascript:imeWeb.changeRoute('/imeWeb/home')">>><span class='count'>3s</span>后进入主页</a>
+        </li>
+    </ul>
+    {{!-- END PAGE BREADCRUMB --}}
+
+     {{!-- 帮助区域结构开始 --}}
+    <div class="row help">
+        <div class="col-md-12">
+            <div class="portlet light  bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class=" icon-layers font-green"></i>
+                        <span class="caption-subject font-green bold uppercase">帮助</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="mt-element-step">
+                        <div class="row step-background-thin">
+                            {{!-- 导航页面帮助列表项插入区域 --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{!-- 帮助区域结构结束 --}}
+
+    {{!-- 任务，新建，管理区域结构开始 --}}
+    <div class="row category">
+    {{!-- 导航页面任务，新建，管理列表项插入区域 --}}
+    </div>
+    {{!-- 任务，新建，管理区域结构结束 --}}
+    {{!-- 在线咨询结构开始 --}}
+    <nav class="quick">
+        <span aria-hidden="true" class="quick-nav">在线咨询</span>
+    </nav>
+     {{!-- 在线咨询结构结束 --}}
+</div>
+{{/each}}

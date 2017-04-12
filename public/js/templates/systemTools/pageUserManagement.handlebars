@@ -1,0 +1,88 @@
+{{#each this}}
+    <div class="page-content page-content-base">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet ">
+                    <ul class="page-breadcrumb breadcrumb">
+                        <li>
+                            <a href="index.html"><font key="i18n.site"></font></a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <span class="active"><font key="i18n.userManagement"></font></span>
+                        </li>
+                    </ul>
+
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption font-green bordered">
+                                <i class="icon-settings font-green"></i>
+                                <span class="caption-subject bold uppercase"> <font key="i18n.userManagement"></font></span>
+                            </div>
+                            <!--按钮-->
+                            <div class="actions">
+                                <div class="btn-group btn-group-devided " data-toggle="buttons">
+                                    <button class="btn btn-transparent green btn-outline btn-circle btn-sm " id="createUser" >
+                                        <input type="radio" name="options" class="toggle"  ><font key="i18n.createUser"></font></button>
+                                    <button class="btn btn-transparent green btn-outline btn-circle btn-sm " id="updateUser">
+                                        <input type="radio" name="options" class="toggle" id="option2"><font key="i18n.updateUser"></font></button>
+                                    <button class="btn btn-transparent green btn-outline btn-circle btn-sm   " id="unlockUser">
+                                        <input type="radio" name="options" class="toggle" id="option3"><font key="i18n.unlock"></font></button>
+                                    <button class="btn btn-transparent green btn-outline btn-circle btn-sm   " id="resetPasswordUser">
+                                        <input type="radio" name="options" class="toggle" id="option4"><font key="i18n.resetPassword"></font></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <form class="form-inline actions" role="form">
+                                    <div class="form-group col-sm-4 col-md-4  ">
+                                        <input type="text" class="form-control" size="30" placeholder="按ID搜索" id="userPrincipalId">
+                                    </div>
+                                    <div class="form-group col-sm-4 col-md-4 ">
+                                        <input type="text" class="form-control "  size="30" placeholder="按名称搜索" id="userName">
+                                    </div>
+                                    <!--<span class="input-group-btn "><button class="btn " type="button">搜索</button></span>-->
+                                    <div class="form-group col-sm-4 col-md-2 ">
+                                        <button type="button" class="btn green col-md-8 col-ms-8 col-xs-4 col-xs-offset-8" id="usersListSearch"><font key="i18n.search"></font></button>
+                                    </div>
+
+                                </form>
+                            </div>
+
+
+
+                        </div>
+
+
+                        <!--表单组体-->
+                        <div class="portlet-body">
+                            <div id = "user_ListAlert"></div>
+                            <table class="table table-striped table-bordered table-condensed table-hover table-checkable order-column " id="usersList">
+                                <thead>
+                                <tr class="bg-green text-white" >
+
+                                    <th>ID</th>
+                                    <th> <font key="i18n.name"></font> </th>
+                                    <th> <font key="i18n.status"></font> </th>
+                                    <th><font key="i18n.reportTo"></font></th>
+                                    <th> <font key="i18n.Email"></font> </th>
+                                    <th> <font key="i18n.tel"></font> </th>
+
+                                </tr>
+                                </thead>
+
+                            </table>
+                        </div>
+                    </div>
+                    <!-- END EXAMPLE TABLE PORTLET-->
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{{/each}}

@@ -1,0 +1,12 @@
+{{! 顶部工具栏 }}
+{{#each this}}
+    <div class="input-group col-md-12">
+        <div class="icheck-list">
+        	{{#each domainData}}
+        		<label>
+                	<input type="radio" name="domain" class="icheck" value="{{domainOid}}"> {{domainName}} 
+                </label>
+        	{{/each}}
+        </div>
+    </div>
+{{/each}}

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>美嘉林用户注册</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <style>
+        .row{
+            margin:0 !important;
+            padding: auto 0 !important;
+        }
+        .form-horizontal .form-group{
+            margin-left:0;
+            margin-right:0;
+        }
+        .tab-content {
+            padding-top: 2rem;
+        }
+        .footer-line {
+            position: fixed;
+            bottom:0;
+            width:100%;
+            padding: 10px;
+            background: #007aff;
+            overflow: hidden;
+        }
+
+        .footer-line p {
+            float: left;
+            padding: 12px 0;
+            color: #fff;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+<div class="row">
+    <ul class="nav nav-tabs" id="nav-tabs">
+        <li class="active"><a href="#individual" data-toggle="tab">个人用户</a></li>
+        <li><a href="#enterprise" data-toggle="tab">企业用户</a></li>
+    </ul>
+    <div class="container">
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="individual">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="user" class="col-sm-2 control-label">账号</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="user" placeholder="请输入账号">
+                            <span style="display: none;" class="help-block">该账号已被占用</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control passwordinput" id="password" placeholder="请输入密码">
+                            <span style="display: none;" class="help-block">密码长度不小于6位，必须包含字母、数字</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword" class="col-sm-2 control-label">确认密码</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control passwordinput" id="confirmPassword"
+                                   placeholder="确认密码">
+                            <span style="display: none;" class="help-block">密码两次输入不一致</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="email" placeholder="请输入邮箱">
+                            <span style="display: none;" class="help-block">请输入正确的邮箱</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="name" placeholder="请输入姓名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="company" class="col-sm-2 control-label">所属公司</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="company" placeholder="请输入公司名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="industry" class="col-sm-2 control-label">所属行业</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="industry">
+                                <!--插入数据-->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber" class="col-sm-2 control-label">手机</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="phoneNumber" placeholder="请输入手机号码">
+                            <span style="display: none;" class="help-block">请输入正确的手机号码</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="identifyingCode" class="col-sm-2 control-label">验证码</label>
+                        <div class="input-group col-sm-9">
+                            <input id="identifyingCode" type="text" class="form-control" placeholder="请输入验证码">
+                            <span style="display: none;" class="help-block">输入的验证码错误</span>
+                            <span class="input-group-btn">
+                            <button id="sendCode" class="btn btn-default" type="button">发送验证码</button>
+                        </span>
+                        </div><!-- /input-group -->
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input id="protocolChecked" type="checkbox" checked> 已阅读并接受：<a href="#">文云网服务协议</a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button id="registerBtn" type="button" class="btn btn-default">立即注册</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade " id="enterprise">
+
+            </div>
+        </div>
+    </div>
+    <footer>
+
+
+        <div class="footer-line">
+            <div class="container">
+                <div class="col-md-5 col-sm-4 text-left"
+                     style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">&#169; 版权所有 禁止复制 违者必究
+                </div>
+                <div class="col-md-7 col-sm-8 text-right footer_line_right"
+                     style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"
+                     href="http://www.cssmoban.com/" target="_blank" title="上海美嘉林软件科技有限公司">上海美嘉林软件科技有限公司
+                    沪ICP备08110535-2号
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+</div>
+</body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.js"></script>
+<script>
+    ;
+    (function () {
+        var industry = $('#industry');//所属行业
+        var user = $('#user');//账号
+        var password = $('#password');
+        var confirmPassword = $('#confirmPassword');
+        var passwordinput = $('.passwordinput');
+        var email = $('#email');
+        var name = $('#name');
+        var company = $('#company');
+        var phoneNumber = $('#phoneNumber');
+        var identifyingCode = $('#identifyingCode');
+        var sendCode = $('#sendCode');
+        var protocolChecked = $('#protocolChecked');//同意协议
+        var registerBtn = $('#registerBtn');
+        var postData = {
+            userType: "personal",
+            principalid: "",
+            "check1-inputEl": true,
+            password1: '',
+            "check2-inputEl": true,
+            "password2-inputEl": '',
+            "check3-inputEl": true,
+            email: '',
+            "check4-inputEl": true,
+            name: '',
+            "check5-inputEl": true,
+            company: '',
+            "check6-inputEl": true,
+            industry: 'CAR',
+            "check7-inputEl": true,
+            tel: '',
+            "check8-inputEl": true,
+            validationCode: 0,
+            "check9-inputEl": true,
+            "protocol-inputEl": 'on',
+            validationid: 0
+        };
+        /*所属行业下拉内容获取*/
+        $.get('/imeWeb/Services/principal/getRegisterDomain?_dc=1491538247597&page=1&start=0&limit=25', function (data) {
+            for (var i = 0, l = data.length; i < l; i++) {
+                industry.append("<option domainKey="+data[i].domainKey+">" + data[i].domainTitle + '</option>');
+            }
+        });
+        /*表单验证*/
+        var formValidate = {
+            /*验证账号*/
+            checkPrincipalIdUnique: function (id) {
+                $.post('/imeWeb/Services/principal/checkPrincipalIdUnique', {principalId: id}, function (data) {
+                    if(data.success){
+                        postData.principalid=user.val();
+                        erroInfo(user,"check1-inputEl","hide");
+                    }else {
+                        erroInfo(user,"check1-inputEl","show");
+                    }
+                })
+            },
+            /*密码*/
+            checkUserPassword: function (pw, id, security) {
+                $.post('/imeWeb/Services/security/checkUserPassword',{
+                    password: pw,
+                    principalId: id,
+                    security: security || 'security.normal'
+                },function (data) {
+                    console.log(data);//"空"
+                    if (data.success){
+                        postData.password1=pw;
+                        erroInfo(password,"check2-inputEl","hide");
+                    }else {
+                        erroInfo(password,"check2-inputEl","show");
+                    }
+                });
+            },
+            /*电话*/
+            checkTel: function (tel) {
+                var reg=/^1[34578]\d{9}$/,flag=reg.test(phonenumber);
+                if (flag){
+                    erroInfo(phoneNumber,"check8-inputEl","hide");
+                    $.post('/imeWeb/Services/principal/checkTel', {tel: tel}, function (data) {
+                        console.log(data.success);
+                        if (data.success){
+                            postData.tel=tel;
+                            erroInfo(phoneNumber,"check8-inputEl","hide");
+                        }else {
+                            erroInfo(phoneNumber,"check8-inputEl","show");
+                            phoneNumber.next('span').html("该手机号已被注册");
+                        }
+                    })
+                }else{
+                    erroInfo(phoneNumber,"check8-inputEl","show");
+                }
+            },
+            /*邮箱*/
+            checkEmail:function (email) {
+                var reg=/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/,flag=reg.test(email);
+                if (flag){
+                    erroInfo(email,"check4-inputEl","hide");
+                }else{
+                    erroInfo(email,"check4-inputEl","show");
+                }
+            }
+        };
+        /*表单验证信息*/
+        function erroInfo(input, dataItem,showOrhide) {
+            switch (showOrhide){
+                case "show":
+                    console.log(input.next("span"));
+                    input.next("span").fadeIn();
+                    postData[dataItem]=true;
+                    break;
+                case "hide":
+                    input.next("span").fadeOut();
+                    postData[dataItem]=false;
+                    break;
+            }
+
+        }
+
+
+        /*发送验证码*/
+        function sendValidateCode(tel) {
+            $.post('/imeWeb/Services/principal/sendShortMessage', {tel: tel}, function (data) {
+                console.log(data);
+                if (data.success){
+                    postData.validationid=data.id;
+                }
+                return data;
+            })
+        }
+
+        /*注册*/
+        function registerSend(postData) {
+            $.post('/imeWeb/Services/principal/registerPrincipal', postData, function (data) {
+                console.log(data);
+            })
+        }
+
+        /*事件绑定*/
+        /*账号输入框*/
+        user.blur(function (e) {
+            var res = formValidate.checkPrincipalIdUnique(user.val());
+        });
+        /*密码*/
+        password.blur(function (e) {
+            console.log($(this).val());
+            var res = formValidate.checkUserPassword($(this).val(), user.val());
+        });
+        /*确认密码*/
+        confirmPassword.blur(function (e) {
+            if ($(this).val()==password.val()){
+                postData["password2-inputEl"]=$(this).val();
+            }
+        });
+        /*邮箱*/
+        email.change(function (e) {
+            postData.email=email.val();
+        });
+        /*姓名*/
+        name.change(function (e) {
+            postData.name=name.val();
+        });
+        /*企业*/
+        company.change(function (e) {
+            postData.company=company.val();
+        });
+        /*行业*/
+        industry.change(function (e) {
+            postData.industry=$(this).find("option:selected").attr('domainKey');
+        });
+        /*电话*/
+        phoneNumber.blur(function (e) {
+            var res = formValidate.checkTel($(this).val());
+        });
+        /*验证码*/
+        identifyingCode.change(function (e) {
+            postData.validationCode=$(this).val();
+            console.log(postData);
+        });
+        /*验证码发送*/
+        sendCode.click(function (e) {
+            var res=sendValidateCode(phoneNumber.val());
+        });
+        /*注册按钮*/
+        registerBtn.click(function (e) {
+            var res=registerSend(postData);
+        })
+
+
+    })();
+</script>
+</html>

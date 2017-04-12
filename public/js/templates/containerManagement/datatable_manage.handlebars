@@ -1,0 +1,42 @@
+{{!-- datatable --}}
+{{#each this}}
+<div class="col-md-12">
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption font-dark">
+                <i class="icon-settings font-dark"></i>
+                <span class="caption-subject bold uppercase">存储库管理</span>
+            </div>
+            <div class="actions">
+                <div class="btn-group btn-group-devided" data-toggle="buttons">
+                    <button class="btn btn-transparent green btn-outline btn-circle btn-sm  margin-right-25 " data-toggle="modal" data-target="#stackmodel_newbuild">
+                    <input type="radio" name="options" class="toggle" >新建存储库
+                  </button>
+                   <button class="btn btn-transparent green btn-outline btn-circle btn-sm  margin-right-25 " data-toggle="modal" data-target="#stackmodel1">
+                    <input type="radio" name="options" class="toggle" >编辑存储库
+                  </button>
+                  <button class="btn btn-transparent green btn-outline btn-circle btn-sm  margin-right-25 " data-toggle="modal" data-target="#stackmodel1">
+                    <input type="radio" name="options" class="toggle" >删除存储库
+                  </button>
+                  <button class="btn btn-transparent green btn-outline btn-circle btn-sm  margin-right-25 " data-toggle="modal" data-target="#stackmodel1">
+                    <input type="radio" name="options" class="toggle" >复制存储库结构
+                  </button>
+             </div>
+         </div>
+        </div>
+        <div class="portlet-body">
+            <div class="table-toolbar">
+
+            </div>
+            <table class="table table-striped table-bordered table-hover table-checkable order-column" id="containerManagement_table">
+                <thead>
+
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{{/each}}

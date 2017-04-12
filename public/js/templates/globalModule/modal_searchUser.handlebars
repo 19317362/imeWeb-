@@ -1,0 +1,153 @@
+   <!-- <div class="row">
+        <div class="col-md-12">
+            &lt;!&ndash; BEGIN EXAMPLE TABLE PORTLET&ndash;&gt;
+            <div class="portlet light ">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-green bordered">
+                            <i class="icon-settings font-green"></i>
+                            <span class="caption-subject bold uppercase"><font key="i18n.searchPrincipal"></font></span>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="type" class="col-md-3 col-sm-3 control-label"><font
+                                            key="i18n.softtype"></font></label>
+
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" class="form-control" id="type" value='用户' disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                    <label for="homeDoc_principalId" class="col-md-3  col-sm-3 control-label">ID:</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="text" class="form-control" id="homeDoc_principalId" placeholder="id">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-md-3 col-sm-3 control-label"><font
+                                            key="i18n.name"></font>:</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input id="homeDoc_searchName" type="text" class="form-control" id="name" placeholder="name">
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group col-sm-4 col-md-4 clearfix pull-right">
+                                    <div class="col-sm-12 ">
+                                        <button type="button" class="btn green  pull-right col-sm-4"
+                                                id="homeDoc_searchUser"><font key="i18n.search"></font></button>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                        </div>
+                        &lt;!&ndash;按钮效果&ndash;&gt;
+
+
+                    </div>
+
+                    &lt;!&ndash;表格&ndash;&gt;
+                    <div class="portlet-body">
+
+                        <table class="table table-striped table-bordered table-condensed table-hover table-checkable order-column table-responsive"
+                               id="usersDataShow">
+                            <thead>
+                            <tr class="bg-green text-white">
+                                <th class="col-md-1 col-sm-1 col-xs-1">
+
+                                </th>
+                                <th>ID</th>
+                                <th><font key="i18n.name"></font></th>
+                                <th><font key="i18n.descriptioin"></font></th>
+                                <th><font key="i18n.softtype"></font></th>
+                            </tr>
+                            </thead>
+                            <tbody id="modal_searchUsersBox">
+                                &lt;!&ndash;插入数据&ndash;&gt;
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="modal_searchUser_conform"  modal_searchType="{{searchType}}"><font key="i18n.conform"></font>
+                    </button>
+
+                        <button id="modal_searchUser_close" type="button" data-dismiss="modal" class="btn btn-outline dark">Close</button>
+                    </div>
+                </div>
+                &lt;!&ndash; END EXAMPLE TABLE PORTLET&ndash;&gt;
+            </div>
+        </div>
+    </div>-->
+
+    <div  id="stackmodel_adduser" class="modal fade" tabindex="1" data-focus-on="input:first" data-width='600'>
+        <div class="portlet light mylight">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject font-dark sbold uppercase"><font key="i18n.searchPrincipal"></font></span>
+                </div>
+                <div class="actions">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form role="form">
+                    <div class="form-body myform-body">
+                        <div class="form-group">
+                            <label><font key="i18n.softtype"></font></label>
+                            <input type="text" class="form-control" id="type" value='用户' disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input id="homeDoc_principalId" class="form-control spinner" type="text" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label><font key="i18n.name"></font></label>
+                            <input id="homeDoc_searchName" class="form-control spinner" type="text" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button id="homeDoc_searchUser" type="button" class="btn green"><font key="i18n.search"></font></button>
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="portlet-body">
+                <table class="table table-striped table-bordered table-hover table-checkable order-column"
+                       id="usersDataShow">
+                    <thead>
+                    <tr>
+                        <th class="col-md-1 col-sm-1 col-xs-1">
+
+                        </th>
+                        <th>ID</th>
+                        <th><font key="i18n.name"></font></th>
+                        <th><font key="i18n.descriptioin"></font></th>
+                        <th><font key="i18n.softtype"></font></th>
+                    </tr>
+                    </thead>
+                    <tbody id="modal_searchUsersBox">
+                    <!--插入用户数据-->
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div class="modal-footer mymodal-footer">
+                <button id="modal_searchUser_close" type="button" data-dismiss="modal" class="btn btn-outline dark"><font key="i18n.wf_cancel"></font></button>
+                <button id="modal_searchUser_conform" modal_searchType="{{searchType}}" type="button" class="btn green"><font key="i18n.confirm"></font></button>
+            </div>
+        </div>
+
+    </div>
+

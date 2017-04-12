@@ -1,0 +1,20 @@
+{{!-- 首页最近检出·最近访问模板  --}}
+{{#each this}}
+<li>
+    <div class='col1'>
+        <div class='cont'>
+            <div class='cont-col1'>
+                <div class='label label-sm {{FavoriteItemsShowIcon fileType}}'>
+                <i class='iconfont icon-{{recentShowIcon fileType}}'></i>
+                </div>
+            </div>
+            <div class='cont-col2'>
+                <div class='desc'>{{name}}</div>
+            </div>
+        </div>
+    </div>
+    <div class='col2'>
+        <div class='date'>{{visitedDay}}</div>
+    </div>
+</li>
+{{/each}}

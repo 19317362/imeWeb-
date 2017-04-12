@@ -1,0 +1,58 @@
+{{!-- datatable模板 --}}
+{{#each this}}
+<div  id="stackmodel_newbuild" class="modal fade" tabindex="-1" data-focus-on="input:first" data-width='600'>
+    <div class="portlet light mylight">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-settings font-dark"></i>
+                <span class="caption-subject font-dark sbold uppercase">新建存储库</span>
+            </div>
+            <div class="actions">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <form class="form-horizontal" role="form">
+                <div class="form-body myform-body">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">名称</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" placeholder="Enter text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">说明</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" rows="6"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <label class="col-md-2 control-label">状态</label>
+                        <div class="col-md-10">
+                            <div class="mt-radio-inline">
+                                <label class="mt-radio">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios25" value="option1" checked=""> 启用
+                                    <span></span>
+                                </label>
+                                <label class="mt-radio">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios26" value="option2" checked=""> 禁用
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer mymodal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-outline dark">取消</button>
+                    <button type="button" class="btn green">确定</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{{/each}}

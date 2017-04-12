@@ -1,0 +1,75 @@
+{{#each this}}
+<div class="page-content parent-{{parentName}} {{pageName}}">
+  <div class='row'>
+    <!--表格插入区域-->
+    <div class="col-md-12">
+      <div class="portlet light bordered">
+       <div class="portlet-title tabbable-line">
+        <div class="caption">
+         <button type="button" class="btn  mt-ladda-btn ladda-button myblockbutton  blockui_TaskInit" data-style="contract" data-spinner-color="#697882">
+          <span class="ladda-label"> <i class="icon-refresh"></i></span>
+          <span class="ladda-spinner"></span>
+          <span class="ladda-spinner"></span>
+          <span class="ladda-spinner"></span>
+        </button>
+        <span class="caption-subject font-dark bold uppercase">工作流</span>
+      </div>
+
+      <div class="actions">
+
+       {{> common/protletTitleTools protletTitleTools}}
+
+     </div>
+
+   </div>
+   <div class="portlet-body" style="min-height:300px">
+    <form class="form-horizontal" role="form">
+      <div class="form-body myform-body">
+        <div class='row'>
+          <div class="form-group col-md-12">
+            <label class="col-md-3 control-label">名称</label>
+            <div class="col-md-5">
+              <div class="input-group">
+                <input type="text" class="form-control" id="start_process_name">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-angle-down"></i>
+                  </button>
+                  <ul class="dropdown-menu pull-right  my_select"  id="start_process_namelist">
+
+                 </ul>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="form-group col-md-12">
+          <label class="col-md-3 control-label">对象</label>
+          <div class="col-md-5">
+            <input type="text" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group col-md-12">
+          <div class="col-md-offset-3 col-md-5">
+            <button type="submit" class="btn btn-success mt-ladda-btn ladda-button search_object  pull-right" id="start_process_search" data-style="zoom-in">
+              <span class="ladda-label">
+                <i class="fa fa-search"></i>  搜索
+              </span>
+              <span class="ladda-spinner">
+              </span>
+              <div class="ladda-progress" style="width: 0px;">
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+{{/each}}
+

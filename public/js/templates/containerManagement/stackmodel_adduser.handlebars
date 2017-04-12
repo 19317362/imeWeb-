@@ -1,0 +1,70 @@
+{{!-- datatable模板 --}}
+{{#each this}}
+<div  id="stackmodel_adduser" class="modal fade" tabindex="-1" data-focus-on="input:first" data-width='600'>
+    <div class="portlet light mylight">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-settings font-dark"></i>
+                <span class="caption-subject font-dark sbold uppercase">搜索成员</span>
+            </div>
+            <div class="actions">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <form role="form">
+                <div class="form-body myform-body">
+                 <div class="form-group">
+                 <label>类型</label>
+                    <select class="form-control">
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>ID</label>
+                    <input class="form-control spinner" type="text" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label>名称</label>
+                    <input class="form-control spinner" type="text" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+            <button type="submit" class="btn green">搜索</button>
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <div class="portlet-body">
+       <!--  <div class="table-toolbar">
+        搜索结果
+        </div> -->
+        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="tablestackmodel_adduser">
+            <thead>
+
+            </thead>
+            <tbody>
+            <!-- <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr> -->
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal-footer mymodal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">取消</button>
+        <button type="button" class="btn green">确定</button>
+    </div>
+
+
+
+
+
+</div>
+
+</div>
+
+{{/each}}

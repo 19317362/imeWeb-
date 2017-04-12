@@ -1,0 +1,104 @@
+{{#each this}}
+    <div class="page-content page-content-base">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet ">
+                    <!--标题-->
+
+                    <ul class="page-breadcrumb breadcrumb">
+                        <li>
+                            <a href="index.html">站点</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <span class="active">系统信息</span>
+                        </li>
+                    </ul>
+                    <!--主体内容,最外部框架-->
+                    <div class="portlet light bordered">
+                        <!--主体标题开始-->
+                        <div class="portlet-title">
+                            <div class="caption font-green bordered">
+                                <i class="icon-settings font-green"></i>
+                                <span class="caption-subject bold uppercase"> 系统信息</span>
+                            </div>
+
+                        </div>
+                        <!--主体标题结束-->
+                        <!--主体内容开始-->
+                        <div class="portlet-body form  ">
+                            <form role="form" class="form-inline">
+                                <div class="form-body " >
+                                    <div class="col-md-12 col-sm-12">
+                                        <label class=""><strong>标题:</strong></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span class="ma">{{Subject}}</span>
+                                    </div>
+
+                                </div>
+                                <div class="form-body" >
+                                    <div class="col-md-4 col-sm-6 col-xs-6">
+                                        <label class=""><strong>起始时间:</strong></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span class="ma">{{NotBefore}}</span>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-6">
+                                        <label class=""><strong>结束时间:</strong></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span class="ma">{{NotAfter}}</span>
+                                    </div>
+                                </div>
+                                <div class="form-body " >
+                                    <div class="col-md-4 col-sm-6 col-xs-6">
+                                        <label class=""><strong>CMS用户:</strong></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span class="ma">{{CMSUserAmout}}</span>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-6">
+                                        <label class=""><strong>Editor用户:</strong></label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span class="ma">{{EditorUserAmout}}</span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <hr/>
+
+
+                        <!--主体标题开始-->
+                        <div class="portlet-title">
+                            <div class="caption font-green bordered">
+                                <i class="icon-user font-green"></i>
+                                <span class="caption-subject bold uppercase"> 在线用户</span>
+                            </div>
+
+                            <div class="actions">
+                                <!--<a href="javascript:;" class="btn btn-sm btn-circle green easy-pie-chart-reload" id="refresh_systemInfoList">-->
+                                    <!--<i class="fa fa-repeat"></i> 刷新 </a>-->
+                                <button type="button"  id="refresh_systemInfoList" class="btn  green mt-ladda-btn ladda-button btn-circle" data-style="slide-right" >
+                                    <span class="ladda-label"> <i class="fa fa-repeat"></i> <font key="i18n.refresh">刷新</font></span>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <div class="portlet-body refresh_area">
+                                <table class="table table-striped table-bordered table-condensed table-hover table-checkable order-column table-responsive" id="systemInfoList">
+                                    <thead>
+                                    <tr class="bg-green text-white" >
+                                        <th>ID</th>
+                                        <th> 名称 </th>
+                                        <th> 邮箱 </th>
+                                        <th> 在线时间 </th>
+                                        <th> 创建时间 </th>
+                                        <th> 修改时间 </th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                        </div>
+
+                    </div>
+
+                    <!--主体内容结束-->
+                </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
+            </div>
+        </div>
+    </div>
+{{/each}}

@@ -1,0 +1,310 @@
+{{! home页面容器 }}
+{{#each this}}
+<!-- BEGIN CONTENT BODY -->
+<div class="page-content" id="indexpage">
+
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1> <font key="i18n.appName"></font>
+                <small></small>
+            </h1>
+        </div>
+        <!-- END PAGE TITLE -->
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BREADCRUMB -->
+    <ul class="page-breadcrumb breadcrumb">
+        <li>
+            <a href="">首页</a>
+            <!--<i class="fa fa-circle"></i>-->
+        </li>
+            <!--<li>
+                <span class="active">仪表盘</span>
+            </li>-->
+        </ul>
+        <!-- BEGIN fourrectangles -->
+        <div class="row" id="ditaBookShow">
+        </div>
+        <!-- END fourrectangles -->
+
+
+        <div class="row">
+            <div class="col-lg-6 col-xs-12 col-sm-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-cursor font-dark hide"></i>
+                            <span class="caption-subject font-dark bold uppercase"><font key="i18n.statisticalTask"></font></span>
+                        </div>
+                        <div class="actions">
+                            <button type="button" class="btn red mt-ladda-btn ladda-button btn-circle btn-outline easy-pie-chart-reload" data-style="slide-right" data-spinner-color="#333">
+                                <span class="ladda-label"> <i class="icon-login"></i> <font key="i18n.refresh"></font></span><span class="ladda-spinner"></span>
+                            </button>
+                        </div>
+
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="easy-pie-chart">
+                                        <div class="number emergencyTask" data-percent="0">
+                                            <span>+0</span>%
+                                        </div>
+                                        <a class="title" href="javascript:;"> <font key="i18n.threeDaysNeedToDisposal"></font>
+                                            <i class="icon-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="margin-bottom-10 visible-sm"></div>
+                                <div class="col-md-4">
+                                    <div class="easy-pie-chart">
+                                        <div class="number activeTask" data-percent="0">
+                                            <span>+0</span>%
+                                        </div>
+                                        <a class="title" href="javascript:;"> <font key="i18n.threeDaysNeedToDisposal"></font>
+                                            <i class="icon-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="margin-bottom-10 visible-sm"></div>
+                                <div class="col-md-4">
+                                    <div class="easy-pie-chart">
+                                        <div class="number overdueTask" data-percent="0">
+                                            <span>+0</span>%
+                                        </div>
+                                        <a class="title" href="javascript:;"> <font key="i18n.overdue"></font>
+                                            <i class="icon-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12 col-sm-12">
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-equalizer font-dark hide"></i>
+                                <span class="caption-subject font-dark bold uppercase"><font key="i18n.documentDynamic"></font></span>
+                                <span class="caption-helper"></span>
+                            </div>
+                            <div class="actions">
+                                <button type="button" class="btn red mt-ladda-btn ladda-button btn-circle btn-outline blockui_documentDynamic" data-style="slide-right" data-spinner-color="#333">
+                                    <span class="ladda-label"> <i class="icon-login"></i> <font key="i18n.refresh"></font></span><span class="ladda-spinner"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="sparkline-chart">
+                                        <div class="number" id="sparkline_WIP"></div>
+                                        <a class="title" href="javascript:;"> <font key="i18n.WIP"></font>
+                                            <i class="icon-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="margin-bottom-10 visible-sm"></div>
+                                <div class="col-md-4">
+                                    <div class="sparkline-chart">
+                                        <div class="number" id="sparkline_PENDING"></div>
+                                        <a class="title" href="javascript:;"> <font key="i18n.PENDING"></font>
+                                            <i class="icon-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="margin-bottom-10 visible-sm"></div>
+                                <div class="col-md-4">
+                                    <div class="sparkline-chart">
+                                        <div class="number" id="sparkline_ISSUED"></div>
+                                        <a class="title" href="javascript:;"> <font key="i18n.ISSUED"></font>
+                                            <i class="icon-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-6 col-xs-12 col-sm-12">
+                    <div class="portlet light bordered">
+                        <div class="portlet-title tabbable-line">
+                            <div class="caption">
+                             <button type="button" class="btn  mt-ladda-btn ladda-button myblockbutton  blockui_TaskInit" data-style="contract" data-spinner-color="#697882">
+                             <span class="ladda-label">
+                                <i class="icon-refresh"></i>
+                            </span>
+                            <span class="ladda-spinner"></span>
+                            </button>
+                                <span class="caption-subject font-dark bold uppercase"><font key="i18n.myTask"></font></span>
+                            </div>
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#tab_actions_receive_task" data-toggle="tab"> <font key="i18n.receiveTask"></font> </a>
+                                </li>
+                                <li>
+                                    <a href="#tab_actions_originate_task" data-toggle="tab"><font key="i18n.originateTask"></font></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_actions_receive_task">
+                                    <div class="mt-actions scroller" style="height:430px">
+                                        <!-- 首页我的任务收到的任务模板插入位置 -->
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab_actions_originate_task">
+                                    <div class="mt-actions scroller" style="height:430px">
+                                        <!-- 首页我的任务发起的任务模板插入位置 -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12 col-sm-12">
+                    <div class="portlet light bordered">
+                        <div class="portlet-title tabbable-line">
+                            <div class="caption">
+                                <button type="button" class="btn  mt-ladda-btn ladda-button myblockbutton  blockui_myfavotite" data-style="contract" data-spinner-color="#697882">
+                             <span class="ladda-label">
+                                <i class="icon-refresh"></i>
+                            </span>
+                            <span class="ladda-spinner"></span>
+                            </button>
+                                <span class="caption-subject font-dark bold uppercase"><font key="i18n.myFavorite"></font></span>
+                            </div>
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#portlet_comments_1" data-toggle="tab"> <font key="i18n.structuredDocument"></font> </a>
+                                </li>
+                                <li>
+                                    <a href="#portlet_comments_2" data-toggle="tab"> <font key="i18n.otherObjects"></font> </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="scroller" style="height: 430px;" data-always-visible="1" data-rail-visible="0">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="portlet_comments_1">
+                                        <!-- BEGIN: Comments -->
+                                        <div class="mt-comments">
+
+                                        </div>
+                                        <!-- END: Comments -->
+                                    </div>
+                                    <div class="tab-pane" id="portlet_comments_2">
+                                        <!-- BEGIN: Comments -->
+                                        <div class="mt-comments">
+
+                                        </div>
+                                    </div>
+                                    <!-- END: Comments -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-xs-12 col-sm-12" id="publishEventTimeLine">
+                    <!-- 站点事件开始 -->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title tabbable-line">
+                            <div class="caption">
+                                <button type="button" class="btn  mt-ladda-btn ladda-button myblockbutton  blockui_stationevents" data-style="contract" data-spinner-color="#697882">
+                                   <span class="ladda-label">
+                                    <i class="icon-refresh"></i>
+                                </span>
+                                <span class="ladda-spinner"></span>
+                            </button>
+                            <span class="caption-subject font-dark bold uppercase"><font key="i18n.stationEvent"></font></span>
+                        </div>
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#tab_1_1" class="active" data-toggle="tab"><font key="i18n.publishEvevt"></font></a>
+                                </li>
+                                <li>
+                                    <a href="#tab_1_2" data-toggle="tab"> <font key="i18n.ReuseLibraryEvevt"></font></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="portlet-body">
+                          <!--BEGIN TABS-->
+                          <div class="tab-content">
+                            <div class="tab-pane active" id="tab_1_1">
+                              <div class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible="0">
+                               <div class="timeline">
+                                  <!--发布事件插入模板-->
+                              </div>
+                          </div>
+                      </div>
+                      <div class="tab-pane" id="tab_1_2">
+                          <div class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible="0">
+                             <div class="timeline">
+                                <!--重用库事件事件插入模板-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END TABS-->
+        </div>
+    </div>
+    <!-- 站点事件结束 -->
+    <div class="col-lg-6 col-xs-12 col-sm-12" id="checkoutlist_VisitedItems">
+        <!-- BEGIN PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+                <div class="caption">
+                <button type="button" class="btn  mt-ladda-btn ladda-button myblockbutton  blockui_footprint" data-style="contract" data-spinner-color="#697882">
+                       <span class="ladda-label">
+                        <i class="icon-refresh"></i>
+                    </span>
+                    <span class="ladda-spinner"></span>
+                </button>
+                    <span class="caption-subject font-dark bold uppercase"><font key="i18n.footmark"></font></span>
+                </div>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#CheckoutList" class="active" data-toggle="tab"> <font key="i18n.recentCheckout"></font></a>
+                    </li>
+                    <li>
+                        <a href="#recentVisted" data-toggle="tab"> <font key="i18n.recentVisited"></font> </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="portlet-body">
+                <!--BEGIN TABS-->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="CheckoutList">
+                        <div class="scroller" style="height: 350px;" data-always-visible="1"
+                        data-rail-visible="0">
+                        <ul class="feeds">
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-pane" id="recentVisted">
+                    <div class="scroller" style="height: 350px;" data-always-visible="1"
+                    data-rail-visible1="1">
+                    <ul class="feeds">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--END TABS-->
+    </div>
+</div>
+<!-- END PORTLET-->
+</div>
+</div>
+</div>
+{{/each}}

@@ -1,0 +1,81 @@
+div#navpage nav.quick .quick-nav {
+  background-color: #32c5d2;
+  right: 0;
+  top: 70%;
+  display: inline-block;
+  padding: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px !important;
+  position: fixed;
+  color: white;
+  white-space: pre-wrap;
+  text-align: center;
+}
+div#navpage div.row.help div.portlet-body div.content {
+  padding: 26px 0;
+  font-family: "微软雅黑";
+}
+div#navpage div.row.help div.portlet-body div.content div.mt-step-number {
+  font-size: 8.1em;
+  line-height: 0.85em;
+}
+div#navpage div.row.help div.portlet-body div.content div.mt-step-title {
+  padding-right: 80px;
+  font-size: 2em;
+}
+div#navpage div.row.help div.portlet-body div.content:hover {
+  box-shadow: 0 2px 10px #c5c5c5;
+  top: -2px;
+}
+div#navpage div.row.category div.task div.portlet-body div.content:nth-child(odd),
+div#navpage div.row.category div.newbuild div.portlet-body div.content:nth-child(odd),
+div#navpage div.row.category div.management div.portlet-body div.content:nth-child(odd) {
+  padding-right: 12px;
+  padding-left: 35px;
+}
+div#navpage div.row.category div.task div.portlet-body div.content:nth-child(even),
+div#navpage div.row.category div.newbuild div.portlet-body div.content:nth-child(even),
+div#navpage div.row.category div.management div.portlet-body div.content:nth-child(even) {
+  padding-left: 12px;
+  padding-right: 35px;
+}
+div#navpage div.row.category div.task div.portlet-body div.content a,
+div#navpage div.row.category div.newbuild div.portlet-body div.content a,
+div#navpage div.row.category div.management div.portlet-body div.content a {
+  font-family: "微软雅黑";
+  float: left;
+  padding: 30px 0;
+  height: auto;
+  margin: 10px 0;
+}
+div#navpage div.row.category div.task div.portlet-body div.content a span.badge,
+div#navpage div.row.category div.newbuild div.portlet-body div.content a span.badge,
+div#navpage div.row.category div.management div.portlet-body div.content a span.badge {
+  top: -15px;
+  right: -15px;
+  width: 32px;
+  height: 32px;
+  line-height: 25px;
+  border-radius: 32px !important;
+}
+div#navpage div.row.category div.task div.portlet-body div.content a:hover,
+div#navpage div.row.category div.newbuild div.portlet-body div.content a:hover,
+div#navpage div.row.category div.management div.portlet-body div.content a:hover {
+  box-shadow: 0 2px 10px #c5c5c5;
+}
+div#navpage div.row.category div.task div.portlet-body div.content i,
+div#navpage div.row.category div.newbuild div.portlet-body div.content i,
+div#navpage div.row.category div.management div.portlet-body div.content i {
+  line-height: normal;
+  font-size: 3em;
+}
+div#navpage div.row.category div.task div.portlet-body div.content div,
+div#navpage div.row.category div.newbuild div.portlet-body div.content div,
+div#navpage div.row.category div.management div.portlet-body div.content div {
+  font-size: 150%;
+  margin-top: 18px;
+}
+div#navpage div.newbuild div.portlet-body div.content:last-child {
+  padding-right: 34px !important;
+}

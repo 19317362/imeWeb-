@@ -1,0 +1,115 @@
+
+.list_circleBox{
+    width:8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border:1px solid rgba(0, 0, 0, 0.2);
+    padding-top: 2.7rem;
+    margin: 0 auto;
+}
+.list_circleBox>p{
+    text-align: center;
+}
+.redFont{
+    color: #fc4242;
+}
+.list_group_item1>p{
+    text-align: center;
+}
+.item-top{
+    font-size: 1.3rem;
+    background-color: #eee;
+    transition: background-color 0.5s;
+}
+.item-bottom{
+    background-color: #eee;
+}
+.list-group{
+    transition: all 0.5s;
+}
+.list-group a{
+    padding:1rem 0;
+    text-align: center;
+}
+.list-group:hover{
+    transform: scale(1.02);
+}
+.list-group:hover>.item-top{
+    background-color: #007aff;
+    opacity: 0.8;
+    color: #fff;
+}
+
+
+/*table*/
+.table-responsive td,.table-responsive th{
+    text-align: center;
+    vertical-align: middle !important;
+}
+thead{
+    background-color: #eee;
+}
+
+
+/*底部*/
+.mgl_footer_box {
+    padding-top: 3rem;
+    /*    height: 20rem;*/
+    padding-bottom: 1rem;
+    background-color: #0067b4;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.mgl_footer_box>div>h4 {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.mgl_footer_box>div>ul>li {
+    padding: .5rem 0;
+}
+
+.mgl_footer_box>div>ul>li>a {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.mgl_footer_box>div>ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.mgl_footer_box>div>h4 {
+    display: block;
+    padding-bottom: 1.6rem;
+    padding-top: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.mgl_footer_icon{
+    padding-top: 0.7rem;
+}
+
+.mgl_footer_icon .fa {
+    background-color: #fff;
+    width:36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 2rem;
+    text-align: center;
+    line-height: 36px;
+    opacity: .7;
+    color: #0067b4;
+    cursor: pointer;
+    margin-top: 4px;
+}
+
+.mgl_footer_icon>.fa:hover {
+    opacity: 1;
+}
+
+.mgl_footer_footer {
+    font-size: 0.9rem;
+    padding: 1rem 0;
+    color: rgba(255, 255, 255, 0.4);
+    background-color: #0067b4;
+}
