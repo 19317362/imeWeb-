@@ -1,0 +1,66 @@
+{{! home页面容器 }}
+{{#each this}}
+    <div class="page-content page-repository">
+        {{! 面包屑导航 }}
+        <ul class="page-breadcrumb breadcrumb">
+        </ul>
+
+        <div class="row">
+            <div class="col-lg-12 col-xs-12 col-sm-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-cursor font-dark hide"></i>
+                            <span class="caption-subject font-dark bold uppercase"><font key="i18n.container"></font></span>
+                        </div>
+                        <div class="actions">
+                            <a href="javascript:;" class="btn btn-sm btn-circle red easy-pie-chart-reload">
+                                <i class="fa fa-repeat"></i> <font key="i18n.refresh"></font> </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-striped table-bordered table-hover dt-responsive nowrap" id="repository">
+                                    <thead>
+                                        <tr>
+                                            <th class="all" style="width:10px;padding-left:30px;">
+                                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                    <input type="checkbox" class="group-checkable item_check" style="display:none;" />
+                                                    <span></span>
+                                                </label>
+                                            </th>
+                                            <th class="all" width="40"></th>
+                                            <th class="all"><font key="i18n.number"></font></th>
+                                            <th class="all"><font key="i18n.name"></font></th>
+                                            <th class="all"><font key="i18n.download"></th>
+                                            <th class="all"><font key="i18n.status"></font></th>
+                                            <th class="all"><font key="i18n.version"></font></th>
+                                            <th class="all"><font key="i18n.publishResult"></font></th>
+                                            <th class="all"><font key="i18n.modifier"></font></th>
+                                            <th class="all"><font key="i18n.softtype"></font></th>
+                                            <th class="all"><font key="i18n.modified"></font></th>
+
+                                            <th class="none"><font key="i18n.name"></font></th>
+                                            <th class="none"><font key="i18n.version"></font></th>
+                                            <th class="none"><font key="i18n.softtype"></font></th>
+                                            <th class="none"><font key="i18n.created"></font></th>
+                                            <th class="none"><font key="i18n.number"></font></th>
+                                            <th class="none"><font key="i18n.checkoutStatus"></font></th>
+                                            <th class="none"><font key="i18n.lifecycleTemplate"></font></th>
+                                            <th class="none"><font key="i18n.context"></font></th>
+                                            <th class="none"><font key="i18n.creator"></font></th>
+                                            <th class="none"><font key="i18n.lifeCycle"></font></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}

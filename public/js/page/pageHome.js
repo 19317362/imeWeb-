@@ -12,6 +12,7 @@ pageHome.init = function(){
 }
 
 pageHome.dataInit = function(){
+    pageHome.domainInfo();
     pageHome.taskEasyPieChartsInit();
     pageHome.FavoriteItemsInit();
     pageHome.CheckoutListInit();
@@ -112,16 +113,19 @@ pageHome.ditaBookShowInit = function(){
            }
         },
         success:function(data,textstatus){
-            $.each(data.docs,function(index,value){
-                var finishedRatio;
-                if(value.childCountNumber != "0"){
-                    finishedRatio = Math.floor(Math.round( value.childFinishedCountNumber / value.childCountNumber * 100));
-                }else{
-                    finishedRatio = 0;
-                }
-                value.finishedRatio = finishedRatio;
-            });
-            $('#ditaBookShow').html(Handlebars.templates['home/ditaBookShow'](data.docs));
+            if(data.docs.length > 0){
+                $.each(data.docs,function(index,value){
+                    var finishedRatio;
+                    if(value.childCountNumber != "0"){
+                        finishedRatio = Math.floor(Math.round( value.childFinishedCountNumber / value.childCountNumber * 100));
+                    }else{
+                        finishedRatio = 0;
+                    }
+                    value.finishedRatio = finishedRatio;
+                });
+                $('#ditaBookShow').html(Handlebars.templates['home/ditaBookShow'](data.docs)); 
+                $('.ditaBookShowItem:first').click();
+            }
         }
     });
 }
@@ -193,46 +197,76 @@ pageHome.stationPublishEvents = function (){
 
 }
 
+$(document).on("click",".ditaBookShowItem",function(){
+	$(".ditaBookShowItem").removeClass("selected");
+	$(this).addClass("selected");
+	var name = $(this). find(".progress-bar-font").text();
+    var oid = $(this).attr("id");
+    pageHome.docInfo(name,oid);
+});
 
-pageHome.ditaBookShowItemOnclick = function (e){
-    $(".ditaBookShowItem").removeClass("selected");
-    $(e).addClass("selected");
-    pageHome.docInfo();
-}
-
-pageHome.docInfo = function (){
-    function getrandom(){
-        var array=[];
-        for(var i=0;i<7;i++){
-             var rand=Math.round(Math.random()*9+1);
-            array.push(rand);
-        }
-        return  array;
-    }
-    $("#sparkline_WIP").sparkline(getrandom(), {
-        type: 'bar',
-        width: '100',
-        barWidth: 10,
-        height: '55',
-        barColor: '#5c9bd1',
-        negBarColor: '#e02222'
-    });
-    $("#sparkline_PENDING").sparkline(getrandom(), {
-        type: 'bar',
-        width: '100',
-        barWidth: 10,
-        height: '55',
-        barColor: '#35aa47',
-        negBarColor: '#e02222'
-    });
-    $("#sparkline_ISSUED").sparkline(getrandom(), {
-        type: 'bar',
-        width: '100',
-        barWidth: 10,
-        height: '55',
-        barColor: '#ffb848',
-        negBarColor: '#e02222'
-    });
+pageHome.docInfo = function (name,oid){
+	if(typeof name !== "undefined" || typeof oid !== "undefined"){
+		$('.docInfo-name').text('['+name+']');
+		function getrandom(){
+	        var array=[];
+	        for(var i=0;i<7;i++){
+	             var rand=Math.round(Math.random()*9+1);
+	            array.push(rand);
+	        }
+	        return  array;
+	    }
+	    $("#sparkline_WIP").sparkline(getrandom(), {
+	        type: 'bar',
+	        width: '100',
+	        barWidth: 10,
+	        height: '55',
+	        barColor: '#5c9bd1',
+	        negBarColor: '#e02222'
+	    });
+	    $("#sparkline_PENDING").sparkline(getrandom(), {
+	        type: 'bar',
+	        width: '100',
+	        barWidth: 10,
+	        height: '55',
+	        barColor: '#35aa47',
+	        negBarColor: '#e02222'
+	    });
+	    $("#sparkline_ISSUED").sparkline(getrandom(), {
+	        type: 'bar',
+	        width: '100',
+	        barWidth: 10,
+	        height: '55',
+	        barColor: '#ffb848',
+	        negBarColor: '#e02222'
+	    });
+	}else{
+	    $("#sparkline_WIP").sparkline([0,0,0,0,0,0,0], {
+	        type: 'bar',
+	        width: '100',
+	        barWidth: 10,
+	        height: '55',
+	        barColor: '#5c9bd1',
+	        negBarColor: '#e02222'
+	    });
+	    $("#sparkline_PENDING").sparkline([0,0,0,0,0,0,0], {
+	        type: 'bar',
+	        width: '100',
+	        barWidth: 10,
+	        height: '55',
+	        barColor: '#35aa47',
+	        negBarColor: '#e02222'
+	    });
+	    $("#sparkline_ISSUED").sparkline([0,0,0,0,0,0,0], {
+	        type: 'bar',
+	        width: '100',
+	        barWidth: 10,
+	        height: '55',
+	        barColor: '#ffb848',
+	        negBarColor: '#e02222'
+	    });
+	}
+    
 }
 /* 任务统计*/
 pageHome.taskEasyPieChartsInit = function(){
@@ -303,3 +337,17 @@ pageHome.taskEasyPieChartsInit = function(){
         });
     });
 }
+
+pageHome.domainInfo = function(){
+    var domainNameNode = $("#domain_info font");
+    var domainSmallNode = $("#domain_info small");
+    domainNameNode.text($.cookie("domainInfo_domainname"));
+    domainSmallNode.text("站点描述");
+}
+
+$(document).on("click",".favorite-edit",function(){
+    var docNode = $(this).parents(".favorite-item");
+    var docName = docNode.find("> .mt-comment-body > .mt-comment-info > .mt-comment-content").text();
+    var oid = docNode.attr("oid");
+    pageEditor.init(docName,oid);
+});

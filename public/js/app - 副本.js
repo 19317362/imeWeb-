@@ -7,14 +7,13 @@ imeWeb.page = {
     home: pageHome.init,  //主页
     myTask: pageMyTask.init ,
 	homeDoc:pageHomeDoc.init,
-    docLog:pageDocumentLog.init,
-    siteManagement:pageSiteManagement.init,
-    translationLangManagement:pageTranslationLangManagement.init,
-    repository: pageRepository.init ,
+    container: function(){
+        alert('container');
+    },
     groupManagement: pageGroupManagement.init ,
     containerManagement: pagecontainerManagement.init ,
     workflowManagement: pageWorkflowManagement.init ,
-    //reportChart:pageReportchart.init,
+    reportChart:pageReportchart.init,
     siteInfo: pageSiteInfo.init,
     userManagement: pageUserManagement.init,
     systemInfo: pageSystemInfo.init
@@ -25,10 +24,7 @@ imeWeb.router = new Router({
     '/imeWeb/home': 'home',  //主页
     '/imeWeb/myTask': 'myTask',
 	'/imeWeb/homeDoc':'homeDoc',
-    '/imeWeb/logRecord':'docLog',
-    '/imeWeb/siteManagement':'siteManagement',
-    '/imeWeb/translationLangManagement':'translationLangManagement',
-    '/imeWeb/repository': 'repository' ,
+    '/imeWeb/container': 'container' ,
     '/imeWeb/groupManagement': 'groupManagement',
     '/imeWeb/containerManagement': 'containerManagement',
     '/imeWeb/workflowManagement': 'workflowManagement',
@@ -36,6 +32,8 @@ imeWeb.router = new Router({
     '/imeWeb/siteInfo': 'siteInfo',
     '/imeWeb/userManagement': 'userManagement',
     '/imeWeb/systemInfo' : 'systemInfo'
+
+
 }, {
 	scope: imeWeb.page
 });
@@ -43,8 +41,6 @@ imeWeb.router = new Router({
 //映射局部模板
 //例：Handlebars.partials['common/commonFooter'] = Handlebars.templates['common/commonFooter']
 Handlebars.partials['common/protletTitleTools'] = Handlebars.templates['common/protletTitleTools'];
-Handlebars.partials['editor/tabNav'] = Handlebars.templates['editor/tabNav'];
-Handlebars.partials['editor/tabContent'] = Handlebars.templates['editor/tabContent'];
 
 
 //设置全局性的Ajax配置选项
@@ -147,13 +143,7 @@ imeWeb.getBrowserVersion = function(){
 //改变URL地址
 imeWeb.changeRoute = function(url){
     imeWeb.router.route(url,{trigger:true});
-    $('html, body').scrollTop(0);
 };
-
-//跳转页面前确认
-window.onbeforeunload = function () {
-    return '';
-}
 
 //切换语言
 imeWeb.changeLanguage = function(lang){
@@ -163,6 +153,7 @@ imeWeb.changeLanguage = function(lang){
         url: g_url_changeLang,
         type: 'get',
         async: false,
+        cache:true,
         data: {
             "lang":lang
         },
@@ -216,12 +207,10 @@ imeWeb.initPageBox = function(name,data){
             $('body').prepend(Handlebars.templates['common/commonFooter']([1]));
             $('body').prepend(Handlebars.templates['common/commonHeader']([1]));
             $('.page-sidebar-wrapper').prepend(Handlebars.templates['common/commonSidebar']([1]));
-            pageCommon.init();
-            $('.page-sidebar-menu').data("auto-scroll","false");
         }else{
-            $(".page-content-wrapper .page-content").not(".page-editor").remove();
-            $('.page-editor').toggle(false);
+            $('.page-content-wrapper').html("");
         }
+        pageCommon.init();
         if(typeof name !== "undefined" && typeof data !== "undefined"){
             $('.page-content-wrapper').prepend(Handlebars.templates[name](data));
         }else{
@@ -502,7 +491,6 @@ imeWeb.deleteChildPage = function(){
 	}else{
 		thisPage.remove();
     	parentPage.removeClass('hidden');
-        parentPage.css('display','');
     	$('html, body').scrollTop(0);
     	if(parentPageName === 'base'){
     		eval('page'+(imeWeb.firstLetterToUpperCase(window.location.pathname.split('/')[2]))).dataInit();
@@ -532,170 +520,22 @@ imeWeb.closeChildPage = function(){
     }else{
         thisPage.remove();
         parentPage.removeClass('hidden');
-        parentPage.css('display','');
         $('html, body').scrollTop(0);
     }
 };
 
-/* 判断对象是否相等 */
-imeWeb.isObjectValueEqual = function (a, b) {
-    if(typeof a == 'object' && typeof b == 'object'){
-        var aProps = Object.getOwnPropertyNames(a);
-        var bProps = Object.getOwnPropertyNames(b);
-        if(aProps.length !== bProps.length) {
-            return false;
-        }else{
-            for(var i = 0; i < aProps.length; i++) {
-                var propName = aProps[i];
-                if(typeof a[propName] == 'object' && typeof b[propName] == 'object'){
-                    imeWeb.isObjectValueEqual(a[propName],b[propName]);
-                }else{
-                    if (a[propName] !== b[propName]) {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-    }else{
-        return a === b;
-    }
-}
-
-/* 数组去重 */
-imeWeb.distinct = function(array){
-    var r = [];
-    for(var i = 0, l = array.length; i < l; i++) {
-        for(var j = i + 1; j < l; j++)
-            if (imeWeb.isObjectValueEqual(array[i],array[j])){
-                j = ++i;
-            }
-            r.push(array[i]);
-        }
-    return r;
-};
-/*单次绑定事件*/
-$.fn.bindOne = function (eventName,fn) {
-    $(this).unbind(eventName).bind(eventName, fn);
-};
-/********************************************工具函数*********************************************************/
-imeWeb.tools = {
-
-    /*全选功能*/
-    H_allChecked: function (allCheckBtn, childCheckBtn) {
-        if(!allCheckBtn||!childCheckBtn){
-            console.warn("imeWeb.tools.H_allChecked参数错误！");
-            return;
-        }
-        /*子复选框点击事件*/
-        childCheckBtn.bindOne('click',function (e) {
-            allCheckBtn.prop('checked', imeWeb.tools.checkAll(childCheckBtn, 'checked', "allChecked"));
-        });
-        /*全选框点击事件*/
-        allCheckBtn.bindOne('click',function (e) {
-            allcheckedFn(childCheckBtn, $(this));
-        });
-        /*全选*/
-        function allcheckedFn(children, thisEle) {
-            bodyCh = children;//tbody中多选框
-            var _t = thisEle;
-            var allchecked = _t.checked || _t.prop('checked');
-            allchecked = ischecked(allchecked);
-            bodyCh.each(function (v, e) {
-                e.checked = allchecked;
-            })
-        }
-
-        /*是否选中*/
-        function ischecked(cc) {
-            return !!cc ? true : false;
-        }
-    },
-    /*删除被选中的行*/
-    deleteCheckedRow:function (deleteBtn,dataTableBox,allCheckedBtn,alterBox) {
-        $(deleteBtn).bindOne('click',function (e) {
-            if(!dataTableBox||!allCheckedBtn){
-                console.warn("imeWeb.tools.deleteCheckedRow参数错误");
-                return;
-            }
-            if (imeWeb.tools.checkAll(allCheckedBtn, 'checked', "hasChecked")) {
-                allCheckedBtn.each(function (v, ele) {
-                    if (ele.checked || $(ele).prop('checked')) {
-                        console.log(11);
-                        var mainTable = dataTableBox.DataTable();
-                        mainTable.row($(ele).parent().parent().parent()).remove().draw();
-                        // console.log(mainTable.data());
-                    }
-                })
-            } else {
-                if(alterBox){
-                    imeWeb.tools.globalAlert(alterBox, "请选择要删除的项");
-                }
-            }
-        });
-    },
-
-    /*检查是否有未被选中的项(没有属性attr)*/
-    checkAll: function (eles, attr, flag) {
-        switch (flag) {
-            case "allChecked":
-                for (var i = 0, l = eles.length; i < l; i++) {
-                    if (!eles[i][attr] || !$(eles[i]).prop(attr)) {
-                        return false;
-                    }
-                }
-                return true;//都选中了
-            case "hasChecked":
-                for (var ii = 0, ll = eles.length; ii < ll; ii++) {
-                    if (eles[ii][attr] || $(eles[i]).prop(attr)) {
-                        return true;//有被选中的
-                    }
-                }
-                return false;
-        }
-
-    },
-    /*添加一行*/
-    addRow:function (addBtn,dataTableBox,data,callback) {
-        $(addBtn).bindOne('click',function () {
-            var mianTableData = dataTableBox.DataTable();
-            mianTableData.rows.add(data).draw();
-            if(callback){
-                callback(dataTableBox,data);
-            }
-        });
-    },
-    /*全局弹出框*/
-    globalAlert: function (boxId, msg) {
-    App.alert({
-        container: boxId,
-        place: 'append',
-        type: 'danger',
-        message: msg,
-        close: true,
-        reset: true,
-        focus: true,
-        closeInSeconds: 2,
-        icon: 'fa fa-close'
-    });
-}
-
-};
-
 //弹出警告框同意设置
-imeWeb.Alert = function(boxId,msg,prepend_append,type,icon){
+imeWeb.Alert = function(boxId,msg,prepend_append){
     var msg=msg||'请选择对象'
     var prepend_append=prepend_append||'preppend'
-    var type=type||'danger'
-    var icon=icon||'fa fa-close'
      App.alert({
         container: boxId,
         place: prepend_append,
-        type: type,
+        type: 'danger',
         message:msg,
         reset: true,
         focus: true,
-        icon: icon
+        icon: 'fa fa-close'
     });
 
 }

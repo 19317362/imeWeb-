@@ -16,32 +16,65 @@
                         <div class="row">
                             <div class="col-md-12 ">
                                 <form class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label for="type" class="col-md-3 col-sm-3 control-label" > <font key="i18n.group"></font> :</label>
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label class="col-md-3 control-label"><font key="i18n.group"></font></label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="type" value="组" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="col-md-3 control-label">ID</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="principalId" placeholder="请输入ID">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="col-md-3 control-label"><font key="i18n.name"><font key="i18n.name"></font> </font></label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="name" placeholder="请输入name">
+                                                </div>
+                                            </div>
 
-                                        <div class="col-md-6 col-sm-6 ">
-                                            <input type="text" class="form-control" id="type" value="组" disabled>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="form-group  ">
+                                                <div class="col-md-4 col-md-offset-7">
+                                                    <button type="button" id="searchGroup"class="btn  green mt-ladda-btn ladda-button pull-right " data-style="slide-right" >
+                                                        <span class="ladda-label"> <i class="fa  fa-search"></i> <font key="i18n.search"></font></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                        <label for="principalId" class="col-md-3  col-sm-3 control-label" >ID:</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <input type="text" class="form-control" id="principalId" placeholder="请输入ID">
-                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="name" class="col-md-3 col-sm-3 control-label" > <font key="i18n.name"></font> :</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <input type="text" class="form-control" id="name" placeholder="请输入name">
-                                        </div>
-                                    </div>
-                                    <hr/>
-                                    <div class="form-group col-sm-4 col-md-4 clearfix pull-right">
-                                        <div class="col-sm-12 ">
-                                            <button type="button" class="btn green  pull-right col-sm-4" id="searchGroup"> <font key="i18n.search"></font> </button>
-                                        </div>
-                                    </div>
+                                    <!--<div class="form-group">-->
+                                    <!--<label for="type" class="col-md-3 col-sm-3 control-label" > <font key="i18n.group"></font> :</label>-->
+
+                                    <!--<div class="col-md-6 col-sm-6 ">-->
+                                    <!--<input type="text" class="form-control" id="type" value="组" disabled>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group">-->
+
+                                    <!--<label for="principalId" class="col-md-3  col-sm-3 control-label" >ID:</label>-->
+                                    <!--<div class="col-md-6 col-sm-6">-->
+                                    <!--<input type="text" class="form-control" id="principalId" placeholder="请输入ID">-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label for="name" class="col-md-3 col-sm-3 control-label" > <font key="i18n.name"></font> :</label>-->
+                                    <!--<div class="col-md-6 col-sm-6">-->
+                                    <!--<input type="text" class="form-control" id="name" placeholder="请输入name">-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<hr/>-->
+                                    <!--<div class="form-group col-sm-4 col-md-4 clearfix pull-right">-->
+                                    <!--<div class="col-sm-12 ">-->
+                                    <!--<button type="button" class="btn green  pull-right col-sm-4" id="searchGroup"> <font key="i18n.search"></font> </button>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
                                 </form>
 
 
@@ -53,7 +86,7 @@
 
 
                         <!--表单组体-->
-                        <div class="portlet-body">
+                        <div class="portlet-body refresh_area" style="min-height: 500px;">
                             <div id = "group_searchGroupListAlert"></div>
                             <table class="table table-striped table-bordered table-condensed table-hover table-checkable order-column table-responsive" id="Rembers">
                                 <thead>

@@ -1,0 +1,6 @@
+{{#each this}}
+    <li id="tab_nav_{{tabNavName}}" class="{{tabNavStatus}}">
+        <a href="#tab_content_{{tabNavName}}" data-toggle="tab">{{tabName}}</a>
+        <i class="icon-close" style="position: absolute;right: 0;color: white;top: 0;" onclick="javascript:pageEditor.colseTab({{tabNavName}})"></i>
+    </li>
+{{/each}}

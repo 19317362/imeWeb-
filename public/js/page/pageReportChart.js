@@ -2,13 +2,16 @@
  * Created by mashroom on 17/3/13.
  */
 var  pageReportChart =  pageReportChart  || {};
-
+var  unAgglOpts = [];
 pageReportChart.init = function(){
    try{
     imeWeb.initPageBox();
     pageCommon.init();
     $('.page-content-wrapper').html(Handlebars.templates['reportChart/container']([1]));
-    imeWeb.i18n.init();
+	//加载报表类型
+	loadChartType();
+	//加载
+	loadChartDslist();
 }catch(err){
     console.log(err);
 }finally{
@@ -16,6 +19,123 @@ pageReportChart.init = function(){
 }
 
 }
+
+var loadChartType = function(){
+	
+	var url = "/imeWeb/Services/report/listReportType";
+	$.ajax({
+		type:'GET',
+		url:url,
+		dataType : "json",
+		async :false,
+		success : function(data,textStatus) {
+			if(data.success){
+				var opt = "";
+				$.each(data.record,function(i,o){
+					opt = opt +"<option value="+o.name+">"+o.title+"</option>";
+				})
+				$("#chartType").empty();
+				$("#chartType").append("<option>---请选择---</option>");
+				$("#chartType").append(opt);
+				//$('#main_select').selectpicker('render');
+				//$('#main_select').selectpicker('refresh');
+			}else{
+				console.log(data.msg);
+			}
+		}
+	})
+}	
+
+var loadChartDslist = function(){
+	var url = "/imeWeb/Services/report/listDataSources"
+	$.ajax({
+		type:'GET',
+		url:url,
+		dataType : "json",
+		async :false,
+		success : function(data,textStatus) {
+			if(data.success){
+				var opt = "";
+				$.each(data.data,function(i,o){
+					opt = opt +"<option value="+o.name+">"+o.title+"</option>";
+				})
+				$("#chartDs").empty();
+				$("#chartDs").append("<option>---请选择---</option>");
+				$("#chartDs").append(opt);
+			}else{
+				console.log(data.msg);
+			}
+		}
+	})
+}
+
+
+$(document).on("change","#chartDs",function() {
+	var dsName = $("#chartDs option:selected").val();
+	if(dsName==""){
+		return;
+	}
+    loadReportConfig(dsName);
+})
+
+var loadReportConfig = function(dsName){
+	
+	var url = "/imeWeb/Services/report/listReportConfig"+"?dsName="+dsName;
+	$.ajax({
+		type:'GET',
+		url:url,
+		dataType : "json",
+		async :false,
+		success : function(data,textStatus) {
+			if(data.success){
+				var configOpt = data.columns;
+				unAgglOpts = [];
+				var labelOpt = "";
+				var seriesValOpt = "";
+				for(var i = 0 ;i<configOpt.length;i++){
+					//可聚合否？
+					var config = configOpt[i];	
+					if(config.aggregatable){
+						seriesValOpt = seriesValOpt +"<option value="+config.name+">"+config.title+"</option>";
+					}else{
+						labelOpt = labelOpt+"<option value="+config.name+">"+config.title+"</option>";
+						unAgglOpts.push(config);
+					}
+			    }
+				//轴标签加载数据
+				$("#axisLabel").empty();
+				$("#axisLabel").append("<option>---请选择---</option>");
+				$("#axisLabel").append(labelOpt);
+				//系列值加载数据
+				$("#seriesValue").empty();
+				$("#seriesValue").append("<option>---请选择---</option>");
+				$("#seriesValue").append(seriesValOpt);
+			}else{
+				console.log(data.msg);
+			}
+		}
+	})	
+}
+
+$(document).on("change","#axisLabel",function(){
+	
+	var axisLabel_val = $("#axisLabel option:selected").val();
+	var seriesNameOpt = "";
+	for(var j=0;j<unAgglOpts.length;j++){
+		var config = unAgglOpts[j];
+		if(axisLabel_val!=config.name){
+			seriesNameOpt = seriesNameOpt + "<option value="+config.name+">"+config.title+"</option>";
+		}
+	}
+	$("#seriesName").empty();
+	$("#seriesName").append("<option>---请选择---</option>");
+	$("#seriesName").append(seriesNameOpt);
+	
+})
+
+$(document).ready(function() {
+	$('#seriesValue').multiselect();
+});
 
 pageReportChart.dataInit = function(){
     //console.log('dataInit')

@@ -22,7 +22,7 @@
                             <button class="btn btn-transparent green btn-outline btn-circle btn-sm  margin-right-25 " id="tab_instance_startprocess">
                                 <input type="radio" name="options" class="toggle" >启动流程
                             </button>
-                            <button class="btn btn-transparent green btn-outline btn-circle btn-sm  margin-right-25 ">
+                            <button class="btn btn-transparent green btn-outline btn-circle btn-sm  margin-right-25 " id="tab_instance_endprocess">
                                 <input type="radio" name="options" class="toggle" >终止流程
                             </button>
                         </div>
@@ -37,7 +37,7 @@
                         <div class="input-group" >
                             <input type="text" class="form-control my_input" id="tab_instance_name">
                             <div class="input-group-btn" >
-                                <button type="button" class="btn btn-success dropdown-toggle"  data-toggle="dropdown">
+                                <button type="button" id="tab_instance_namelist_button" class="btn btn-success dropdown-toggle"  data-toggle="dropdown">
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                                 <ul class="dropdown-menu pull-right my_select"  id="tab_instance_namelist">
@@ -65,10 +65,10 @@
                                 <i class="fa fa-angle-down"></i>
                             </button>
                             <ul class="dropdown-menu pull-right my_select" id="tab_instance_statuslist">
-                              <li><a href="javascript:;">全部</a></li>
-                              <li><a href="javascript:;">任务开始</a></li>
-                              <li><a href="javascript:;">任务完成</a></li>
-                              <li><a href="javascript:;">取消</a></li>
+                              <li data-value=null><a href="javascript:;">全部</a></li>
+                              <li data-value='open'><a href="javascript:;">任务开始</a></li>
+                              <li data-value='close'><a href="javascript:;">任务完成</a></li>
+                              <li data-value='cancel'><a href="javascript:;">取消</a></li>
 
                           </ul>
 
@@ -104,6 +104,7 @@
     </div>
 </div>
 </form>
+<div id="tab_instance_refresharea">
 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="table_search">
     <thead>
 
@@ -112,6 +113,7 @@
 
     </tbody>
 </table>
+</div>
 </div>
 
 {{/each}}

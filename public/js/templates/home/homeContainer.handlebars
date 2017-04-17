@@ -1,13 +1,13 @@
 {{! home页面容器 }}
 {{#each this}}
 <!-- BEGIN CONTENT BODY -->
-<div class="page-content" id="indexpage">
+<div class="page-content page-content-base" id="indexpage">
 
     <!-- BEGIN PAGE BASE CONTENT -->
     <div class="page-head">
         <!-- BEGIN PAGE TITLE -->
         <div class="page-title">
-            <h1> <font key="i18n.appName"></font>
+            <h1 id="domain_info"><font></font>
                 <small></small>
             </h1>
         </div>
@@ -87,7 +87,7 @@
                     <div class="portlet light bordered">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="icon-equalizer font-dark hide"></i>
+                                <span class="caption-subject font-dark bold docInfo-name"></span>
                                 <span class="caption-subject font-dark bold uppercase"><font key="i18n.documentDynamic"></font></span>
                                 <span class="caption-helper"></span>
                             </div>

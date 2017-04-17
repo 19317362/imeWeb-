@@ -1,0 +1,50 @@
+{{#each this}}
+    <div class="page-content {{pageName}}">
+        <div class="row height-all">
+            <div class="col-md-12 height-all">
+                <div class="portlet light bordered height-all">
+                    <div class="portlet-title">
+                        <div class="row">
+                            <div class="doc-path col-md-8">
+                                <ul class="page-breadcrumb breadcrumb">
+                                    <li>
+                                        <a href="javascript:imeWeb.changeRoute('/imeWeb/home');"><font key="">首页</font></a>
+                                        <i class="fa fa-circle"></i>
+                                    </li>
+                                    <li>
+                                        <span class="active"><font key="">编辑器</font></span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="editor-window-tools col-md-4">
+                                <a class="fa fa-window-maximize editor-maximize pull-right"></a>
+                                <a class="fa fa-window-restore editor-restore pull-right" style="display:none;"></a>
+                                <a class="fa fa-window-minimize editor-minimize pull-right"></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="doc-edit-tab col-md-12">
+                                <ul class="nav nav-pills">
+                                     {{> editor/tabNav editorNavData}}
+                                    {{!-- <li class="active">
+                                        <a href="#tab1" data-toggle="tab">Developer Reference</a>
+                                    </li> --}}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="tabbable tabbable-tabdrop height-all">
+                            <div class="tab-content height-all">
+                                {{> editor/tabContent editorContentData}}
+                                {{!-- <div class="tab-pane active" id="tab1">
+                                    <iframe frameborder='0' width="100%" height="850" src="http://localhost/imeWeb/editor.html?folderId=1361&containerId=com.imecms.container.Container:131&type=plugin&oid=com.imecms.doc.XMLDocument:39055&timeId=1491792980548"></iframe>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}

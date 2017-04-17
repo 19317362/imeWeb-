@@ -23,12 +23,25 @@ pageGroupManagement.dataInit = function(){
 pageGroupManagement.contentInit = function(){
     //表格取到空数据报错处理
     $.fn.dataTable.ext.errMode = function(s,h,m){};
-
-    //查询函数
-    var check_group = function(a,b){
-        var url =g_url_searchGroups;
-        $.getJSON(url,{ groupId: a, groupName:b },function(data){
-
+    //表格初始化
+    check_group('','');
+}
+//查询函数
+var check_group = function(a,b){
+    var url =g_url_searchGroups;
+    $.ajax({
+        url:url,
+        async:true,
+        data: {
+            'groupId':a,
+            'groupName':b
+        },
+        context:{
+            refreshbutton:$('#check_group'),
+            refresharea:$('.refresh_area'),
+            clickfunction:search_clickGroupList
+        },
+        success:function(data,textstatus){
             $("#group_one").dataTable({
                 searching:false, //去掉搜索框
                 bLengthChange:false,//去掉每页多少条框体
@@ -57,18 +70,17 @@ pageGroupManagement.contentInit = function(){
 
                 ]
             });
-        });
-    }
-    //表格初始化
-    check_group('','');
-    //查询按钮
-    $("#check_group").click(function(){
-        var groupId = $("#groupId").val();
-        var groupName = $("#groupName").val();
-        check_group(groupId,groupName);
-    })
-
+        }
+    });
 }
+
+//查询按钮
+ var search_clickGroupList = function(){
+     var groupId = $("#groupId").val();
+     var groupName = $("#groupName").val();
+     check_group(groupId,groupName);
+ }
+
 
 //删除按钮
 $(document).on('click','#deleteGroup',function(){
@@ -88,46 +100,54 @@ $(document).on('click','#deleteGroup',function(){
     if(len==0){
         msgFail("#group_baseList","请选择要删除对象!");
     }else{
+        $.confirm({
+            title: false,
+            content: '确认要删除吗？',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                yes: {
+                    text: '确认',
+                    btnClass: 'btn-blue',
+                    action: function(){
+                        $.ajax({
+                                url: g_url_deleteGroup,
+                                type: "POST",
+                                data: {
+                                    'principalId':principalId,
+                                    'oId':oIdRecords
+                                },
+                                catch: false,
+                                async: false,
+                                dataType: "text",
+                                //contentType: "application/json; charset=utf-8",
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    alert('连接失败！');
+                                    alert(XMLHttpRequest);
+                                    alert(errorThrown);
 
-        //alert(principalId +" " +oIdRecords);
-        layer.confirm('确认要删除吗？',{icon:5,title:false},
-            function(index) {
-                $.ajax({
-                    url: g_url_deleteGroup,
-                    type: "POST",
-                    data: {
-                        'principalId':principalId,
-                        'oId':oIdRecords
-                    },
-                    catch: false,
-                    async: false,
-                    dataType: "text",
-                    //contentType: "application/json; charset=utf-8",
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert('连接失败！');
-                        alert(XMLHttpRequest);
-                        alert(errorThrown);
+                                },
+                                success: function (data, status) {
+                                var res=eval("("+data+")");
+                                    var success = res.success;
+                                    var msg = res.msg;
+                                    if (success == true) {
+                                       msgSuccess("#group_baseList","删除成功!");
+                                        location.reload();
+                                    }
+                                    else {
+                                       msgFail("#group_baseList",msg);
+                                    }
 
-                    },
-                    success: function (data, status) {
-                        //释放
-                        principalId="";
-                        oIdRecords="";
-                        var success = data.split(':')[1].split('}')[0];
-                        if (success == "true") {
-                           msgSuccess("#group_baseList","删除成功!");
-                            location.reload();
-                        }
-                        else {
-                           msgFail("#group_baseList","删除失败,组内存在人员!");
-                        }
-
+                                }
+                            });
                     }
-                });
-
-                layer.closeAll('dialog');
-
-            })
+                },
+                no:{
+                    text: '取消'
+                }
+            }
+        });
     }
 
 });
@@ -306,15 +326,15 @@ var save_groupMember = function(url,principalId,name,desc,oId,pOId){
 
         },
         success: function (data, status) {
-            var success = data.split(':')[1].split('}')[0];
-            if (success == "true") {
+            var result = JSON.parse(data);
+            if (result.success == true) {
                msgSuccess("#group_listAlert","操作成功!");
                 $('#nav_tab3').addClass('active');
                 $('#nav_tab2').removeClass('active');
                 setTimeout('imeWeb.deleteChildPage()',1000);
             }
             else {
-                msgSuccess("#group_listAlert","提交失败!");
+                msgFail("#group_listAlert",result.msg);
             }
 
         }
@@ -364,29 +384,9 @@ $(document).on("click","#deleteMem",function(){
 //下拉框change事件
 $(document).on("click","ul.dropdown-menu li",function(){
     var str = $(this).text();
-    //javascript 没有replaceAll（）这个方法，只有replace();
     var re = str.replace(/\s+/g,"");//删除所有空格;
-    $("input#input").val(re);
-
+   $(this).parent().parent().prev("input").val(re);
 });
-//定义ajax中的弹出框方法
-var layerMsg = function(msg){
-    layer.open({
-        type: 1 //Page层类型
-        ,anim: 1 //0-6的动画形式，-1不开启
-        ,content: '<div style="padding:100px;">'+msg+'</div>'
-        ,skin: 'layui-layer-molv'
-        ,shade: [0.8, '#393D49']
-        ,btn:[],yes:function(index ,layero){
-            var closeLayer = function(){
-                var pIndex = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(pIndex); //执行关闭
-                layer.close(index);
-            }
-            setTimeout("closeLayer()", 2000);
-        }
-    });
-}
 
 //特定选择框
 $(document).on("click",".item_check_one",function(){
@@ -418,44 +418,97 @@ $(document).on("click",".item_check",function(){
         });
     }
 })
+
 //组搜索
-$(document).on("click","#searchGroup",function(){
+var searchGroup = function(){
     var url = "/imeWeb//Services/principal/searchPrincipal";
     var type = "Groups";
     var principalId=$("#principalId").val();
     var name=$("#name").val();
-    //alert(principalId+name);
-    //获取成员数据
-    $.getJSON(url,{ type:type, principalId:principalId,name:name,pool:"ALL" },function(data){
-        $("#Rembers").dataTable({
-            searching:false, //去掉搜索框
-            bLengthChange:false,//去掉每页多少条框体
-            "language": {
-                "info": "显示 _START_ 到 _END_ 条,总共 _TOTAL_ 条", // 表格左下角显示的文字
-                "paginate": {
-                    "previous": "上一页",
-                    "next": "下一页"
-                }
-            },
-            "aoColumnDefs": [ { "bSortable": false, "aTargets": [0] }],
-            "order": [[ 0, "desc" ]],
-            destroy:true,
-            data : data,
-            "columns": [
-                {data: "oid",
-                    "createdCell": function (nTd, sData, oData, iRow, iCol){
-                        $(nTd).html("<label class='mt-checkbox mt-checkbox-single mt-checkbox-outline' ><input type='checkbox' class='checkboxes' name='item' value="+ sData+" /><span></span></label>");
+    $.ajax({
+        url:url,
+        async:true,
+        data: {
+            'type':type,
+            'principalId':principalId,
+            'name':name,
+            'pool':"ALL"
+        },
+        context:{
+            refreshbutton:$('#searchGroup'),
+            refresharea:$('.refresh_area'),
+            clickfunction:searchGroup
+        },
+        success:function(data,textstatus){
+            $("#Rembers").dataTable({
+                searching:false, //去掉搜索框
+                bLengthChange:false,//去掉每页多少条框体
+                "language": {
+                    "info": "显示 _START_ 到 _END_ 条,总共 _TOTAL_ 条", // 表格左下角显示的文字
+                    "paginate": {
+                        "previous": "上一页",
+                        "next": "下一页"
                     }
-
                 },
-                {data: "principalId"},
-                {data: "name"},
-                {data: "desc"},
-                {data: "domain"}
-            ]
-        });
+                "aoColumnDefs": [ { "bSortable": false, "aTargets": [0] }],
+                "order": [[ 0, "desc" ]],
+                destroy:true,
+                data : data,
+                "columns": [
+                    {data: "oid",
+                        "createdCell": function (nTd, sData, oData, iRow, iCol){
+                            $(nTd).html("<label class='mt-checkbox mt-checkbox-single mt-checkbox-outline' ><input type='checkbox' class='checkboxes' name='item' value="+ sData+" /><span></span></label>");
+                        }
+
+                    },
+                    {data: "principalId"},
+                    {data: "name"},
+                    {data: "desc"},
+                    {data: "domain"}
+                ]
+            });
+        }
     });
+}
+$(document).on("click","#searchGroup",function(){
+    searchGroup();
 })
+//    var url = "/imeWeb//Services/principal/searchPrincipal";
+//    var type = "Groups";
+//    var principalId=$("#principalId").val();
+//    var name=$("#name").val();
+//    //alert(principalId+name);
+//    //获取成员数据
+//    $.getJSON(url,{ type:type, principalId:principalId,name:name,pool:"ALL" },function(data){
+//        $("#Rembers").dataTable({
+//            searching:false, //去掉搜索框
+//            bLengthChange:false,//去掉每页多少条框体
+//            "language": {
+//                "info": "显示 _START_ 到 _END_ 条,总共 _TOTAL_ 条", // 表格左下角显示的文字
+//                "paginate": {
+//                    "previous": "上一页",
+//                    "next": "下一页"
+//                }
+//            },
+//            "aoColumnDefs": [ { "bSortable": false, "aTargets": [0] }],
+//            "order": [[ 0, "desc" ]],
+//            destroy:true,
+//            data : data,
+//            "columns": [
+//                {data: "oid",
+//                    "createdCell": function (nTd, sData, oData, iRow, iCol){
+//                        $(nTd).html("<label class='mt-checkbox mt-checkbox-single mt-checkbox-outline' ><input type='checkbox' class='checkboxes' name='item' value="+ sData+" /><span></span></label>");
+//                    }
+//
+//                },
+//                {data: "principalId"},
+//                {data: "name"},
+//                {data: "desc"},
+//                {data: "domain"}
+//            ]
+//        });
+//    });
+//})
 //添加已有组事件
 $(document).on("click","#page-content-groupSearchGroup",function(){
 

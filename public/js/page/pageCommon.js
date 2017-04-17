@@ -54,12 +54,12 @@ pageCommon.container_onclick = function(e){
             submenu.html(inner);
             var uls=me.children('ul.sub-menu-container');
             var lis=uls.find("li");
-            lis.click(function(e){
-                $(this).children('a').find('span.arrow').toggleClass('open');
-                var ul=$(this).children('ul');
-                ul.toggleClass('show');
-                return false;
-            });
+            // lis.click(function(e){
+            //     $(this).children('a').find('span.arrow').toggleClass('open');
+            //     var ul=$(this).children('ul');
+            //     ul.toggleClass('show');
+            //     return false;
+            // });
         });
         me.attr('options_loaded',1);
     }
@@ -69,7 +69,7 @@ pageCommon.container_onclick = function(e){
 pageCommon.loop = function(array){
     var inner='';
     for(var i=0;i<array.length;i++){
-         var temp='<li class="nav-item  subcontainer-item"><a href class="nav-link"><span class="title" >'+array[i].filename+'</span>'
+         var temp='<li class="nav-item  subcontainer-item" folderId="'+ array[i].id +'"><a class="nav-link"><span class="title" >'+array[i].filename+'</span>'
         if(array[i].children&&array[i].children.length){
             temp+='<span class="arrow"></span></a>'
             var ul='<ul class="sub-menu" style="display:none">'+pageCommon.loop(array[i].children)+'</ul>'
@@ -94,3 +94,29 @@ pageCommon.sidebarMenuTask = function(){
         $(".page-sidebar-originate-task .finished-task .badge").html(data.originateTask.originateFinish);           
     });
 }
+
+/* 侧边栏存储库 每个文件夹绑定事件 */
+$(document).on("click",".nav-item.subcontainer-item",function(){
+    var node = $(this);
+    var routes = [];
+    var folderIds = [];
+    var docInfo = {};
+    for(var i=0,point = node;true;i++){
+        routes[i] = point.find('> a span.title').text();
+        folderIds[i] = point.attr("folderid");
+        if(point.hasClass('container-item')){
+            break;
+        }
+        for(var j=0;j <=10; j++){
+            point = point.parent();
+            if(point.hasClass('nav-item')){
+                break;
+            }
+        }       
+    }
+    docInfo.routes = routes;
+    docInfo.folderIds = folderIds;
+    docInfo.folderId = node.attr("folderid");
+    pageRepository.init(docInfo);
+    return false;
+});

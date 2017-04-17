@@ -1,7 +1,7 @@
 {{! 侧边菜单栏系统工具 }}
 {{#each this}}
 	<li class="nav-item system-tool {{name}}">
-		<a href='/imeWeb/{{name}}' class='nav-link'>
+		<a href="javascript:imeWeb.changeRoute('/imeWeb/{{name}}');" class='nav-link'>
 			<i class="{{iconClass}}"></i>
 			<span class="title">{{title}}</span>
 		</a>
