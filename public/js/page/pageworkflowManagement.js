@@ -180,11 +180,12 @@ pageWorkflowManagement.ajaxevents_2_start_process=function(){
 
                 //console.log(data)
                 if(!data.success){
-                    imeWeb.Alert('#start_process_body','检查OID是否正确','preppend')
+                     //imeWeb.tools.globalAlert('#tab_instance_refresharea','成功','success','preppend')
+                     imeWeb.tools.globalAlert('#start_process_body','检查OID是否正确','fail','preppend')
 
                 }
                 else{
-                    imeWeb.Alert('#start_process_body','创建成功','preppend','info','w')
+                    imeWeb.tools.globalAlert('#start_process_body','创建成功','success','preppend')
                 }
 
             }
@@ -274,8 +275,8 @@ pageWorkflowManagement.ajaxevents_1_tab_instance=function(){
 
     /*--------------------------------表单提交------------------------*/
     function tab_instance_form(){
-        var createdS=timefrom.val()?createdS.replace(/\//g,'-'):null;
-        var createdE=timeto.val()?createdS.replace(/\//g,'-'):null;
+        var createdS=timefrom.val()?timefrom.val().replace(/\//g,'-'):null;
+        var createdE=timeto.val()?timeto.val().replace(/\//g,'-'):null;
         var statusval=$('#tab_instance_status').val()?$('#tab_instance_status').data('value'):null
 
 
@@ -452,8 +453,8 @@ pageWorkflowManagement.data_table_search=function(data){
     //paging:false,
     "bLengthChange": false,
     "pageLength": 10,
-    scrollx:true,
-    'scrollY': 500,
+    //'scrollx':true,
+    //'scrollY': 500,
     "destroy": true,
     "columnDefs": [
     { "title": "", "targets": 0 },
@@ -481,10 +482,10 @@ pageWorkflowManagement.data_table_search=function(data){
                 processId:processId.join(';')
             },
             success: function (data, status) {
-                imeWeb.Alert('#tab_instance_refresharea','成功','preppend','info','none')
+                imeWeb.tools.globalAlert('#tab_instance_refresharea','成功','success','preppend')
             },
             fail:function(){
-                imeWeb.Alert('#tab_instance_refresharea','失败')
+                imeWeb.tools.globalAlert('#tab_instance_refresharea','失败','fail','preppend')
             }
         });
 
@@ -625,8 +626,7 @@ pageWorkflowManagement.data_table_identify=function(data){
                    imeWeb.deleteChildPage()
            }
            else{
-            imeWeb.Alert(alertID,alertMsg)
-               //imeWeb.Alert('#search_someone_refresharea','请选择对象')
+            imeWeb.tools.globalAlert(alertID,alertMsg,'fail','preppend')
                return false
            }
        })
