@@ -1,0 +1,45 @@
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-badge {
+  left: 0px;
+  top: 10px;
+}
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-badge .timeline-icon {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+}
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-badge .timeline-icon img {
+  width: 100%;
+  border-radius: 130px !important;
+}
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-body {
+  margin-left: 90px;
+}
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-body .timeline-body-head-caption .timeline-body-alerttitle {
+  color: #e12330 !important;
+  font-size: 15px;
+}
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-body .timeline-body-head-actions button.dropdown-toggle {
+  background-color: #32c5d2;
+  border-color: #32c5d2;
+}
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-body .timeline-body-content span.font-grey-cascade a {
+  color: #32c5d2;
+}
+div#checkoutlist_VisitedItems ul.feeds li div.label.Map,
+div#checkoutlist_VisitedItems ul.feeds li div.label.HTML_PDF {
+  background-color: #32c5d2;
+}
+div#checkoutlist_VisitedItems ul.feeds li div.label.ChangeActivity,
+div#checkoutlist_VisitedItems ul.feeds li div.label.trans {
+  background-color: #ed6b75;
+}
+div#checkoutlist_VisitedItems ul.feeds li div.label.Image,
+div#checkoutlist_VisitedItems ul.feeds li div.label.doc {
+  background-color: #F1C40F;
+}
+div#checkoutlist_VisitedItems ul.feeds li div.label i {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: white !important;
+  background-color: transparent !important;
+}

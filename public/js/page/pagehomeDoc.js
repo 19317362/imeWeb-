@@ -27,6 +27,12 @@ $.fn.bindOne = function (eventName,fn) {
 };
 /*公用函数结束*/
 
+// var pageBase2={
+//     dataInit:function () {
+//
+//     }
+// }
+
 //桌面文档初始化
 pageHomeDoc.homeDocInit = function () {
     var homeDoc_dataBox = $('#homeDoc_dataBox');//表格
@@ -50,7 +56,7 @@ pageHomeDoc.homeDocInit = function () {
             //勾选框列和下拉框列禁止排序功能
             "aoColumnDefs": [{"bSortable": false, "aTargets": [0]}],
             "language": {
-                "url": 'i18n/dataTable_' + lang + '.json'
+                "url": 'i18n/dataTable_'+ $.cookie("appLanguage") +'.json'
             },
             createdRow: function (row, data, dataIndex) {
                 $(row).attr({'masterOid': data.masterOid, "oid": data.oid});
@@ -67,16 +73,20 @@ pageHomeDoc.homeDocInit = function () {
                     }
                 },
                 {
-                    "data": "seq"
+                    "data": "seq",
+                    "defaultContent": ''
                 },
                 {
-                    "data": "name"
+                    "data": "name",
+                    "defaultContent": ''
                 },
                 {
-                    "data": "itemNum"
+                    "data": "itemNum",
+                    "defaultContent": ''
                 },
                 {
-                    "data": "created"
+                    "data": "created",
+                    "defaultContent": ''
                 }
             ],
             "fnInitComplete": g_callback
@@ -107,7 +117,7 @@ pageHomeDoc.homeDocInit = function () {
         /*重置序号点击事件*/
         var homeDoc_willEditable = $('.homeDoc_willEditable');//将要变为可编辑的格子
         homeDoc_resetSeq.myClick(function (e) {
-            globalAlert("#homeDoc_gAlert", "鼠标点击重置");
+            imeWeb.tools.globalAlert("#homeDoc_gAlert", "鼠标点击重置",'success');
             homeDoc_willEditable.attr('contenteditable', 'true');
         });
         /*可编辑单元格双击*/
@@ -116,7 +126,10 @@ pageHomeDoc.homeDocInit = function () {
             $(this).focus();
         });
 
-        H_allChecked($('#homeDoc_allChecked'),$('.homeDoc_bodyCh'));
+        // H_allChecked($('#homeDoc_allChecked'),$('.homeDoc_bodyCh'));
+        imeWeb.tools.H_allChecked($('#homeDoc_allChecked'),$('.homeDoc_bodyCh'));//全选功能
+        /*x选中一行*/
+        imeWeb.tools.checkedOneTr('#homeDoc');
         /*保存按钮点击事件*/
         homeDoc_save.myClick(function (e) {
                 allIdTd = $('.homeDoc_idTd');
@@ -161,7 +174,7 @@ pageHomeDoc.homeDocInit = function () {
                                     },
                                     "success": function (data) {
                                         mianTableData(data);
-                                        globalAlert("#homeDoc_gAlert", "保存成功");
+                                        imeWeb.tools.globalAlert("#homeDoc_gAlert", "保存成功");
                                     }
                                 });
                             } catch (err) {
@@ -191,9 +204,10 @@ pageHomeDoc.homeDocInit = function () {
                         var mainTable = $("#homeDoc").DataTable();
                         mainTable.row($(ele).parent().parent().parent()).remove().draw();
                     }
-                })
+                });
+                imeWeb.tools.globalAlert('#homeDoc_gAlert','删除成功！','success');
             } else {
-                globalAlert("#homeDoc_gAlert", "请选择要删除的项");
+                imeWeb.tools.globalAlert("#homeDoc_gAlert", "请选择要删除的项!",'fail');
             }
         });
         /*第一层*/
@@ -217,7 +231,7 @@ pageHomeDoc.homeDocInit = function () {
 
             /*日期插件*/
             $('.date-picker').datepicker({
-                format: 'yyyy/mm/dd',
+                format: 'yyyy-mm-dd',
                 orientation: 'bottom'
             });
 
@@ -225,6 +239,9 @@ pageHomeDoc.homeDocInit = function () {
             homeDoc_drapDown_softtype.myClick(function (e) {
                 $.get('/imeWeb/Services/permission/getsofttype?_dc=1490154325992&page=1&start=0&limit=25', function (data) {
                     loadTemp(homeDoc_softtype, 'homeDoc/softtype_datashow', data, 'html');
+                    $('#homeDoc_softtype').bindOne('click',function () {
+                        $('#homeDoc_softtypeInp').attr('u_type',$(this).attr('value'));
+                    },'li')
                 });
             });
 
@@ -232,6 +249,9 @@ pageHomeDoc.homeDocInit = function () {
             homeDoc_drapDown_container.myClick(function (e) {
                 $.get('/imeWeb/Services/container/getContainerByDomainid?showAll=1&_dc=1490155891310&page=1&start=0&limit=25', function (data) {
                     loadTemp(homeDoc_container, 'homeDoc/container_datashow', data, 'html');
+                    $('#homeDoc_container').bindOne('click',function () {
+                        $('#homeDoc_containerInp').attr('containerid',$(this).attr('containerid'));
+                    },'li')
                 });
             });
 
@@ -260,24 +280,26 @@ pageHomeDoc.homeDocInit = function () {
                         });
                     }
                 }
+                console.log(data);
                 var mainTable = $("#homeDoc").DataTable();
                 mainTable.rows.add(data).draw(false);
                 var homeDoc_willEditable = $('.homeDoc_willEditable');
                 homeDoc_willEditable.attr('contenteditable', 'true');
                 imeWeb.deleteChildPage();
+                imeWeb.tools.H_allChecked($('#homeDoc_allChecked'),$('.homeDoc_bodyCh'));//全选功能
             });
             /*模态框“搜索”按钮点击事件*/
             homeDoc_search.myClick(function (e) {
                 console.log("search");
                 var modifySearch = false, istemplate = false, fieldlist = '', number = '';//不明飞行物
                 var checkoutUser = $("#homeDoc_checkoutUser").val();
-                var type = $(homeDoc_softtypeInp).val();//
+                var type = ($(homeDoc_softtypeInp).val().replace(/\s+/g,'')!=''?$(homeDoc_softtypeInp).attr('u_type'):'');//
                 var title = $(homeDoc_keyword).val();
                 var content = $(homeDoc_content).val();
-                var containerid = $(homeDoc_containerInp).val() || "null";//
+                var containerid = ($(homeDoc_containerInp).val().replace(/\s+/g,'')!=''? $(homeDoc_containerInp).attr('containerid') : "null");//
                 var Principal = $("#homeDoc_creator").val();
-                var begincreated = $(homeDoc_begincreated).val() || "null";
-                var endcreated = $(homeDoc_endcreated).val() || "null";
+                var begincreated = ($(homeDoc_begincreated).val()!=''?$(homeDoc_begincreated).val()+' 00:00:00' : "null");
+                var endcreated = ($(homeDoc_endcreated).val()!=''?$(homeDoc_endcreated).val()+' 00:00:00' : "null");
 
                 /*获取*/
                 $.ajax({
@@ -307,153 +329,20 @@ pageHomeDoc.homeDocInit = function () {
                         clickfunction: null
                     },
                     success: function (data) {
-                        modal1_datashowFn(data);
+                        if(data.records){
+                            modal1_datashowFn(data);
+                        }
                     }
                 })
                 /*模态框1数据显示*/
                 function modal1_datashowFn(data) {
                     //模拟数据(数据库为空)
-                    var Jdata = {
-                        "total": "202",
-                        "records": [{
-                            "softtype": "sDitaReference",
-                            "state": "编辑",
-                            "softtypeTitle": "参照文档",
-                            "version": "A.1",
-                            "id": "com.imecms.doc.XMLDocument:50727",
-                            "fileSize": "0 B",
-                            "author": "徐丹红",
-                            "filestatus": "",
-                            "level": "i",
-                            "created": "2017-03-15 12:12:35",
-                            "oid": "com.imecms.doc.XMLDocument:50727",
-                            "isFavorite": false,
-                            "name": "各部件介绍",
-                            "icon": "<a title='下载' target='view_window' href='/imeWeb/jsp/util/downloadFile.jsp?oid=com.imecms.doc.XMLDocumentMaster:47671'><i class='fa fa-file-code-o ditamap'><\/i><\/a>",
-                            "number": "DTR047671",
-                            "publishHTML": "N/A",
-                            "IBA_title": "各部件介绍",
-                            "fileico": "<a title='下载 0 B' target='view_window' href='/imeWeb/jsp/util/downloadFile.jsp?oid=com.imecms.doc.XMLDocumentMaster:47671'><i  class='fa fa-file-code-o ditamap'><\/i><\/a>",
-                            "modified": "2017-03-15 12:12:35",
-                            "masterOid": "com.imecms.doc.XMLDocumentMaster:47671",
-                            "modifierId": "xudanhong",
-                            "creatorName": "徐丹红",
-                            "publishResult": "",
-                            "docDesc": "",
-                            "deadline": "",
-                            "comments": "dita"
-                        }, {
-                            "softtype": "sDitaReference",
-                            "state": "编辑",
-                            "softtypeTitle": "参照文档",
-                            "version": "A.1",
-                            "id": "com.imecms.doc.XMLDocument:50728",
-                            "fileSize": "0 B",
-                            "author": "徐丹红",
-                            "filestatus": "",
-                            "level": "i",
-                            "created": "2017-03-15 12:12:35",
-                            "oid": "com.imecms.doc.XMLDocument:50728",
-                            "isFavorite": false,
-                            "name": "铭牌及型号",
-                            "icon": "<a title='下载' target='view_window' href='/imeWeb/jsp/util/downloadFile.jsp?oid=com.imecms.doc.XMLDocumentMaster:47672'><i class='fa fa-file-code-o ditamap'><\/i><\/a>",
-                            "number": "DTR047672",
-                            "publishHTML": "N/A",
-                            "IBA_title": "铭牌及型号",
-                            "fileico": "<a title='下载 0 B' target='view_window' href='/imeWeb/jsp/util/downloadFile.jsp?oid=com.imecms.doc.XMLDocumentMaster:47672'><i  class='fa fa-file-code-o ditamap'><\/i><\/a>",
-                            "modified": "2017-03-15 12:12:35",
-                            "masterOid": "com.imecms.doc.XMLDocumentMaster:47672",
-                            "modifierId": "xudanhong",
-                            "creatorName": "徐丹红",
-                            "publishResult": "",
-                            "docDesc": "",
-                            "deadline": "",
-                            "comments": "dita"
-                        }, {
-                            "softtype": "sDitaTopic",
-                            "state": "编辑",
-                            "softtypeTitle": "主题文档",
-                            "version": "A.1",
-                            "id": "com.imecms.doc.XMLDocument:50730",
-                            "fileSize": "0 B",
-                            "author": "徐丹红",
-                            "filestatus": "",
-                            "level": "i",
-                            "created": "2017-03-15 12:12:35",
-                            "oid": "com.imecms.doc.XMLDocument:50730",
-                            "isFavorite": false,
-                            "name": "产品概述 ",
-                            "icon": "<a title='下载' target='view_window' href='/imeWeb/jsp/util/downloadFile.jsp?oid=com.imecms.doc.XMLDocumentMaster:47674'><i class='fa fa-file-code-o ditamap'><\/i><\/a>",
-                            "number": "DTO047674",
-                            "publishHTML": "N/A",
-                            "IBA_title": "产品概述 ",
-                            "fileico": "<a title='下载 0 B' target='view_window' href='/imeWeb/jsp/util/downloadFile.jsp?oid=com.imecms.doc.XMLDocumentMaster:47674'><i  class='fa fa-file-code-o ditamap'><\/i><\/a>",
-                            "modified": "2017-03-15 12:12:35",
-                            "masterOid": "com.imecms.doc.XMLDocumentMaster:47674",
-                            "modifierId": "xudanhong",
-                            "creatorName": "徐丹红",
-                            "publishResult": "",
-                            "docDesc": "",
-                            "deadline": "",
-                            "comments": "dita"
-                        }, {
-                            "softtype": "TempPDF",
-                            "icon": "<a title='下载' target='view_window' href='/imeWeb/jsp/util/downloadFile.jsp?oid=com.imecms.doc.FileDocumentMaster:124041'><i class='fa fa-file-pdf-o pdf'><\/i><\/a>",
-                            "state": "定稿",
-                            "number": "G124041",
-                            "softtypeTitle": "TempPDF",
-                            "fileico": "<a title='下载 0 B' target='view_window' href='/imeWeb/jsp/util/downloadFile.jsp?oid=com.imecms.doc.FileDocumentMaster:124041'><i  class='fa fa-file-pdf-o pdf'><\/i><\/a>",
-                            "version": "A.1",
-                            "modified": "2017-03-14 17:39:41",
-                            "fileSize": "0 B",
-                            "id": "com.imecms.doc.FileDocument:125467",
-                            "filestatus": "",
-                            "author": "徐丹红",
-                            "masterOid": "com.imecms.doc.FileDocumentMaster:124041",
-                            "level": "i",
-                            "creatorName": "徐丹红",
-                            "modifierId": "xudanhong",
-                            "created": "2017-03-14 17:39:41",
-                            "oid": "com.imecms.doc.FileDocument:125467",
-                            "docDesc": "",
-                            "name": "test 0314",
-                            "isFavorite": false,
-                            "deadline": "",
-                            "IBA_plugin": "HighTech",
-                            "comments": "pdf"
-                        }, {
-                            "softtype": "TempPDF",
-                            "icon": "<a title='下载' target='view_window' href='/imeWeb/jsp/util/downloadFile.jsp?oid=com.imecms.doc.FileDocumentMaster:124040'><i class='fa fa-file-pdf-o pdf'><\/i><\/a>",
-                            "state": "定稿",
-                            "number": "G124040",
-                            "softtypeTitle": "TempPDF",
-                            "fileico": "<a title='下载 0 B' target='view_window' href='/imeWeb/jsp/util/downloadFile.jsp?oid=com.imecms.doc.FileDocumentMaster:124040'><i  class='fa fa-file-pdf-o pdf'><\/i><\/a>",
-                            "version": "A.1",
-                            "modified": "2017-03-14 17:38:10",
-                            "fileSize": "0 B",
-                            "id": "com.imecms.doc.FileDocument:125466",
-                            "filestatus": "",
-                            "author": "徐丹红",
-                            "masterOid": "com.imecms.doc.FileDocumentMaster:124040",
-                            "level": "i",
-                            "creatorName": "徐丹红",
-                            "modifierId": "xudanhong",
-                            "created": "2017-03-14 17:38:10",
-                            "oid": "com.imecms.doc.FileDocument:125466",
-                            "docDesc": "",
-                            "name": "test 0314",
-                            "isFavorite": false,
-                            "deadline": "",
-                            "IBA_plugin": "HighTech",
-                            "comments": "pdf"
-                        }]
-                    };
-                    for (var i = 0, l = Jdata.records.length; i < l; i++) {
-                        var item = Jdata.records[i];
+                    for (var i = 0, l = data.records.length; i < l; i++) {
+                        var item = data.records[i];
                         item.ItemNum = item.number;
                     }
                     $('#modal1_dataShow').dataTable({
-                        data: Jdata.records,
+                        data: data.records,
                         "destroy": true,
                         //搜索框功能关闭
                         "searching": false,
@@ -463,7 +352,7 @@ pageHomeDoc.homeDocInit = function () {
                         //勾选框列和下拉框列禁止排序功能
                         "aoColumnDefs": [{"bSortable": false, "aTargets": [0]}],
                         "language": {
-                            "url": 'i18n/dataTable_' + lang + '.json'
+                            "url": 'i18n/dataTable_'+ $.cookie("appLanguage") +'.json'
                         },
                         createdRow: function (row, data, dataIndex) {
                             $(row).attr({'masterOid': data.masterOid, "oid": data.oid});
@@ -504,18 +393,51 @@ pageHomeDoc.homeDocInit = function () {
                 }
 
                 function searchDocInit() {
-                    H_allChecked($('#modal_allChecked'),$('.modal_bodyCh'));
+                    imeWeb.tools.H_allChecked($('#modal_allChecked'),$('.modal_bodyCh'));
                 }
             });
             /*查找用户模态框控制按钮点击事件*/
             $('.modalBtn_searchUser').myClick(function (e) {
                 var _t = $(this);
-                imeWeb.createChildPageHasId("homeDoc/child2_choseUser", "page-content-base2", "page-content-choseUser", _t.attr('searchType'));
+                // imeWeb.createChildPageHasId("homeDoc/child2_choseUser", "page-content-base2", "page-content-choseUser", _t.attr('searchType'));
+                imeWeb.createChildPageHasId("siteManagement/child_addUser", "page-content-base2", "page-content-choseUser", _t.attr('searchType'));
                 // var data = {searchType: _t.attr('searchType')};
                 // loadTemp($('#choseUserModal'), 'globalModule/modal_searchUser', data, 'html');
-                Modal_searchUserInit();
+                $(document).on('click', '#search_someone_search', search_someone_form);
+                function search_someone_form() {
+                    var type = 'Users';
+                    var pool = undefined
+                    var principalId = $('#search_someone_ID').val()
+                    var name = $('#search_someone_name').val()
+                    $.ajax({
+                        url: "/imeWeb/Services/principal/searchPrincipal",
+                        type: "GET",
+                        context: {
+                            refreshbutton: $('#search_someone_search'),
+                            refresharea: $('#search_someone_refresharea')
+                        },
+                        data: {
+                            type: type,
+                            name: name,
+                            principalId: principalId,
+                            pool: pool,
+                            start: 0,
+                            limit: 25,
+                            page: 1
+                        },
+                        success: function (data, status) {
+                            pageHomeDoc.childPage_Init(data);
+                            // pageWorkflowManagement.data_table_searchsomeone(data)
+                        }
+                    });
+
+                    return false
+                }
+
+                // Modal_searchUserInit();
                 imeWeb.i18n.init();
             });
+            imeWeb.tools.H_allChecked($('#homeDoc_allChecked'),$('.homeDoc_bodyCh'));
         }
 
         /*查找用户模态框初始化*/
@@ -563,7 +485,7 @@ pageHomeDoc.homeDocInit = function () {
                         //勾选框列和下拉框列禁止排序功能
                         "aoColumnDefs": [{"bSortable": false, "aTargets": [0]}],
                         "language": {
-                            "url": 'i18n/dataTable_' + lang + '.json'
+                            "url": 'i18n/dataTable_'+ $.cookie("appLanguage") +'.json'
                         },
                         data: data,
                         createdRow: function (row, data, dataIndex) {
@@ -622,32 +544,6 @@ pageHomeDoc.homeDocInit = function () {
     }
 
     /*******************************************工具函数*****************************************************/
-    /*全选框功能*/
-    function H_allChecked(allCheckBtn,childCheckBtn) {
-        /*子复选框点击事件*/
-        childCheckBtn.myClick(function (e) {
-            allCheckBtn.prop('checked',checkAll(childCheckBtn, 'checked', "allChecked"));
-        });
-        /*全选框点击事件*/
-        allCheckBtn.myClick(function (e) {
-            allcheckedFn(childCheckBtn, $(this));
-        });
-        /*全选*/
-        function allcheckedFn(children, thisEle) {
-            homeDoc_bodyCh = children;//tbody中多选框
-            var _t = thisEle;
-            var allchecked = _t.checked||_t.prop('checked');
-            allchecked = ischecked(allchecked);
-            homeDoc_bodyCh.each(function (v, e) {
-                e.checked = allchecked;
-            })
-        }
-
-        /*是否选中*/
-        function ischecked(cc) {
-            return !!cc ? true : false;
-        }
-    }
     /*是否有未被选中的项*/
     function checkAll(eles, attr, flag) {
         switch (flag) {
@@ -716,4 +612,101 @@ pageHomeDoc.homeDocInit = function () {
         });
     }
 
+};
+pageHomeDoc.childPage_Init=function (data) {
+    var table_searchsomeone = $('#search_someone').DataTable({
+        data: data,
+        columns: [
+            {
+                data: function () {
+                    return '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> <input type="checkbox"class="group-checkable homeDoc_checkBox homeDoc_bodyCh"data-set="#sample_1 .checkboxes"/> <span></span> </label>'
+                }
+            },
+            {data: 'type'},
+            {data: 'principalId'},
+            {data: 'name'},
+            {
+                data: function (source) {
+                    return ''
+                }
+            },
+        ],
+        createdRow: function (row, data, dataIndex) {
+            $(row).addClass('radioBox');
+        },
+        "searching": false,
+        'scrollY': 300,
+        "destroy": true,
+        "lengthChange": false,
+        // info: false,
+        "language": {
+            "url": 'i18n/dataTable_'+ $.cookie("appLanguage") +'.json'
+        },
+        paging: false,
+        scrollx: true,
+        "columnDefs": [
+            {"title": "", "targets": 0},
+            {"title": "", "targets": 1},
+            {"title": "Id", "targets": 2},
+            {"title": "名称", "targets": 3},
+            {"title": "描述", "targets": 4}
+        ]
+
+    });
+    pageHomeDoc.confirmAndcancel(table_searchsomeone, '#search_someone_select', '#search_someone_cancel', '#search_someone_refresharea', '请选择对象', function (data) {
+        console.log(data);
+        // var pp=$('#siteMag_mainTable').DataTable();
+        // pageSiteManagement.mainTableData.rows.add([{
+        //     principalId: data.principalId,
+        //     userName: data.name
+        // }]).draw();
+        switch ($('#search_someone_select').attr('modal_searchtype')){
+            case 'creator':{
+                $('#homeDoc_creator').val(data.principalId);
+                break;
+            }
+            case 'checkoutUser':{
+                $('#homeDoc_checkoutUser').val(data.principalId);
+                break;
+            }
+        }
+        // pageSiteManagement.globalInit(pageSiteManagement.mainTableData.data());
+        // pageSiteManagement.bindEventInit();
+        imeWeb.deleteChildPage()
+    })
+};
+pageHomeDoc.confirmAndcancel= function (table, confirmbutton, cancelbutton, alertID, alertMsg, confirmcallback) {
+    $(document).off('click', confirmbutton);
+    $(document).off('click', cancelbutton);
+    $(document).off('click', 'tr');
+    //选中表格行
+    $(document).on('click', '.radioBox', function () {
+        try {
+            $('tr').removeClass('selected').find("input[type='checkbox']").attr('checked', false)
+            $(this).addClass('selected');
+            var i = $(this).find("input[type='checkbox']")
+            i[0].checked = true
+
+        } catch (err) {
+            return false
+
+        }
+    });
+    //确认
+    $(document).on('click', confirmbutton, function () {
+        var data = table.row('.selected').data()
+        if (data) {
+            if (confirmcallback) confirmcallback(data)  //pageWorkflowManagement.searchsomeone_inputfrom.val(data.principalId)
+            imeWeb.deleteChildPage()
+        }
+        else {
+            imeWeb.Alert(alertID, alertMsg)
+            //imeWeb.Alert('#search_someone_refresharea','请选择对象')
+            return false
+        }
+    });
+    //取消
+    $(document).on('click', cancelbutton, function () {
+        imeWeb.deleteChildPage()
+    })
 };

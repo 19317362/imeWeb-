@@ -398,9 +398,12 @@ pageWorkflowManagement.data_table_searchsomeone=function(data){
     var table_searchsomeone=$('#search_someone').DataTable({
      data:data,
      columns: [
-     {data: function () {
+     {
+        data: function () {
         return '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> <input type="checkbox"class="group-checkable homeDoc_checkBox homeDoc_bodyCh"data-set="#sample_1 .checkboxes"/> <span></span> </label>'
-    }},
+    },
+    orderable: false
+},
     { data: 'type' },
     {data:'principalId'},
     {data:'name'},
@@ -409,12 +412,13 @@ pageWorkflowManagement.data_table_searchsomeone=function(data){
     }},
     ],
     "searching": false,
-    'scrollY': 500,
+    //'scrollY': 500,
     "destroy": true,
     "lengthChange": true,
     info:false,
+    order: [[ 1, 'asc' ]],
     paging:false,
-    scrollx:true,
+    //scrollx:true,
     "columnDefs": [
     { "title": "", "targets": 0 },
     { "title": "", "targets":1},
@@ -434,9 +438,12 @@ pageWorkflowManagement.data_table_search=function(data){
     var table_search=$('#table_search').DataTable({
      data:data,
      columns: [
-     {data: function () {
+     {
+        data: function () {
         return '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> <input type="checkbox"class="group-checkable homeDoc_checkBox homeDoc_bodyCh"data-set="#sample_1 .checkboxes"/> <span></span> </label>'
-    }},
+    },
+    orderable: false
+},
     { data: 'id' },
     {data:'name'},
     {data:'wfDefName'},
@@ -449,7 +456,9 @@ pageWorkflowManagement.data_table_search=function(data){
     "searching": false,
     "destroy": true,
     "lengthChange": true,
+    //sPaginationType: "extStyle",
     info:true,
+    order: [[ 1, 'asc' ]],
     //paging:false,
     "bLengthChange": false,
     "pageLength": 10,
@@ -498,9 +507,12 @@ pageWorkflowManagement.data_search_object=function(data){
     var table_search=$('#search_object').DataTable({
      data:data,
      columns: [
-     {data: function () {
+     {
+        data: function () {
         return '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> <input type="checkbox"class="group-checkable homeDoc_checkBox homeDoc_bodyCh"data-set="#sample_1 .checkboxes"/> <span></span> </label>'
-    }},
+    },
+    orderable: false
+},
     { data: 'number'},
     {data:function(source){
         if(!source.name){
@@ -518,11 +530,12 @@ pageWorkflowManagement.data_search_object=function(data){
     "destroy": true,
     "lengthChange": true,
     info:false,
+    order: [[ 1, 'asc' ]],
     //paging:false,
     "bLengthChange": false,
     "pageLength": 10,
-    scrollx:true,
-    'scrollY': 500,
+    //scrollx:true,
+    //'scrollY': 500,
     "destroy": true,
     "columnDefs": [
     { "title": "", "targets": 0 },
@@ -545,9 +558,12 @@ pageWorkflowManagement.data_table_identify=function(data){
     var table_search=$('#table_identify').DataTable({
         data:data,
         columns: [
-        {data: function () {
+        {
+            data: function () {
             return '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"> <input type="checkbox"class="group-checkable homeDoc_checkBox homeDoc_bodyCh"data-set="#sample_1 .checkboxes"/> <span></span> </label>'
-        }},
+        },
+        orderable: false
+    },
         { data: 'name'},
         {data:'title'},
         {data:'xmlFile'},
@@ -559,8 +575,9 @@ pageWorkflowManagement.data_table_identify=function(data){
         "destroy": true,
         "lengthChange": true,
         info:false,
+        order: [[ 1, 'asc' ]],
         paging:false,
-        scrollx:true,
+        //scrollx:true,
         "columnDefs": [
         { "title": "名称", "targets": 1 },
         { "title": "标题", "targets": 2 },

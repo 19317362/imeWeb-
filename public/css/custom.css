@@ -312,3 +312,8 @@ table.dataTable{
   max-height:400px;
   overflow-y: scroll;
 }
+
+tbody tr.selected{
+  background-color:#e7ecf1 !important;
+
+}

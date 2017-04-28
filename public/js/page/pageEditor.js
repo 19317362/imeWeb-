@@ -1,63 +1,44 @@
 var pageEditor = pageEditor || {};
 
-pageEditor.init = function(docName,oId,type,containerId,folderId){
+pageEditor.init = function(oId){
     try{
     	var tabId = new Date().getTime();
+    	var docInfo = {};
     	if( $('.page-editor').length <= 0 ){
     		$('.page-content').toggle(false);
-    		switch(arguments.length)
-			{
-			case 0:
-				$('.page-content-wrapper').append(Handlebars.templates["editor/editorContainer"]([{"pageName":"page-editor","editorNavData":[{"tabNavName":tabId,"tabNavStatus":"active","tabName":"New*"}],"editorContentData":[{"tabContentName":tabId,"tabContentStatus":"active","tabContentIframeId":tabId,"tabContentIframeSrc":"editor.html?folderId=1352&containerId=com.imecms.container.Container:120&type=plugin&timeId="+tabId}]}])); 
-				break;
-			case 2:
-				if(docName === ''){
-					docName = 'undefined';
-				}
-				$('.page-content-wrapper').append(Handlebars.templates["editor/editorContainer"]([{"pageName":"page-editor","editorNavData":[{"tabNavName":tabId,"tabNavStatus":"active","tabName":docName}],"editorContentData":[{"tabContentName":tabId,"tabContentStatus":"active","tabContentIframeId":tabId,"tabContentIframeSrc":"editor.html?oid="+ oId + "&type=plugin&timeId="+tabId}]}])); 			
-				break;
-			case 3:
-
-				break;
-			case 4:
-
-				break;
-			case 5:
-
-				break;
-			default:
-				
-			}
+    		if(typeof oId !== "undefined"){
+    			docInfo = imeWeb.queryDocInfo(oId);
+    			if(docInfo.success == false){
+    				toastr["error"]("打开文档失败");
+    				docInfo.name = "undefined";
+    			}
+    			if(docInfo.name == "" || typeof docInfo.name == "undefined"){
+    				docInfo.name = "undefined";
+    			}
+				$('.page-content-wrapper').append(Handlebars.templates["editor/editorContainer"]([{"pageName":"page-editor","editorNavData":[{"tabNavName":tabId,"tabNavStatus":"active","tabName":docInfo.name}],"editorContentData":[{"tabContentName":tabId,"tabContentStatus":"active","tabContentIframeId":tabId,"tabContentIframeSrc":"editor.html?oid="+ docInfo.oid + "&containerId="+ docInfo.containerOid + "&folderId="+ docInfo.folderOid + "&type=plugin&timeId="+tabId}]}])); 
+    		}else{
+    			$('.page-content-wrapper').append(Handlebars.templates["editor/editorContainer"]([{"pageName":"page-editor","editorNavData":[{"tabNavName":tabId,"tabNavStatus":"active","tabName":"New*"}],"editorContentData":[{"tabContentName":tabId,"tabContentStatus":"active","tabContentIframeId":tabId,"tabContentIframeSrc":"editor.html?folderId=1352&containerId=com.imecms.container.Container:120&type=plugin&timeId="+tabId}]}])); 
+    		}
     	}else{
     		$('.page-content').toggle(false);
     		$('.page-editor').toggle(true);
-    		switch(arguments.length)
-			{
-			case 0:
-				$('.page-editor .portlet-title .doc-edit-tab > ul').append(Handlebars.templates["editor/tabNav"]([{"tabNavName":tabId,"tabNavStatus":"","tabName":"New*"}]));
+    		if(typeof oId !== "undefined"){
+    			docInfo = imeWeb.queryDocInfo(oId);
+    			if(docInfo.success == false){
+    				toastr["error"]("打开文档失败");
+    				docInfo.name = "undefined";
+    			}
+    			if(docInfo.name == "" || typeof docInfo.name == "undefined"){
+    				docInfo.name = "undefined";
+    			}
+				$('.page-editor .portlet-title .doc-edit-tab > ul').append(Handlebars.templates["editor/tabNav"]([{"tabNavName":tabId,"tabNavStatus":"","tabName":docInfo.name}]));
+				$('.page-editor .portlet-body .tabbable-tabdrop > .tab-content').append(Handlebars.templates["editor/tabContent"]([{"tabContentName":tabId,"tabContentStatus":"","tabContentIframeId":tabId,"tabContentIframeSrc":"editor.html?oid="+ docInfo.oid + "&containerId="+ docInfo.containerOid + "&folderId="+ docInfo.folderOid + "&type=plugin&timeId="+tabId}]));
+				$('.page-editor .portlet-title .doc-edit-tab a[href="#tab_content_'+ tabId+'"]').click();
+    		}else{
+    			$('.page-editor .portlet-title .doc-edit-tab > ul').append(Handlebars.templates["editor/tabNav"]([{"tabNavName":tabId,"tabNavStatus":"","tabName":"New*"}]));
 				$('.page-editor .portlet-body .tabbable-tabdrop > .tab-content').append(Handlebars.templates["editor/tabContent"]([{"tabContentName":tabId,"tabContentStatus":"","tabContentIframeId":tabId,"tabContentIframeSrc":"editor.html?folderId=1352&containerId=com.imecms.container.Container:120&type=plugin&timeId="+tabId}]));
 				$('.page-editor .portlet-title .doc-edit-tab a[href="#tab_content_'+ tabId+'"]').click();
-				break;
-			case 2:
-				if(docName === ''){
-					docName = 'undefined';
-				}
-				$('.page-editor .portlet-title .doc-edit-tab > ul').append(Handlebars.templates["editor/tabNav"]([{"tabNavName":tabId,"tabNavStatus":"","tabName":docName}]));
-				$('.page-editor .portlet-body .tabbable-tabdrop > .tab-content').append(Handlebars.templates["editor/tabContent"]([{"tabContentName":tabId,"tabContentStatus":"","tabContentIframeId":tabId,"tabContentIframeSrc":"editor.html?oid="+oId+"&type=plugin&timeId="+tabId}]));
-				$('.page-editor .portlet-title .doc-edit-tab a[href="#tab_content_'+ tabId+'"]').click();
-				break;
-			case 3:
-
-				break;
-			case 4:
-
-				break;
-			case 5:
-
-				break;
-			default:
-				
-			}
+    		}
     	}
     	$('.page-editor .nav-pills').tabdrop('layout');
     }catch(err){
@@ -67,6 +48,7 @@ pageEditor.init = function(docName,oId,type,containerId,folderId){
     }
 }
 
+/* 编辑器关闭标签页 */
 pageEditor.colseTab = function(id){
 	if( $('.page-editor .portlet-title .doc-edit-tab > ul li').not('.tabdrop').length <= 1){
 		$('.page-editor').remove();

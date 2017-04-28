@@ -1,10 +1,10 @@
 var pageCommon = pageCommon || {};
 
 pageCommon.init = function(){
-	pageCommon.topMenuToolsInit();
-	pageCommon.topMenuDropDownUserInit();
-	pageCommon.systemToolsInit();
-	pageCommon. containerGroupInit();
+    pageCommon.topMenuToolsInit();
+    pageCommon.topMenuDropDownUserInit();
+    pageCommon.systemToolsInit();
+    pageCommon. containerGroupInit();
 }
 
 /* 顶部工具栏加载 */
@@ -26,14 +26,16 @@ pageCommon.topMenuDropDownUserInit = function(){
 /* 系统工具栏加载 */
 pageCommon.systemToolsInit = function(){
     $.get(g_url_listSystemTool,{},function(data,textstatus){
+        var isAdmin = imeWeb.isAdministrator();
         $(".system-tool").remove();
-        $(".system-tools-group").after(Handlebars.templates['common/sidebarMenuSystemTool'](data.children));
+        $(".system-tools-group").after(Handlebars.templates['common/sidebarMenuSystemTool']([{"system-tool-data":data.children,"administrator-tool-data":isAdmin.domain}]));
+        imeWeb.i18n.init();
     });
 }
 
 /* 侧边栏存储库列表加载 */
 pageCommon. containerGroupInit = function(){
-     $.get(g_url_getContainerByDomainAndUser,{},function(data){
+    $.get(g_url_getContainerByDomainAndUser,{},function(data){
         $(".container-item").remove();
         $(".container-group").after(Handlebars.templates['common/sidebarMenuContainer'](data));
     });
@@ -69,7 +71,7 @@ pageCommon.container_onclick = function(e){
 pageCommon.loop = function(array){
     var inner='';
     for(var i=0;i<array.length;i++){
-         var temp='<li class="nav-item  subcontainer-item" folderId="'+ array[i].id +'"><a class="nav-link"><span class="title" >'+array[i].filename+'</span>'
+        var temp='<li class="nav-item  subcontainer-item" folderId="'+ array[i].id +'"><a class="nav-link"><span class="title" >'+array[i].filename+'</span>'
         if(array[i].children&&array[i].children.length){
             temp+='<span class="arrow"></span></a>'
             var ul='<ul class="sub-menu" style="display:none">'+pageCommon.loop(array[i].children)+'</ul>'
@@ -91,7 +93,7 @@ pageCommon.sidebarMenuTask = function(){
         $(".page-sidebar-receive-task .finished-task .badge").html(data.receiveTask.finishTaskNumber);
         $(".page-sidebar-originate-task .exigence-task .badge").html(data.originateTask.originateExigence);
         $(".page-sidebar-originate-task .pending-task .badge").html(data.originateTask.originatePending);
-        $(".page-sidebar-originate-task .finished-task .badge").html(data.originateTask.originateFinish);           
+        $(".page-sidebar-originate-task .finished-task .badge").html(data.originateTask.originateFinish);
     });
 }
 
@@ -112,11 +114,24 @@ $(document).on("click",".nav-item.subcontainer-item",function(){
             if(point.hasClass('nav-item')){
                 break;
             }
-        }       
+        }
     }
     docInfo.routes = routes;
     docInfo.folderIds = folderIds;
     docInfo.folderId = node.attr("folderid");
     pageRepository.init(docInfo);
     return false;
+});
+
+/* 侧边栏任务 每个任务事件绑定 */
+$(document).on("click",".sub-menu .task",function(){
+    var docInfo = {};
+    var routes = [];
+    //ative
+    $(this).addClass("open").siblings().removeClass("open");
+    docInfo.view = $(this).children().attr("view");
+    routes[1] = $(this).parent().prev("a").children(".title").text();
+    routes[0] = $(this).children().children(".title").text();
+    docInfo.routes = routes;
+    $.cookie("task_docInfo",JSON.stringify(docInfo),{ expires: 1 });
 });

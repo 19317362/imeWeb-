@@ -1,0 +1,16 @@
+{{#each this}}
+    <tr class="task_content">
+        <td>
+            <ul class="task_rolesul"><i class="icon-settings font-green"></i>{{roleName}}
+            {{#each children}}
+                <li>{{userName}}</li>
+            {{/each}}
+            </ul>
+        </td>
+        <td>
+            <button type="button" id="check_group1" class="btn  green " data-style="slide-right">
+                添加用户
+            </button>
+        </td>
+    </tr>
+{{/each}}

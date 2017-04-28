@@ -1,124 +1,63 @@
 {{#each this}}
-<div class="tabbable-line">
-    <ul class="nav nav-tabs">
-        <li></li>
-        <li class="active">
-            <a href="#baseTab_{{rowIndex}}" data-toggle="tab">其他信息</a>
-        </li>
-        <li>
-            <a href="#tab1_{{rowIndex}}" data-toggle="tab">业务信息</a>
-        </li>
-        <li>
-            <a href="#tab2_{{rowIndex}}" data-toggle="tab">关联对象</a>
-        </li>
-        <li>
-            <a href="#tab3_{{rowIndex}}" data-toggle="tab">文档结构</a>
-        </li>
-        <li>
-            <a href="#tab4_{{rowIndex}}" data-toggle="tab">工作流</a>
-        </li>
-        <li>
-            <a href="#tab5_{{rowIndex}}" data-toggle="tab">发布结果</a>
-        </li>
-        <li>
-            <a href="#tab6_{{rowIndex}}" data-toggle="tab">版本历史</a>
-        </li>
-        <li>
-            <a href="#tab7_{{rowIndex}}" data-toggle="tab">角色管理</a>
-        </li>
-        <li>
-            <a href="#tab8_{{rowIndex}}" data-toggle="tab">附件</a>
-        </li>
-        <li></li>
-    </ul>
-    <div class="tab-content" style="padding:0;">
-        <div class="tab-pane active baseTab" id="baseTab_{{rowIndex}}">
-            <div class="portlet light bordered">
-                <div class="portlet-body">
-                    <div class="row">
-                        {{#each data}}
-                        {{#if hidden}}
-                        <div class="col-lg-6" data-dt-row="{{rowIndex}}" data-dt-column="{{columnIndex}}">
-                            <td>  {{{title}}} : </td>  
-                            <td>  {{{data}}}  </td> 
+<div class="child-table">
+    <div class="actionTools">
+        {{#each actionToolsData}}
+            {{{actionToolsHtml}}}
+        {{/each}}
+    </div>
+    <div class="tabbable-line">
+        <ul class="nav nav-tabs">
+            <li></li>
+            <li class="active">
+                <a href="#objectInfoTab" data-toggle="tab"><font key="i18n.objectInfo"></font></a>
+            </li>
+            <li>
+                <a href="#businessInfoTab" data-toggle="tab"><font key="i18n.businessInfo"></font></a>
+            </li>
+            {{#each pages}}
+            <li>
+                <a href="#tab_{{@index}}" data-toggle="tab"><font key="i18n.{{title}}"></font></a>
+            </li>
+            {{/each}}
+            <li></li>
+        </ul>
+        <div class="tab-content" style="padding:0;">
+            <div class="tab-pane active" id="objectInfoTab">
+                <div class="portlet light bordered">
+                    <div class="portlet-body">
+                        <div class="row">
+                            {{#each data}}
+                            <div class="col-lg-6">
+                                <td>  {{{title}}} : </td>  
+                                <td>  {{{showInfo data}}}  </td> 
+                            </div>
+                            {{/each}}
                         </div>
-                        {{/if}}
-                        {{/each}}
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="tab-pane" id="tab1_{{rowIndex}}">
-            <div class="portlet light bordered">
-                <div class="portlet-body">
-                    <div>
-                        <iframe frameborder='0' width="100%" height="350px" src='tabContent.html'></iframe>
+
+            <div class="tab-pane" id="businessInfoTab">
+                <div class="portlet light bordered">
+                    <div class="portlet-body">
+                        <div class="row">
+                            
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="tab-pane" id="tab2_{{rowIndex}}">
-            <div class="portlet light bordered">
-                <div class="portlet-body">
-                    <div>
-                        <iframe frameborder='0' width="100%" height="350px" src='tabContent.html'></iframe>
+
+            {{#each pages}}
+            <div class="tab-pane" id="tab_{{@index}}">
+                <div class="portlet light bordered">
+                    <div class="portlet-body">
+                        <div>
+                            <iframe frameborder='0' width="100%" height="350px" src='{{url}}'></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="tab-pane" id="tab3_{{rowIndex}}">
-            <div class="portlet light bordered">
-                <div class="portlet-body">
-                    <div>
-                        <iframe frameborder='0' width="100%" height="350px" src='tabContent.html'></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane" id="tab4_{{rowIndex}}">
-            <div class="portlet light bordered">
-                <div class="portlet-body">
-                    <div>
-                        <iframe frameborder='0' width="100%" height="350px" src='tabContent.html'></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane" id="tab5_{{rowIndex}}">
-            <div class="portlet light bordered">
-                <div class="portlet-body">
-                    <div>
-                        <iframe frameborder='0' width="100%" height="350px" src='tabContent.html'></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane" id="tab6_{{rowIndex}}">
-            <div class="portlet light bordered">
-                <div class="portlet-body">
-                    <div>
-                        <iframe frameborder='0' width="100%" height="350px" src='tabContent.html'></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane" id="tab7_{{rowIndex}}">
-            <div class="portlet light bordered">
-                <div class="portlet-body">
-                    <div>
-                        <iframe frameborder='0' width="100%" height="350px" src='tabContent.html'></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane" id="tab8_{{rowIndex}}">
-            <div class="portlet light bordered">
-                <div class="portlet-body">
-                    <div>
-                        <iframe frameborder='0' width="100%" height="350px" src='tabContent.html'></iframe>
-                    </div>
-                </div>
-            </div>
+            {{/each}}
         </div>
     </div>
 </div>

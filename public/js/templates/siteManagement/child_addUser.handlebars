@@ -1,0 +1,120 @@
+{{#each this}}
+    <div class="page-content parent-{{parentName}} {{pageName}}">
+        <div class='row'>
+            <!--表格插入区域-->
+            <div class="col-md-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption">
+                            <button type="button" class="btn  mt-ladda-btn ladda-button myblockbutton  blockui_TaskInit"
+                                    data-style="contract" data-spinner-color="#697882">
+                                <span class="ladda-label"> <i class="icon-refresh"></i></span>
+                                <span class="ladda-spinner"></span>
+                                <span class="ladda-spinner"></span>
+                                <span class="ladda-spinner"></span>
+                            </button>
+                            <span class="caption-subject font-dark bold uppercase"><font key="i18n.searchPrincipal"></font></span>
+                        </div>
+
+                        <div class="actions">
+                            {{> common/protletTitleTools protletTitleTools}}
+
+                        </div>
+
+                    </div>
+                    <div class="portlet-body" style="min-height:300px">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-body myform-body">
+                                <div class='row'>
+
+                                    <div class="form-group col-md-4">
+                                        <label class="col-md-3 control-label"><font key="i18n.type"></font></label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id='search_someone_type' disabled
+                                                   value='用户'>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label class="col-md-3 control-label"><font key="i18n.id"></font></label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id='search_someone_ID'>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="col-md-3 control-label"><font key="i18n.name"></font></label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id='search_someone_name'>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="col-md-3 control-label"></label>
+                                        <div class="col-md-9">
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="col-md-3 control-label"></label>
+                                        <div class="col-md-9">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label col-md-3"></label>
+                                        <div class="col-md-9">
+                                            <button type="submit"
+                                                    class="btn btn-success mt-ladda-btn ladda-button search_object  pull-right"
+                                                    id='search_someone_search' data-style="zoom-in">
+                                <span class="ladda-label">
+                                    <i class="fa fa-search"></i>  <font key="i18n.search"></font>
+                                </span>
+                                                <span class="ladda-spinner">
+                                </span>
+                                                <div class="ladda-progress" style="width: 0px;">
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                        <div id="search_someone_refresharea" style="min-height: 500px;">
+
+                            <table class="table table-striped table-bordered table-hover table-checkable order-column"
+                                   id="search_someone">
+
+                                <thead>
+                                <tr class="bg-green text-white" >
+                                    <th class="col-md-1 col-sm-1 col-xs-1">
+
+                                    </th>
+                                    <th></th>
+                                    <th>  <font key="i18n.id"></font>  </th>
+                                    <th> <font key="i18n.name"></font> </th>
+                                    <th><font key="i18n.description"></font></th>
+                                </tr>
+
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12  ">
+                                <div class="pull-right">
+                                    <button type="submit" class="btn green" id="search_someone_select" modal_searchType="{{id}}"><font key="i18n.select"></font></button>
+                                    <button type="button" class="btn default" id="search_someone_cancel"><font key="i18n.cancel"></font></button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}

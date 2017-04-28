@@ -89,3 +89,23 @@ if(new RegExp("Map").test(value)){
     }
 });
 
+//有些文档name为空，需要显示number
+Handlebars.registerHelper("showNotNull",function(v1,v2){
+    if(typeof v1 === "undefined"){
+        return v2;
+    }else{
+        return v1;
+    }
+});
+
+//文档信息简写转换为文字 如检出状态 o i ，
+Handlebars.registerHelper("showInfo",function(value){
+    if(value == "o"){
+        return "<font key='i18n.checkout'></font>";
+    }
+    if(value == "i"){
+        return "<font key='i18n.checkin'></font>";
+    }
+    return value;
+});
+

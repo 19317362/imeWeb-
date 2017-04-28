@@ -47,12 +47,13 @@ pageHome.FavoriteItemsInit = function(){
             }
         })
         var html1=Handlebars.templates['home/favoriteItems'](data1);
-        $("#portlet_comments_1 .mt-comments").html(html1);
+        $("#favorite_structDoc .mt-comments").html(html1);
         var html2= Handlebars.templates['home/favoriteItems'](data2);
-        $("#portlet_comments_2 .mt-comments").html(html2);
+        $("#favorite_otherObj .mt-comments").html(html2);
 
     }});
 }
+
 /* 足迹->最近检出 */
 pageHome.CheckoutListInit = function(){
     $.ajax({
@@ -334,6 +335,16 @@ pageHome.taskEasyPieChartsInit = function(){
                 $(this).data('easyPieChart').update(newValue);
                 $('span', this).text("+"+newValue);
             });
+
+            //侧边栏任务数量填写
+            $('.page-sidebar-receive-task .exigence-task .badge').text(data.receiveTask.jjwork);
+            $('.page-sidebar-receive-task .pending-task .badge').text(parseInt(data.receiveTask.jjwork) + parseInt(data.receiveTask.cjwork) + parseInt(data.receiveTask.qtwork) + parseInt(data.receiveTask.deadwork));
+            $('.page-sidebar-receive-task .finished-task .badge').text(data.receiveTask.finishTaskNumber);
+
+            $('.page-sidebar-originate-task .exigence-task .badge').text(data.originateTask.originateExigence);
+            $('.page-sidebar-originate-task .pending-task .badge').text(data.originateTask.originatePending);
+            $('.page-sidebar-originate-task .finished-task .badge').text(data.originateTask.originateFinish);
+
         });
     });
 }
@@ -341,13 +352,31 @@ pageHome.taskEasyPieChartsInit = function(){
 pageHome.domainInfo = function(){
     var domainNameNode = $("#domain_info font");
     var domainSmallNode = $("#domain_info small");
+
     domainNameNode.text($.cookie("domainInfo_domainname"));
     domainSmallNode.text("站点描述");
 }
 
-$(document).on("click",".favorite-edit",function(){
+//我的收藏 -> 编辑
+$(document).on("click","#favorite_structDoc .favorite-edit",function(){
     var docNode = $(this).parents(".favorite-item");
-    var docName = docNode.find("> .mt-comment-body > .mt-comment-info > .mt-comment-content").text();
     var oid = docNode.attr("oid");
-    pageEditor.init(docName,oid);
+
+    pageEditor.checkoutAndOpenEditor(oid);
+});
+
+//我的收藏 -> 查看
+$(document).on("click","#favorite_structDoc .favorite-show",function(){
+    var docNode = $(this).parents(".favorite-item");
+    var oid = docNode.attr("oid");
+    
+    pageEditor.openEditor(oid);
+});
+
+//我的收藏 -> 取消
+$(document).on("click","#favorite_structDoc .favorite-cancel",function(){
+    var docNode = $(this).parents(".favorite-item");
+    var oid = docNode.attr("oid");
+
+    imeWeb.deleteFavoriteItem(oid);
 });

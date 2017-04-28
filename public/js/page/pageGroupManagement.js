@@ -42,20 +42,17 @@ var check_group = function(a,b){
             clickfunction:search_clickGroupList
         },
         success:function(data,textstatus){
+            var res =imeWeb.distinct(data);
             $("#group_one").dataTable({
                 searching:false, //去掉搜索框
                 bLengthChange:false,//去掉每页多少条框体
                 "language": {
-                    "info": "显示 _START_ 到 _END_ 条,总共 _TOTAL_ 条", // 表格左下角显示的文字
-                    "paginate": {
-                        "previous": "上一页",
-                        "next": "下一页"
-                    }
+                    "url": 'i18n/datatable_'+ $.cookie("appLanguage") +'.json'
                 },
                 destroy:true,
                 "aoColumnDefs": [ { "bSortable": false, "aTargets": [0] }],
                 "order": [[ 0, "desc" ]],
-                data : data,
+                data : res ,
                 "columns": [
                     {data: "oId",
                         "createdCell": function (nTd, sData, oData, iRow, iCol){
@@ -367,7 +364,7 @@ $(document).on("click","#addMemberToGroup",function(){
 
 //添加成员按钮
 $(document).on("click","#addMem",function(){
-    imeWeb.createChildPage("systemTools/pageSearchMember","page-content-createGroup","page-content-searchMember");
+    imeWeb.createChildPageHasId("systemTools/pageSearchMember","page-content-createGroup","page-content-searchMember","saveMem");
 })
 
 //删除人员
@@ -388,21 +385,7 @@ $(document).on("click","ul.dropdown-menu li",function(){
    $(this).parent().parent().prev("input").val(re);
 });
 
-//特定选择框
-$(document).on("click",".item_check_one",function(){
-    //当是选中状态
-    if(this.checked){
-        $("#tbMain input[name = item]:checkbox").each(function(){
-            $(this).prop("checked", true);
-        });
-    }
-    //当不是选中状态,取消全部选中
-    else{
-        $("#tbMain input[name = item]:checkbox").each(function(){
-            $(this).prop("checked", false);
-        });
-    }
-})
+
 //选择框
 $(document).on("click",".item_check",function(){
     //当是选中状态
@@ -418,6 +401,8 @@ $(document).on("click",".item_check",function(){
         });
     }
 })
+
+
 
 //组搜索
 var searchGroup = function(){
@@ -473,42 +458,7 @@ var searchGroup = function(){
 $(document).on("click","#searchGroup",function(){
     searchGroup();
 })
-//    var url = "/imeWeb//Services/principal/searchPrincipal";
-//    var type = "Groups";
-//    var principalId=$("#principalId").val();
-//    var name=$("#name").val();
-//    //alert(principalId+name);
-//    //获取成员数据
-//    $.getJSON(url,{ type:type, principalId:principalId,name:name,pool:"ALL" },function(data){
-//        $("#Rembers").dataTable({
-//            searching:false, //去掉搜索框
-//            bLengthChange:false,//去掉每页多少条框体
-//            "language": {
-//                "info": "显示 _START_ 到 _END_ 条,总共 _TOTAL_ 条", // 表格左下角显示的文字
-//                "paginate": {
-//                    "previous": "上一页",
-//                    "next": "下一页"
-//                }
-//            },
-//            "aoColumnDefs": [ { "bSortable": false, "aTargets": [0] }],
-//            "order": [[ 0, "desc" ]],
-//            destroy:true,
-//            data : data,
-//            "columns": [
-//                {data: "oid",
-//                    "createdCell": function (nTd, sData, oData, iRow, iCol){
-//                        $(nTd).html("<label class='mt-checkbox mt-checkbox-single mt-checkbox-outline' ><input type='checkbox' class='checkboxes' name='item' value="+ sData+" /><span></span></label>");
-//                    }
-//
-//                },
-//                {data: "principalId"},
-//                {data: "name"},
-//                {data: "desc"},
-//                {data: "domain"}
-//            ]
-//        });
-//    });
-//})
+
 //添加已有组事件
 $(document).on("click","#page-content-groupSearchGroup",function(){
 
@@ -579,56 +529,73 @@ $(document).on("click","#page-content-groupSearchGroup",function(){
 
 //成员搜索方法
 var search = function(type,principalId,name,pool,url){
-    $.getJSON(url,{type:type, principalId:principalId,name:name,pool:pool },function(data){
-        $("#search").dataTable({
-            searching:false, //去掉搜索框
-            bLengthChange:false,//去掉每页多少条框体
-            "language": {
-                "info": "显示 _START_ 到 _END_ 条,总共 _TOTAL_ 条", // 表格左下角显示的文字
-                "paginate": {
-                    "previous": "上一页",
-                    "next": "下一页"
-                }
-            },
-            "aoColumnDefs": [ { "bSortable": false, "aTargets": [0] }],
-            "order": [[ 0, "desc" ]],
-            destroy:true,
-            data : data,
-            "columns": [
-                {data: "oid",
-                    "createdCell": function (nTd, sData, oData, iRow, iCol){
-                        $(nTd).html("<label class='mt-checkbox mt-checkbox-single mt-checkbox-outline' ><input type='checkbox' class='checkboxes' name='item' value="+ sData+" /><span></span></label>");
+    $.ajax({
+        url:url,
+        async:true,
+        data: {
+            'type':type,
+            'principalId':principalId,
+            'name':name,
+            'pool':pool
+        },
+        context:{
+            refreshbutton:$('#groupSearchMemOrGroup'),
+            refresharea:$('.refresh_area'),
+            clickfunction:action_search
+        },
+        success:function(data,textstatus){
+            $("#search").dataTable({
+                searching:false, //去掉搜索框
+                bLengthChange:false,//去掉每页多少条框体
+                "language": {
+                    "info": "显示 _START_ 到 _END_ 条,总共 _TOTAL_ 条", // 表格左下角显示的文字
+                    "paginate": {
+                        "previous": "上一页",
+                        "next": "下一页"
                     }
-
                 },
-                {data: "type"},
-                {data: "principalId"},
-                {data: "name"},
-                {data: "desc"},
-                {data: "domain"}
-            ]
-        });
+                "aoColumnDefs": [ { "bSortable": false, "aTargets": [0] }],
+                "order": [[ 0, "desc" ]],
+                destroy:true,
+                data : data,
+                "columns": [
+                    {data: "oid",
+                        "createdCell": function (nTd, sData, oData, iRow, iCol){
+                            $(nTd).html("<label class='mt-checkbox mt-checkbox-single mt-checkbox-outline' ><input type='checkbox' class='checkboxes' name='item' value="+ sData+" /><span></span></label>");
+                        }
+
+                    },
+                    {data: "type"},
+                    {data: "principalId"},
+                    {data: "name"},
+                    {data: "desc"},
+                    {data: "domain"}
+                ]
+            });
+        }
     });
 }
 
 //使用成员搜索方法
 $(document).on("click","#groupSearchMemOrGroup",function(){
-    var url = "/imeWeb//Services/principal/searchPrincipal";
-    var type = $("#input").val();
-    var principalId=$("#groupPrincipalId").val();
-    var name=$("#groupName").val();
-    if(type==""||type==null){
-        search(type,principalId,name,"",url);
-    }else{
-        if(type=="组"||type=="group"){
-            search("Groups",principalId,name,"",url);
-        }else{
-            search("Users",principalId,name,"",url);
-        }
-
-    }
+    action_search();
 })
+ var action_search = function(){
+     var url = "/imeWeb//Services/principal/searchPrincipal";
+     var type = $("#input").val();
+     var principalId=$("#groupPrincipalId").val();
+     var name=$("#groupName").val();
+     if(type==""||type==null){
+         search(type,principalId,name,"",url);
+     }else{
+         if(type=="组"||type=="group"){
+             search("Groups",principalId,name,"",url);
+         }else{
+             search("Users",principalId,name,"",url);
+         }
 
+     }
+ }
 //添加成员到新建的组中
 $(document).on("click","#saveMem",function(){
     //如果被选中则添加
@@ -690,7 +657,7 @@ var msgSuccess = function(containerId,msg){
         close: true,
         reset: true,
         focus: true,
-        closeInSeconds: 2,
+        closeInSeconds: 3,
         icon: 'fa fa-check'
     });
 }
@@ -703,7 +670,7 @@ var msgFail = function(containerId,msg){
         close: true,
         reset: true,
         focus: true,
-        closeInSeconds: 2,
+        closeInSeconds: 6,
         icon: 'fa fa-close'
     });
 }

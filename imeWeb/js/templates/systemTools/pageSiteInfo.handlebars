@@ -1,0 +1,76 @@
+{{#each this}}
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet light ">
+                    <!--标题-->
+
+                    <ul class="page-breadcrumb breadcrumb">
+                        <li>
+                            <a href="index.html"><font key="i18n.site">站点</font></a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <span class="active"><font key="i18n.DomainKey">站点信息</font></span>
+                        </li>
+                    </ul>
+                    <!--主体内容,最外部框架-->
+                    <div class="portlet light bordered">
+                        <!--主体标题开始-->
+                        <div class="portlet-title">
+                            <div class="caption font-green bordered">
+                                <i class="icon-settings font-green"></i>
+                                <span class="caption-subject bold uppercase"> <font key="i18n.DomainKey">站点信息</font></span>
+                            </div>
+
+                        </div>
+                        <!--主体标题结束-->
+                        <!--主体内容开始-->
+                        <div class="portlet-body form">
+                            <form role="form" class="form-horizontal">
+                                <div class="form-body">
+
+                                    <div class="form-group form-md-line-input">
+                                        <label class=" col-xs-6 col-sm-2 col-md-2  col-lg-2 control-label " >ID:</label>
+                                        <div class=" col-xs-6 col-sm-10 col-md-10 col-lg-10 ">
+                                            <div class="form-control form-control-static"> {{domainkey}} </div>
+                                            <div class="form-control-focus"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input">
+                                        <label class="col-xs-6 col-sm-2 col-md-2 col-lg-2 control-label" ><font key="i18n.DocName">名称</font>:</label>
+                                        <div class="col-xs-6 col-sm-10 col-md-10 col-lg-10">
+                                            <div class="form-control form-control-static"> {{domainname}} </div>
+                                            <div class="form-control-focus"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input">
+                                        <label class="col-xs-6 col-sm-2 col-md-2 col-lg-2 control-label" ><font key="i18n.status">状态</font>:</label>
+                                        <div class="col-xs-6 col-sm-2 col-md-10 col-lg-10">
+                                            <div class="form-control form-control-static"> {{siteType domainisavailable}}</div>
+                                            <div class="form-control-focus"> </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-md-line-input">
+                                        <label class="col-xs-6 col-sm-2 col-md-2 col-lg-2 control-label" ><font key="i18n.description">说明</font>: </label>
+                                        <div class="col-xs-6 col-sm-2 col-md-10 col-lg-10">
+                                            <div class="form-control form-control-static"> {{domaindesc}}</div>
+                                            <div class="form-control-focus"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+
+
+                        <!--主体内容结束-->
+
+                    </div>
+                    <!-- END EXAMPLE TABLE PORTLET-->
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}

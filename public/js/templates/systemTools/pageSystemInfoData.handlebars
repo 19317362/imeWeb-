@@ -1,0 +1,30 @@
+{{#each this}}
+    <div class="form-body " >
+        <div class="col-md-12 col-sm-12">
+            <label class=""><strong>标题:</strong></label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="ma">{{Subject}}</span>
+        </div>
+
+    </div>
+    <div class="form-body" >
+        <div class="col-md-4 col-sm-6 col-xs-6">
+            <label class=""><strong>起始时间:</strong></label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="ma">{{NotBefore}}</span>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-6">
+            <label class=""><strong>结束时间:</strong></label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="ma">{{NotAfter}}</span>
+        </div>
+    </div>
+    <div class="form-body " >
+        <div class="col-md-4 col-sm-6 col-xs-6">
+            <label class=""><strong>CMS用户:</strong></label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="ma">{{CMSUserAmout}}</span>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-6">
+            <label class=""><strong>Editor用户:</strong></label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="ma">{{EditorUserAmout}}</span>
+        </div>
+    </div>
+
+{{/each}}

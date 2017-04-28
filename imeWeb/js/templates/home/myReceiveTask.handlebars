@@ -1,0 +1,36 @@
+{{!-- 首页我的任务收到的任务模板 --}}
+{{#each this}}
+<div class="mt-action">
+	<div class="mt-action-img">
+		<img src="{{addUserImage creatorId}}" />
+	</div>
+	<div class="mt-action-body">
+		<div class="mt-action-row">
+			<div class="mt-action-info ">
+				<div class="mt-action-icon ">
+					<i class="{{addIcon softtypeTitle}}"></i>
+				</div>
+				<div class="mt-action-details ">
+					<span class="mt-action-author">{{name}}</span>
+					<p class="mt-action-desc">{{theme}}</p>
+				</div>
+			</div>
+			<div class="mt-action-datetime ">
+				<span class="mt-action-date">{{createDate}}</span>
+				<span class="mt-action-dot bg-green"></span>
+				<span class="mt=action-time">{{createTime}}</span>
+			</div>
+			<div class="mt-action-buttons ">
+				<div class="btn-group btn-group-circle">
+				            {{#if existrejection}}
+					<button type="button" class="btn btn-outline green btn-sm">通过</button>
+					<button type="button" class="btn btn-outline red btn-sm">驳回</button>
+					{{else}}
+					<button type="button" class="btn btn-outline green btn-sm onlyone">通过</button>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{{/each}}

@@ -1,0 +1,1 @@
+handlebars -m . > ../templates.js

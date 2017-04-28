@@ -3,7 +3,7 @@
     <div class="page-sidebar navbar-collapse collapse">
         <!-- BEGIN SIDEBAR MENU -->
         <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-        	{{! 首页 }}
+            {{! 首页 }}
             <li id="common_sidebar_home" class="nav-item start active  open">
                 <a id="common_sidebar_home" href="javascript:imeWeb.changeRoute('/imeWeb/home');" class="nav-link ">
                     <i class="icon-home"></i>
@@ -11,35 +11,35 @@
                 </a>
             </li>
             {{! 任务 }}
-            <li class="heading page-sidebar-tasks-group" onclick="javascript:imeWeb.changeRoute('/imeWeb/myTask');">
+            <li class="heading page-sidebar-tasks-group" >
                 <h3 class="uppercase"><font key="i18n.task"></font></h3>
             </li>
             {{! 收到的任务 }}
             <li class="nav-item page-sidebar-receive-task">
-                <a href="javascript:;" class="nav-link nav-toggle">
+                <a href="#" class="nav-link nav-toggle">
                     <i class="icon-wrench"></i>
                     <span class="title"><font key="i18n.receiveTask"></font></span>
                     <span class="selected"></span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <li class="nav-item start active open exigence-task">
-                        <a href="#" class="nav-link ">
+                    <li class="nav-item start exigence-task task">
+                        <a href="javascript:imeWeb.changeRoute('/imeWeb/receiveUrgentTask');"  view="emergencyTask" class="nav-link ">
                             <i class="icon-bar-chart"></i>
                             <span class="title"><font key="i18n.receiveExigenceTask"></font></span>
                             <span class="badge badge-danger">0</span>
                             <span class="selected"></span>
                         </a>
                     </li>
-                    <li class="nav-item start pending-task">
+                    <li class="nav-item start pending-task task" >
                         <a href="#" class="nav-link ">
                             <i class="icon-bulb"></i>
                             <span class="title"><font key="i18n.receivePendingTask"></font></span>
                             <span class="badge badge-warning">0</span>
                         </a>
                     </li>
-                    <li class="nav-item start finished-task">
-                        <a href="#" class="nav-link ">
+                    <li class="nav-item start finished-task task">
+                        <a href="javascript:imeWeb.changeRoute('/imeWeb/receiveUrgentTask');"  view="completeTask" class="nav-link ">
                             <i class="icon-graph"></i>
                             <span class="title"><font key="i18n.receiveFinishedTask"></font></span>
                             <span class="badge badge-success">0</span>
@@ -56,7 +56,7 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <li class="nav-item start active open exigence-task">
+                    <li class="nav-item start exigence-task task">
                         <a href="#" class="nav-link ">
                             <i class="icon-bar-chart"></i>
                             <span class="title"><font key="i18n.originateExigenceTask"></font></span>
@@ -64,14 +64,14 @@
                             <span class="selected"></span>
                         </a>
                     </li>
-                    <li class="nav-item start pending-task">
+                    <li class="nav-item start pending-task task">
                         <a href="#" class="nav-link ">
                             <i class="icon-bulb"></i>
                             <span class="title"><font key="i18n.originatePendingTask"></font></span>
                             <span class="badge badge-warning">0</span>
                         </a>
                     </li>
-                    <li class="nav-item start finished-task">
+                    <li class="nav-item start finished-task task">
                         <a href="#" class="nav-link ">
                             <i class="icon-graph"></i>
                             <span class="title"><font key="i18n.originateFinishedTask"></font></span>
@@ -80,13 +80,13 @@
                     </li>
                 </ul>
             </li>
-			
-			{{! 存储库 }}
+
+            {{! 存储库 }}
             <li class="heading container-group">
                 <h3 class="uppercase"><font key="i18n.sidbarContainer"></font></h3>
             </li>
-			
-			{{! 系统工具 }}
+
+            {{! 系统工具 }}
             <li class="heading system-tools-group" >
                 <h3 class="uppercase"><font key="i18n.systemTool"></font></h3>
             </li>

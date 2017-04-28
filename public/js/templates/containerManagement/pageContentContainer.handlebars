@@ -1,0 +1,149 @@
+{{#each this}}
+    <div class="page-content parent-{{parentName}} {{pageName}}">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet ">
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption font-green bordered">
+                                <i class="icon-settings font-green"></i>
+                                <span class="caption-subject bold uppercase"> <font key="">存储库管理</font></span>
+                            </div>
+                            {{> common/protletTitleTools protletTitleTools}}
+                        </div>
+
+                        <div class="portlet-body">
+                            <div id = "container_listAlert"></div>
+                            <div class="nav nav-tabs">
+                                <div class="mt-element-step" >
+                                    <div class="row step-thin">
+
+                                        <div class="col-md-4 bg-grey mt-step-col active" id="nav_tab1">
+                                            <div class="mt-step-number bg-white font-grey">1</div>
+                                            <div class="mt-step-title uppercase font-grey-cascade"><font >成员信息</font></div>
+
+                                        </div>
+                                        <div class="col-md-4 bg-grey mt-step-col" id="nav_tab2">
+                                            <div class="mt-step-number bg-white font-grey">2</div>
+                                            <div class="mt-step-title uppercase font-grey-cascade"><font >权限</font></div>
+
+                                        </div>
+                                        <div class="col-md-4 bg-grey  mt-step-col " id="nav_tab3">
+                                            <div class="mt-step-number bg-white font-grey">3</div>
+                                            <div class="mt-step-title uppercase font-grey-cascade"><font key="i18n.FINISH"></font></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-xs-12 col-sm-12">
+                                            <div class="portlet light bordered">
+                                                <div class="portlet-title">
+
+                                                    <div class="actions">
+                                                        <a href="#" class="btn btn-circle green btn-outline btn-sm" id="add_containerMem">
+                                                            <i class="fa fa-user-plus"></i> <font key="i18n.add"></font></a>
+                                                        <a href="#" class="btn btn-circle green btn-outline btn-sm" id="delete_containerMem">
+                                                            <i class="fa fa-user-times"></i> <font key="i18n.delete"></font> </a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body" style="min-height: 200px;">
+                                                    <!--<div class="huai">2</div>-->
+                                                    <!--<input type="text" value="mashr" id="ccc">-->
+                                                    <table class="table table-striped table-bordered table-condensed table-hover table-checkable order-column table-responsive" id="container_memberList">
+                                                        <thead>
+                                                        <tr class="bg-green text-white" >
+                                                            <th class="col-md-1 col-sm-1 col-xs-1">
+                                                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline " style="margin-left:20px;">
+                                                                    <input type="checkbox" class="group-checkable item_check"  data-set="#example .checkboxes" />
+                                                                    <span></span>
+                                                                </label>
+                                                            </th>
+                                                            <th> <font key="i18n.type"></font></th>
+                                                            <th>ID</th>
+                                                            <th> <font key="i18n.DocName"></font> </th>
+
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="container_tbMain">
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success next-btn pull-right" id="containerNext-btn"><font key="i18n.nextStep">下一步</font></button>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="tab2" >
+                                    <div class="row">
+                                        <div class="col-lg-12 col-xs-12 col-sm-12">
+                                            <div class="portlet light bordered">
+                                                <div class="portlet-title">
+
+                                                    <div class="actions">
+                                                        <a href="#" class="btn btn-circle green btn-outline btn-sm" id="add_containerRight">
+                                                            <i class="fa fa-plus"></i> <font key="i18n.add"></font></a>
+                                                        <a href="#" class="btn btn-circle green btn-outline btn-sm" id="delete_containerRight">
+                                                            <i class="fa fa-trash"></i> <font key="i18n.delete"></font> </a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body" style="min-height: 200px;">
+                                                    <table class="table table-striped table-bordered table-condensed table-hover table-checkable order-column table-responsive" id="container_rightList">
+                                                        <thead>
+                                                        <tr class="bg-green text-white" >
+                                                            <th class="col-md-1 col-sm-1 col-xs-1">
+                                                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline " style="margin-left:20px;">
+                                                                    <input type="checkbox" class="group-checkable item_check"  data-set="#example .checkboxes" />
+                                                                    <span></span>
+                                                                </label>
+                                                            </th>
+                                                            <th>ID</th>
+                                                            <th>名称 </th>
+                                                            <th> 类型</th>
+                                                            <th> 软类型</th>
+                                                            <th> 状态</th>
+                                                            <th> 查看</th>
+                                                            <th> 编辑</th>
+                                                            <th> 添加</th>
+                                                            <th> 下载</th>
+                                                            <th> 打印</th>
+                                                            <th> 删除</th>
+                                                            <th> 管理</th>
+                                                            <th> 全部</th>
+                                                            <th> 创建人</th>
+                                                            <th> 创建时间</th>
+                                                            <th> 修改人</th>
+                                                            <th> 修改时间</th>
+
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="container_rightMain">
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success up-btn"><font key="i18n.preStep"></font></button>
+                                        <button type="button" class="btn btn-primary  " onclick="imeWeb.deleteChildPage();"><font key="i18n.SAVE"></font></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}
+

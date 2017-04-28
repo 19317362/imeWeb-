@@ -29,30 +29,44 @@ pageUserManagement.contentInit =  function(){
 /*定义用户函数*/
 var check_userList = function(principalId,name){
     var url = g_url_listUsers;
-    $.getJSON(url ,{ principalId: principalId, name:name ,start:0,limit:50},function(data){
-        //console.log(data);
-        var result = data.records;
-        //console.log(result);
-        $("#usersList").dataTable({
-            searching:false, //去掉搜索框
-            bLengthChange:false,//去掉每页多少条框体
-            "language": {
-                "info": "显示 _START_ 到 _END_ 条,总共 _TOTAL_ 条", // 表格左下角显示的文字
-            },
-            destroy:true,
-            //"aoColumnDefs": [ { "bSortable": false, "aTargets": [0] }],
-            "order": [[ 0, "principalId" ]],
-            data :result,
-            "columns": [
-                {data: "principalId"},
-                {data: "name"},
-                {data: "status"},
-                {data: "reportTo"},
-                {data: "email"},
-                {data: "tel"}
+    $.ajax({
+        url:url,
+        async:true,
+        data: {
+            'principalId':principalId,
+            'name':name,
+            'start':0,
+            'limit':50
+        },
+        context:{
+            refreshbutton:$('#usersListSearch'),
+            refresharea:$('.refresh_area')
+        },
+        success:function(data,textstatus){
+            //console.log(data);
+            var result = data.records;
+            //console.log(result);
+            $("#usersList").dataTable({
+                searching:false, //去掉搜索框
+                bLengthChange:false,//去掉每页多少条框体
+                "language": {
+                    "info": "显示 _START_ 到 _END_ 条,总共 _TOTAL_ 条", // 表格左下角显示的文字
+                },
+                destroy:true,
+                //"aoColumnDefs": [ { "bSortable": false, "aTargets": [0] }],
+                "order": [[ 0, "principalId" ]],
+                data :result,
+                "columns": [
+                    {data: "principalId"},
+                    {data: "name"},
+                    {data: "status"},
+                    {data: "reportTo"},
+                    {data: "email"},
+                    {data: "tel"}
 
-            ]
-        });
+                ]
+            });
+        }
     });
 }
 
@@ -286,57 +300,74 @@ $(document).on("dblclick","#usersList tr:not(tr:eq(0))",function(){
 /*usersList点击事件*/
 $(document).on("click","#usersList tr:not(tr:eq(0))",function() {
     $(this).addClass('tr-dark').siblings().removeClass('tr-dark');
+    $(this).children('td:eq(0)').removeClass('sorting_1');
 })
 
 
 
 //选择汇报人事件
 $(document).on("click","#userSelect_reporter",function(){
-    imeWeb.createChildPage("systemTools/pageSearchUser","page-content-createUser","page-content-searchUser");
+    imeWeb.createChildPageHasId("systemTools/pageSearchUser","page-content-createUser","page-content-searchUser","searchUser_btn");
 })
 
-//搜索汇报人
-$(document).on("click","#searchUser",function(){
-    //alert('123');
+//用户搜索
+var searchUser = function(){
     var url = "/imeWeb//Services/principal/searchPrincipal";
     var type = "Users";
     var principalId=$("#principalId").val();
     var name=$("#name").val();
-    $.getJSON(url,{ type:type, principalId:principalId,name:name,pool:"" },function(data){
-        $("#user_list").dataTable({
-            searching:false, //去掉搜索框
-            bLengthChange:false,//去掉每页多少条框体
-            "language": {
-                "info": "显示 _START_ 到 _END_ 条,总共 _TOTAL_ 条", // 表格左下角显示的文字
-                "paginate": {
-                    "previous": "上一页",
-                    "next": "下一页"
-                }
-            },
-            "aoColumnDefs": [ { "bSortable": false, "aTargets": [0] }],
-            "order": [[ 0, "desc" ]],
-            destroy:true,
-            data : data,
-            "columns": [
-                {data: "oid",
-                    "createdCell": function (nTd, sData, oData, iRow, iCol){
-                        $(nTd).html("<label class='mt-checkbox mt-checkbox-single mt-checkbox-outline' ><input type='checkbox' class='checkboxes' name='item' value="+ sData+" /><span></span></label>");
+    $.ajax({
+        url:url,
+        async:true,
+        data: {
+            'type':type,
+            'principalId':principalId,
+            'name':name,
+            'pool':"ALL"
+        },
+        context:{
+            refreshbutton:$('#searchUser'),
+            refresharea:$('.refresh_area'),
+            clickfunction:searchUser
+        },
+        success:function(data,textstatus){
+            $("#user_list").dataTable({
+                searching:false, //去掉搜索框
+                bLengthChange:false,//去掉每页多少条框体
+                "language": {
+                    "info": "显示 _START_ 到 _END_ 条,总共 _TOTAL_ 条", // 表格左下角显示的文字
+                    "paginate": {
+                        "previous": "上一页",
+                        "next": "下一页"
                     }
-
                 },
-                {data: "principalId"},
-                {data: "name"},
-                {data: "desc"},
-                {data: "domain"}
-            ]
-        });
+                "aoColumnDefs": [ { "bSortable": false, "aTargets": [0] }],
+                "order": [[ 0, "desc" ]],
+                destroy:true,
+                data : data,
+                "columns": [
+                    {data: "oid",
+                        "createdCell": function (nTd, sData, oData, iRow, iCol){
+                            $(nTd).html("<label class='mt-checkbox mt-checkbox-single mt-checkbox-outline' ><input type='checkbox' class='checkboxes' name='item' value="+ sData+" /><span></span></label>");
+                        }
 
+                    },
+                    {data: "principalId"},
+                    {data: "name"},
+                    {data: "desc"},
+                    {data: "domain"}
+                ]
+            });
+        }
     });
+}
+
+$(document).on("click","#searchUser",function(){
+    searchUser();
 })
 
 $(document).on("click","#searchUser_btn",function(){
-    $(this).addClass('userAddReporter');
-    if($(this).hasClass('userAddReporter')){
+
         var len = 0;
         var param="";
         $("[name = item]:checkbox").each(function() {
@@ -353,7 +384,7 @@ $(document).on("click","#searchUser_btn",function(){
             $("#registerReporter").val(param);
         }
 
-    }
+
 })
 
 

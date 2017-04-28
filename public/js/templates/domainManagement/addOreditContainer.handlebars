@@ -1,0 +1,62 @@
+{{#each this}}
+    <div class="page-content parent-{{parentName}} {{pageName}}">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet ">
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption font-green bordered">
+                                <i class="icon-settings font-green"></i>
+                                <span class="caption-subject bold uppercase"> <font key="i18n.containerManagement"></font></span>
+                            </div>
+                            {{> common/protletTitleTools protletTitleTools}}
+                        </div>
+
+                        <div class="portlet-body form">
+                            <div class="container_alert"></div>
+                            <form class="form-horizontal" role="form">
+                                <div class="form-body myform-body">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label"><font key="i18n.name"></font></label>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control" id="containername" value={{id.containername}}>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label"><font key="i18n.description"></font></label>
+                                        <div class="col-md-5">
+                                            <textarea class="form-control" rows="6" id="containerdesc" value={{id.containerdesc}}>{{id.containerdesc}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" ><font key="i18n.status"></font></label>
+                                        <div class="col-md-5">
+                                            <div class="mt-radio-inline">
+                                                <label class="mt-radio">
+                                                    <input type="radio" name="container_status" class="siteMag_containerStatus" id="containerStatus_1" value="1"> <font key="i18n.active"></font>
+                                                    <span></span>
+                                                </label>
+                                                <label class="mt-radio">
+                                                    <input type="radio" name="container_status" class="siteMag_containerStatus" id="containerStatus_2" value="0" checked> <font key="i18n.inactive"></font>
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer mymodal-footer">
+                                    <button type="button"  class="btn default btn-outline" onclick="imeWeb.deleteChildPage();"><font key="i18n.cancel"></font></button>
+                                    <button type="button" class="btn green" id="{{id.id}}"><font key="i18n.confirm"></font></button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}
+

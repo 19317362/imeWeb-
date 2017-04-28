@@ -1,17 +1,21 @@
 /**
  * Created by mashroom on 17/3/13.
  */
-var  pageReportChart =  pageReportChart  || {};
+var  pageReportChart=  pageReportChart|| {};
 var  unAgglOpts = [];
+var  configOpt  = [];
+var  dataJson = [];
 pageReportChart.init = function(){
    try{
     imeWeb.initPageBox();
     pageCommon.init();
     $('.page-content-wrapper').html(Handlebars.templates['reportChart/container']([1]));
+    pageReportChart.bindevents();
 	//加载报表类型
 	loadChartType();
 	//加载
 	loadChartDslist();
+	$('.multiple').multiselect();
 }catch(err){
     console.log(err);
 }finally{
@@ -20,8 +24,11 @@ pageReportChart.init = function(){
 
 }
 
+pageReportChart.dataInit = function(){
+
+}
 var loadChartType = function(){
-	
+
 	var url = "/imeWeb/Services/report/listReportType";
 	$.ajax({
 		type:'GET',
@@ -44,7 +51,7 @@ var loadChartType = function(){
 			}
 		}
 	})
-}	
+}
 
 var loadChartDslist = function(){
 	var url = "/imeWeb/Services/report/listDataSources"
@@ -79,7 +86,7 @@ $(document).on("change","#chartDs",function() {
 })
 
 var loadReportConfig = function(dsName){
-	
+
 	var url = "/imeWeb/Services/report/listReportConfig"+"?dsName="+dsName;
 	$.ajax({
 		type:'GET',
@@ -88,13 +95,13 @@ var loadReportConfig = function(dsName){
 		async :false,
 		success : function(data,textStatus) {
 			if(data.success){
-				var configOpt = data.columns;
+			    configOpt = data.columns;
 				unAgglOpts = [];
 				var labelOpt = "";
 				var seriesValOpt = "";
 				for(var i = 0 ;i<configOpt.length;i++){
 					//可聚合否？
-					var config = configOpt[i];	
+					var config = configOpt[i];
 					if(config.aggregatable){
 						seriesValOpt = seriesValOpt +"<option value="+config.name+">"+config.title+"</option>";
 					}else{
@@ -114,11 +121,11 @@ var loadReportConfig = function(dsName){
 				console.log(data.msg);
 			}
 		}
-	})	
+	})
 }
 
 $(document).on("change","#axisLabel",function(){
-	
+
 	var axisLabel_val = $("#axisLabel option:selected").val();
 	var seriesNameOpt = "";
 	for(var j=0;j<unAgglOpts.length;j++){
@@ -130,12 +137,8 @@ $(document).on("change","#axisLabel",function(){
 	$("#seriesName").empty();
 	$("#seriesName").append("<option>---请选择---</option>");
 	$("#seriesName").append(seriesNameOpt);
-	
-})
 
-$(document).ready(function() {
-	$('#seriesValue').multiselect();
-});
+})
 
 pageReportChart.dataInit = function(){
     //console.log('dataInit')
@@ -149,20 +152,76 @@ pageReportChart.bindevents=function(){
 
 
     //启动流程按钮 ---------->工作流子页面
-    $(document).on('click','#start_process', function() {
-        imeWeb.createChildPage('workflowManagement/start_process','page-content-base','page-content-start_process');
-    })
-    $(document).on('click','button.search_object', function() {
-        //console.log('ahah')
-        imeWeb.createChildPage('workflowManagement/search_object','page-content-start_process','page-content-search_object');
-        pageReportChart.datepicker();
-        pageReportChart.data_search_object();
+    // $(document).on('click','#start_process', function() {
+    //     imeWeb.createChildPage('workflowManagement/start_process','page-content-base','page-content-start_process');
+    // })
+    // $(document).on('click','button.search_object', function() {
+    //     imeWeb.createChildPage('workflowManagement/search_object','page-content-start_process','page-content-search_object');
+    //     pageReportChart.datepicker();
+    //     pageReportChart.data_search_object();
+    // });
+    $(document).on('click','#reportchart_container_next', function() {
+        console.log('nextStep');
+        imeWeb.createChildPage('reportChart/containernext','page-content-base','page-content-containernext');
+		var coloOpt = "";
+		for(var i = 0;i<configOpt.length;i++){
+			var config = configOpt[i];
+			coloOpt = coloOpt + "<option value="+config.name+">"+config.title+"</option>";
+		}
+		$("#columnType").empty();
+		$("#columnType").append("<option>---请选择---</option>");
+		$("#columnType").append(coloOpt);
     });
-
+	
+	$(document).on("click","#addLimitCol",function() {
+		addLimitCol();
+	})
+	$(document).on("click","#confirmLimitCol",function(){
+		confirmLimitCol();
+	})
 }
 
+var addLimitCol = function (){
+	var table = $('#limit_list').DataTable();
+	var columnType = $("#columnType option:selected").val();
+	var columnOperate = $("#columnOperate option:selected").val();
+	var columnValue = $("#columnValue").val();
+	var map = {};
+	map["colType"] = columnType;
+	map["colOperate"] = columnOperate ;
+	map["colValue"] = columnValue ;
+	dataJson.push(map);
+	$('#limit_list').DataTable({
+		data: dataJson,
+		paging: false,
+		searching:false, //去掉搜索框
+		bLengthChange:false,//去掉每页多少条框体
+		"language": {
+			"info": "显示 _START_ 到 _END_ 条,总共 _TOTAL_ 条", // 表格左下角显示的文字
+		},
+		destroy:true,
+        //使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
+        //data 这里是固定不变的，name，position，salary，office 为你数据里对应的属性
+        columns: [
+            { data: 'colType' },
+            { data: 'colOperate' },
+            { data: 'colValue' }
+        ]
+    });
+}
 
-
+var confirmLimitCol = function (){
+	//遍历dataTable所有数据
+	var table = $('#limit_list').DataTable();
+	var record = table.rows().data();
+//	alert( 'The table has '+data.length+' records' );
+	var item = "";
+	for(var i = 0;i<record.length;i++){
+		item = item +";"+record[i].colType + record[i].colOperate + record[i].colValue+"";
+	}
+	alert(item);
+	
+}
 pageReportChart.datepicker=function(){
     $('.date-picker').datepicker({
         format: 'yyyy/mm/dd',

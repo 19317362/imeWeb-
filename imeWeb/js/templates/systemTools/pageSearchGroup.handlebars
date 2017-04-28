@@ -1,0 +1,85 @@
+{{#each this}}
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet light ">
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption font-green bordered">
+                                <i class="icon-settings font-green"></i>
+                                <span class="caption-subject bold uppercase"> <font key='i18n.searchPrincipal'></font> </span>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="type" class="col-md-3 col-sm-3 control-label" > <font key="i18n.group"></font> :</label>
+
+                                        <div class="col-md-6 col-sm-6 ">
+                                            <input type="text" class="form-control" id="type" value="组" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="principalId" class="col-md-3  col-sm-3 control-label" >ID:</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input type="text" class="form-control" id="principalId" placeholder="请输入ID">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class="col-md-3 col-sm-3 control-label" > <font key="i18n.name"></font> :</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input type="text" class="form-control" id="name" placeholder="请输入name">
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="form-group col-sm-4 col-md-4 clearfix pull-right">
+                                        <div class="col-sm-12 ">
+                                            <button type="button" class="btn green  pull-right col-sm-4" id="searchGroup"> <font key="i18n.search"></font> </button>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                            <!--按钮效果-->
+
+
+                        </div>
+
+
+                        <!--表单组体-->
+                        <div class="portlet-body">
+
+                            <table class="table table-striped table-bordered table-condensed table-hover table-checkable order-column table-responsive" id="Rembers">
+                                <thead>
+                                <tr class="bg-green text-white" >
+                                    <th class="col-md-1 col-sm-1 col-xs-1">
+                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline " style="margin-left:20px;">
+                                            <input type="checkbox" class="group-checkable item_check" id="item_check" data-set="#example .checkboxes" />
+                                            <span></span>
+                                        </label>
+                                    </th>
+                                    <th>ID</th>
+                                    <th>  <font key="i18n.name"></font>  </th>
+                                    <th> <font key="i18n.descriptioin"></font> </th>
+                                    <th><font key="i18n.site"></font></th>
+                                </tr>
+                                </thead>
+
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" id="addGroup"><font key="i18n.add"></font></button>
+                        </div>
+                    </div>
+                    <!-- END EXAMPLE TABLE PORTLET-->
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}

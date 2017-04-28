@@ -1,0 +1,30 @@
+{{!-- 首页我的任务发起的任务模板 --}}
+{{#each this}}
+<div class="mt-action">
+    <div class="mt-action-img">
+        <img src="{{addUserImage assignUserId}}" /> </div>
+    <div class="mt-action-body">
+        <div class="mt-action-row">
+            <div class="mt-action-info ">
+                <div class="mt-action-icon ">
+                    <i class="{{addIcon softType}}"></i>
+                </div>
+                <div class="mt-action-details ">
+                    <span class="mt-action-author">{{name}}</span>
+                    <p class="mt-action-desc">{{theme}}</p>
+                </div>
+            </div>
+            <div class="mt-action-datetime ">
+                <span class="mt-action-date">{{createDate}}</span>
+                <span class="mt-action-dot bg-green"></span>
+                <span class="mt=action-time">{{createTime}}</span>
+            </div>
+            <div class="mt-action-buttons ">
+                <div class="btn-group btn-group-circle">
+                    <p class="font-red">{{taskStatusTitle}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}

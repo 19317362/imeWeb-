@@ -90,6 +90,11 @@ pageDocumentLog.bindEventInit = function () {
                 start: 0,
                 limit: 25
             },
+            "context": {
+                refreshbutton: $('#docLog_search'),
+                refresharea: $('#docLog_searchRes_loadding'),
+                clickfunction: null
+            },
             success: function (data) {
                 // console.log(data);
                 docLog_dataShow.dataTable({

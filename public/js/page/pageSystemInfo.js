@@ -4,7 +4,7 @@
 var  pageSystemInfo =   pageSystemInfo  || {};
 pageSystemInfo.init = function(){
     try{
-
+        imeWeb.initPageBox("systemTools/pageSystemInfo",[1]);
         pageSystemInfo.dataInit();
     }catch(err){
         console.log(err);
@@ -18,25 +18,22 @@ pageSystemInfo.init = function(){
 /*页面重写*/
 pageSystemInfo.dataInit = function(){
     pageSystemInfo.contentInit();
+    //获取系统信息
+    pageSystemInfo.getSystemInfo();
 }
 
 /*表单内容初始化*/
 pageSystemInfo.contentInit =  function(){
     $.fn.dataTable.ext.errMode = function(s,h,m){};
-
-    imeWeb.initPageBox("systemTools/pageSystemInfo",[1]);
-    //获取系统信息
-    pageSystemInfo.getSystemInfo();
-
+    //获取在线用户
+    check_systemInfoList();
 }
 
 /*获取系统信息函数*/
 pageSystemInfo.getSystemInfo = function(){
      var  url = "/imeWeb/Services/sys/licInfo";
         $.getJSON(url,{},function(data){
-        imeWeb.initPageBox("systemTools/pageSystemInfo",[data.license]);
-        //获取在线用户
-        check_systemInfoList();
+            $('#systemInfoForm').append(Handlebars.templates['systemTools/pageSystemInfoData']([data.license]));
     })
 }
 

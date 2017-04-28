@@ -1,0 +1,280 @@
+.btn-group, .btn-group-vertical{
+  left:10px;
+}
+
+button.btn.mt-ladda-btn.ladda-button.myblockbutton{
+  background-color:transparent !important;
+  font-size:17px;
+  font-weight:bold;
+  width:30px !important;
+  padding: 0px 0;
+  margin: 0;
+}
+.myblockbutton span.ladda-spinner{
+
+   font-size:14px !important;
+ top: 11px !important;
+}
+
+.top-menu-tool-group .top-menu-tool:hover{
+  background-color: #2caeb9;
+
+}
+
+@media (max-width: 991px){
+  .page-header.navbar .search-form.open{
+
+    width:30% !important;
+    left:auto !important;
+  right:35% !important;
+  }
+
+}
+
+@media (max-width: 767px){
+.page-header.navbar .search-form.open{
+
+  margin:24px 0 0;
+  margin-top:-5px ;
+  right:0px !important;
+
+  width:100% !important;
+}
+.page-header.navbar .top-menu{
+  margin-top:20px;
+}
+.page-header.navbar .page-top{
+  height:95px;
+}
+}
+
+
+
+.page-header.navbar .top-menu .navbar-nav>li.dropdown-user .dropdown-toggle:hover{
+  background-color: #2caeb9;
+}
+
+.timeline:before{
+  margin-left:25px;
+}
+
+.btn.btn-outline.green.onlyone{
+  //background-color: red;
+  border-radius:25px !important;
+  padding:5px 33px;
+}
+
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-body{
+  margin-left:75px !important;
+}
+.feeds li .col1>.cont>.cont-col2>.desc{
+  margin-left:40px;
+}
+
+.mt-actions .mt-action .mt-action-body .mt-action-row .mt-action-info .mt-action-details{
+  vertical-align:baseline !important;
+}
+
+.mt-comments .mt-comment{
+  padding:5px 10px 8px 0;
+  margin-right:5px;
+}
+
+.portlet>.portlet-body p{
+  margin-top:3px;
+}
+
+body,ul,li,p,div,span,.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
+  //font-family: "微软雅黑"  !important;
+  font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue","Helvetica","Arial","Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei" !important;
+  //color: black;
+  //background-color: white;
+}
+
+.badge-success {
+  background-color: #3598dc;
+}
+
+.page-header.navbar .page-logo {
+  width: 300px;
+}
+
+.page-header.navbar .page-logo .logo-default {
+  max-width: 200px;
+  margin: 18px;
+  margin-left: 5px;
+}
+
+.page-header.navbar .page-logo .page-top .top-menu {
+  color: white;
+}
+
+.page-header.navbar .search-form {
+  background-color: #32c5d2;
+}
+
+.mt-comments .mt-comment .mt-comment-img > i {
+  color: #32c5d2;
+  font-size: 40px;
+  line-height: 100%;
+}
+
+span.username-hide-on-mobile {
+  font-weight: normal !important;
+  letter-spacing: 2px;
+}
+
+.page-header.navbar .search-form {
+  background-color: white !important;
+  border-radius: 25px;
+}
+
+div.headtop i.special-form-search {
+  color: #32c5d2 !important;
+}
+
+.badge-success {
+  background-color: #3598dc;
+}
+
+.page-header.navbar .menu-toggler.sidebar-toggler {
+  color: white;
+}
+
+div.headtop i {
+  color: white !important;
+}
+
+.page-header.navbar .search-form .input-group {
+  border: 1px solid white;
+}
+
+.page-header.navbar .search-form {
+  background-color: #32c5d2;
+}
+
+.page-header.navbar {
+  background-color: #32c5d2;
+}
+
+.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a,
+.page-sidebar .page-sidebar-menu > li.active > a {
+  border-left: none !important;
+}
+
+.page-sidebar .page-sidebar-menu,
+.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu {
+  border: 1px solid #e7ecf1;
+}
+
+.page-sidebar .page-sidebar-menu i,
+.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu i {
+  color: #94e8ff !important;
+}
+.top-menu-tool-group{
+  display: inline-block;
+  height: 74px;
+  float: left;
+}
+.top-menu-tool{
+  padding: 34px 12px 20px;
+  float: left;
+}
+.top-menu-tool > a{
+  font-size: 26px;
+  color: white;
+  text-decoration: none;
+}
+.show{
+    display: block !important;
+}
+#ditaBookShow .ditaBookShowItem.selected .bordered{
+  border: 1px solid #e7ccf1;
+}
+
+.progress-bar-0{
+  background: #2ab4c0 !important;
+}
+.progress-bar-1{
+  background: #f36a5a !important;
+}
+.progress-bar-2{
+  background: #5C9BD1 !important;
+}
+.progress-bar-3{
+  background: #8877a9 !important;
+}
+.progress-bar-font-0{
+  color: #2ab4c0 !important;
+}
+.progress-bar-font-1{
+  color: #f36a5a !important;
+}
+.progress-bar-font-2{
+  color: #5C9BD1 !important;
+}
+.progress-bar-font-3{
+  color: #8877a9 !important;
+}
+
+
+
+
+
+.mt-comments .mt-comment .mt-comment-img >i.icon-Map,.mt-comments .mt-comment .mt-comment-img >i.icon-HTML_PDF{
+  color: #32c5d2;
+}
+.mt-comments .mt-comment .mt-comment-img >i.icon-ChangeActivity,.mt-comments .mt-comment .mt-comment-img >i.icon-trans{
+  color: #ed6b75;
+}
+
+.mt-comments .mt-comment .mt-comment-img >i.icon-Image,.mt-comments .mt-comment .mt-comment-img >i.icon-doc{
+  color: #F1C40F;
+}
+
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-badge {
+  left: 0px;
+  top: 10px;
+}
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-badge .timeline-icon {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+}
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-badge .timeline-icon img {
+  width: 100%;
+  border-radius: 130px !important;
+}
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-body {
+  margin-left: 90px;
+}
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-body .timeline-body-head-caption .timeline-body-alerttitle {
+  color: #e12330 !important;
+  font-size: 15px;
+}
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-body .timeline-body-head-actions button.dropdown-toggle {
+  background-color: #32c5d2;
+  border-color: #32c5d2;
+}
+div#indexpage div#publishEventTimeLine .timeline-item .timeline-body .timeline-body-content span.font-grey-cascade a {
+  color: #32c5d2;
+}
+div#checkoutlist_VisitedItems ul.feeds li div.label.Map,
+div#checkoutlist_VisitedItems ul.feeds li div.label.HTML_PDF {
+  background-color: #32c5d2;
+}
+div#checkoutlist_VisitedItems ul.feeds li div.label.ChangeActivity,
+div#checkoutlist_VisitedItems ul.feeds li div.label.trans {
+  background-color: #ed6b75;
+}
+div#checkoutlist_VisitedItems ul.feeds li div.label.Image,
+div#checkoutlist_VisitedItems ul.feeds li div.label.doc {
+  background-color: #F1C40F;
+}
+div#checkoutlist_VisitedItems ul.feeds li div.label i {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: white !important;
+  background-color: transparent !important;
+}
+

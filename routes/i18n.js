@@ -35,4 +35,6 @@ router.get('/imeWeb/assets/pages/img/login/:file',function(req, res){
     res.sendFile('public/assets/pages/img/login/'+'/'+file, { root :'C:/Users/zhengying/Desktop/node后端训练场/myapp/'})
 })
 
+
+
 module.exports = router;

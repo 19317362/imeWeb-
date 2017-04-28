@@ -14,8 +14,16 @@
                             <span class="caption-subject font-dark bold uppercase"><font key="i18n.container"></font></span>
                         </div>
                         <div class="actions">
-                            <a href="javascript:;" class="btn btn-sm btn-circle red easy-pie-chart-reload">
-                                <i class="fa fa-repeat"></i> <font key="i18n.refresh"></font> </a>
+                            <div class="btn-group btn-group-devided " data-toggle="buttons">
+                                <button type="button" id="refresh_repository" class="btn  green mt-ladda-btn ladda-button btn-circle" data-style="slide-right">
+                                    <span class="ladda-label"> 
+                                        <i class="fa fa-repeat"></i> 
+                                        <font key="i18n.refresh"></font>
+                                    </span>
+                                    <span class="ladda-spinner"></span>
+                                    <div class="ladda-progress" style="width: 0px;"></div>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="portlet-body">
@@ -40,17 +48,9 @@
                                             <th class="all"><font key="i18n.modifier"></font></th>
                                             <th class="all"><font key="i18n.softtype"></font></th>
                                             <th class="all"><font key="i18n.modified"></font></th>
-
-                                            <th class="none"><font key="i18n.name"></font></th>
-                                            <th class="none"><font key="i18n.version"></font></th>
-                                            <th class="none"><font key="i18n.softtype"></font></th>
-                                            <th class="none"><font key="i18n.created"></font></th>
-                                            <th class="none"><font key="i18n.number"></font></th>
-                                            <th class="none"><font key="i18n.checkoutStatus"></font></th>
-                                            <th class="none"><font key="i18n.lifecycleTemplate"></font></th>
-                                            <th class="none"><font key="i18n.context"></font></th>
-                                            <th class="none"><font key="i18n.creator"></font></th>
-                                            <th class="none"><font key="i18n.lifeCycle"></font></th>
+                                            
+                                            <th class="none"></th>
+                                            <th class="none"></th>
                                         </tr>
                                     </thead>
                                     <tbody>

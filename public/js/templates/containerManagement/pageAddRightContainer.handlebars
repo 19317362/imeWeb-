@@ -1,0 +1,209 @@
+{{#each this}}
+    <div class="page-content parent-{{parentName}} {{pageName}}">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet  ">
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption font-green bordered">
+                                <i class="icon-settings font-green"></i>
+                                <span class="caption-subject bold uppercase"> <font key='i18n.searchPrincipal'></font> </span>
+                            </div>
+                            {{> common/protletTitleTools protletTitleTools}}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div id = "container_formAlert"></div>
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label class="col-md-3 control-label"><font key="i18n.group"></font></label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="container_type" value="" readonly="readonly">
+                                                        <div class="input-group-btn">
+                                                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" >
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu pull-right" id="container_typeBtn">
+                                                                <li>
+                                                                    <a href="javascript:;"> <font key="i18n.group"></font> </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript:;"> <font key="i18n.user"></font> </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript:;"> 角色</a>
+                                                                </li>
+                                                            </ul>
+
+                                                        </div>
+                                                        <!-- /btn-group -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="col-md-3 control-label">数据</label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <input class="form-control" type="text" id="container_SelectData" readonly="readonly">
+                                                                    <span class="input-group-btn">
+                                                                    <button class="btn btn-success" type="button" id="containerSelect_type"><font key="i18n.select">选择</font></button>
+                                                                     </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="col-md-3 control-label">角色 </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="container_role" >
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="col-md-5 col-md-offset-2 ">
+                                                    <label class="mt-checkbox mt-checkbox-outline">
+                                                        <input id="check_containerAllUser" type="checkbox" class="input-small">所有用户
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+
+
+                            </div>
+                            <!--按钮效果-->
+
+
+                        </div>
+
+
+                        <!--表单组体-->
+                        <div class="portlet-body" >
+                            <div id = "container_rightListAlert"></div>
+                            <div class="row" style="min-height: 400px;">
+                                <div class="col-md-5 " >
+                                    <table class="table table-striped table-bordered table-condensed table-hover table-checkable order-column table-responsive" id="container_leftTb">
+                                        <thead>
+                                        <tr class="bg-green text-white" >
+                                            <th class="col-md-1 col-sm-1 col-xs-1">
+                                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline " style="margin-left:20px;">
+                                                    <input type="checkbox" class="group-checkable container_leftItem_check" data-set="#example .checkboxes" />
+                                                    <span></span>
+                                                </label>
+                                            </th>
+                                            <th>类型</th>
+                                            <th> 状态 </th>
+
+                                        </tr>
+                                        </thead>
+                                      <tbody>
+
+                                      </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-1 " >
+                                    <div class="actions margin-top-40">
+                                        <div class="" data-toggle="buttons">
+                                            <button class="btn btn-transparent green btn-outline btn-circle btn-sm space" id="container_moveRight">
+                                                <input type="radio" name="options" class="toggle"> 右移>>
+                                            </button>
+                                            <button class="btn btn-transparent green btn-outline btn-circle btn-sm space" id="container_moverLeft">
+                                                <input type="radio" name="options" class="toggle"> 左移<<
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                    <!--<div class="btn-bar" style="margin-top:50px;">-->
+                                        <!--<a href="javascript:;" class="btn btn-circle btn-sm green space"> 右移-->
+                                            <!--<i class="fa fa-angle-double-right"></i>-->
+                                        <!--</a>-->
+                                        <!--<a href="javascript:;" class="btn btn-circle btn-sm green "> 左移-->
+                                            <!--<i class="fa fa-angle-double-left"></i>-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                </div>
+                                <div class="col-md-5 " >
+                                    <table class="table table-striped table-bordered table-condensed table-hover table-checkable order-column table-responsive" id="container_rightTb">
+                                        <thead>
+                                        <tr class="bg-green text-white" >
+                                            <th class="col-md-1 col-sm-1 col-xs-1">
+                                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline " style="margin-left:20px;">
+                                                    <input type="checkbox" class="group-checkable container_rightItem_check" data-set="#example .checkboxes" />
+                                                    <span></span>
+                                                </label>
+                                            </th>
+                                            <th>类型</th>
+                                            <th> 状态  </th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody id="container_tbRightList">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--权限设置-->
+                        <div class=" portlet-body clearfix">
+                            <div class="form-group">
+                                <label>权限设置:</label>
+                                <div class="mt-checkbox-inline">
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="container_read" name="item1" value=""> 查看
+                                        <span></span>
+                                    </label>
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="container_write" name="item1" value=""> 编辑
+                                        <span></span>
+                                    </label>
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="container_add" name="item1" value=""> 添加
+                                        <span></span>
+                                    </label>
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="container_delete" name="item1" value=""> 删除
+                                        <span></span>
+                                    </label>
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="container_load" name="item1" value=""> 下载
+                                        <span></span>
+                                    </label>
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="container_print" name="item1"  value=""> 打印
+                                        <span></span>
+                                    </label>
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="container_mag" name="item1"  value=""> 管理
+                                        <span></span>
+                                    </label>
+                                    <label class="mt-checkbox">
+                                        <input type="checkbox" id="container_all" name="item1" class="container_allItem_check" value=""> 全部
+                                        <span></span>
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn default btn-outline" onclick="imeWeb.deleteChildPage();">取消</button>
+                            <button type="button" class="btn btn-primary  " id="container_saveRight"><font key="i18n.SAVE">保存</font></button>
+                        </div>
+                    </div>
+                    <!-- END EXAMPLE TABLE PORTLET-->
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}

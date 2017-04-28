@@ -1,0 +1,86 @@
+/* here you can put your own css to customize and override the theme */
+body {
+  color: black;
+  background-color: white;
+}
+
+.badge-success {
+  background-color: #3598dc;
+}
+
+.page-header.navbar .page-logo {
+  width: 300px;
+}
+
+.page-header.navbar .page-logo .logo-default {
+  max-width: 200px;
+  margin: 18px;
+  margin-left: 5px;
+}
+
+.page-header.navbar .page-logo .page-top .top-menu {
+  color: white;
+}
+
+.page-header.navbar .search-form {
+  background-color: #32c5d2;
+}
+
+.mt-comments .mt-comment .mt-comment-img > i {
+  color: #32c5d2;
+  font-size: 40px;
+  line-height: 100%;
+}
+
+span.username-hide-on-mobile {
+  font-weight: normal !important;
+  letter-spacing: 2px;
+}
+
+.page-header.navbar .search-form {
+  background-color: white !important;
+  border-radius: 25px;
+}
+
+div.headtop i.special-form-search {
+  color: #32c5d2 !important;
+}
+
+.badge-success {
+  background-color: #3598dc;
+}
+
+.page-header.navbar .menu-toggler.sidebar-toggler {
+  color: white;
+}
+
+div.headtop i {
+  color: white !important;
+}
+
+.page-header.navbar .search-form .input-group {
+  border: 1px solid white;
+}
+
+.page-header.navbar .search-form {
+  background-color: #32c5d2;
+}
+
+.page-header.navbar {
+  background-color: #32c5d2;
+}
+
+.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a,
+.page-sidebar .page-sidebar-menu > li.active > a {
+  border-left: none !important;
+}
+
+.page-sidebar .page-sidebar-menu,
+.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu {
+  border: 1px solid #e7ecf1;
+}
+
+.page-sidebar .page-sidebar-menu i,
+.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu i {
+  color: #94e8ff !important;
+}

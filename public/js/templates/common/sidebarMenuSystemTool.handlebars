@@ -1,9 +1,19 @@
 {{! 侧边菜单栏系统工具 }}
 {{#each this}}
-	<li class="nav-item system-tool {{name}}">
-		<a href="javascript:imeWeb.changeRoute('/imeWeb/{{name}}');" class='nav-link'>
-			<i class="{{iconClass}}"></i>
-			<span class="title">{{title}}</span>
-		</a>
-	</li>
+	{{#each system-tool-data}}
+		<li class="nav-item system-tool {{name}}">
+			<a href="javascript:imeWeb.changeRoute('/imeWeb/{{name}}');" class='nav-link'>
+				<i class="{{iconClass}}"></i>
+				<span class="title">{{title}}</span>
+			</a>
+		</li>
+	{{/each}}
+	{{#if administrator-tool-data}}
+		<li class="nav-item system-tool administrator-tool domainManagement">
+			<a href="javascript:imeWeb.changeRoute('/imeWeb/domainManagement');" class='nav-link'>
+				<i class="fa fa-cubes"></i>
+				<span class="title"><font key="i18n.manageTool"></font></span>
+			</a>
+		</li>
+	{{/if}}
 {{/each}}

@@ -38,49 +38,22 @@
                                             </div>
 
                                         </div>
-                                        <div class="row">
-                                            <div class="form-group  ">
-                                                <div class="col-md-4 col-md-offset-7">
-                                                    <button type="button" id="searchGroup"class="btn  green mt-ladda-btn ladda-button pull-right " data-style="slide-right" >
-                                                        <span class="ladda-label"> <i class="fa  fa-search"></i> <font key="i18n.search"></font></span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
-                                    <!--<div class="form-group">-->
-                                    <!--<label for="type" class="col-md-3 col-sm-3 control-label" > <font key="i18n.group"></font> :</label>-->
-
-                                    <!--<div class="col-md-6 col-sm-6 ">-->
-                                    <!--<input type="text" class="form-control" id="type" value="组" disabled>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div class="form-group">-->
-
-                                    <!--<label for="principalId" class="col-md-3  col-sm-3 control-label" >ID:</label>-->
-                                    <!--<div class="col-md-6 col-sm-6">-->
-                                    <!--<input type="text" class="form-control" id="principalId" placeholder="请输入ID">-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div class="form-group">-->
-                                    <!--<label for="name" class="col-md-3 col-sm-3 control-label" > <font key="i18n.name"></font> :</label>-->
-                                    <!--<div class="col-md-6 col-sm-6">-->
-                                    <!--<input type="text" class="form-control" id="name" placeholder="请输入name">-->
-                                    <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<hr/>-->
-                                    <!--<div class="form-group col-sm-4 col-md-4 clearfix pull-right">-->
-                                    <!--<div class="col-sm-12 ">-->
-                                    <!--<button type="button" class="btn green  pull-right col-sm-4" id="searchGroup"> <font key="i18n.search"></font> </button>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
                                 </form>
-
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group col-md-4" style="height: 0">
+                                    </div>
+                                    <div class="form-group col-md-4" style="height: 0">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <button type="button" id="searchGroup" class="btn  green mt-ladda-btn ladda-button pull-right" data-style="slide-right" style="">
+                                            <span class="ladda-label"> <i class="fa  fa-search"></i> <font key="i18n.search">搜索</font></span>
+                                        </button>
+                                    </div>
+                                </form>
 
                             </div>
                             <!--按钮效果-->
-
 
                         </div>
 
@@ -107,6 +80,7 @@
                             </table>
                         </div>
                         <div class="modal-footer">
+                            <button type="button" class="btn default btn-outline" onclick="imeWeb.deleteChildPage();"><font key="i18n.wf_cancel"></font></button>
                             <button type="button" class="btn btn-success" id="{{pageName}}"><font key="i18n.add"></font></button>
                         </div>
                     </div>

@@ -1,0 +1,220 @@
+{{! home页面容器 }}
+{{#each this}}
+    <div class="page-content">
+        <div class="page-head">
+            <div class="page-title">
+                <h1><font key="i18n.appName"></font>
+                    <small></small>
+                </h1>
+            </div>
+        </div>
+        {{! 面包屑导航 }}
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                {{! 插入标签}}
+            </li>
+        </ul>
+
+        <div class="row">
+            <div class="col-lg-12 col-xs-12 col-sm-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-cursor font-dark hide"></i>
+                            <span class="caption-subject font-dark bold uppercase"><font
+                                    key="i18n.homeDoc"></font></span>
+                        </div>
+                        <div class="actions" id="homeDoc_deleteBtn">
+                            <a class="btn btn-sm btn-circle green easy-pie-chart-reload">
+                                <font key="i18n.DeleteCreate"></font> </a>
+                        </div>
+
+                        <div class="actions">
+                            <a id="homeDoc_addData" class="btn btn-sm btn-circle green easy-pie-chart-reload"
+                               data-toggle="modal"
+                               href="#responsive">
+                                <font key="i18n.add"></font> </a>
+                        </div>
+
+                        <div class="actions" id="homeDoc_resetSeq">
+                            <a class="btn btn-sm btn-circle green easy-pie-chart-reload">
+                                <font key="i18n.resetSeq"></font> </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!--主表格-->
+                                <table class="table table-striped table-bordered table-hover table-checkable order-column"
+                                       id="homeDoc">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                <input id="homeDoc_allChecked" type="checkbox"
+                                                       class="group-checkable homeDoc_checkBox"
+                                                       data-set="#sample_1 .checkboxes"/>
+                                                <span></span>
+                                            </label>
+                                        </th>
+                                        <th><font key="i18n.seq"></font></th>
+                                        <th><font key="i18n.DocName"></font></th>
+                                        <th><font key="i18n.number"></font></th>
+                                        <th><font key="i18n.created"></font></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="homeDoc_dataBox">
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions text-left">
+                        <a id="homeDoc_save" class="btn btn-sm btn-circle green easy-pie-chart-reload">
+                            <font key="i18n.save"></font> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--“添加”模态框-->
+        <div id="responsive" class="modal fade" tabindex="-1" data-width="760">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title"><font key="i18n.searchObject"></font></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4><font key="i18n.keyword"></font></h4>
+                        <p>
+                            <input id="homeDoc_keyword" class="form-control" type="text"></p>
+                        <p>
+                        <h4><font key="i18n.advancedSearch"></font></h4></p>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4><font key="i18n.content"></font></h4>
+                            </div>
+                            <div class="col-md-10">
+                                <input id="homeDoc_content" class="form-control col-md-8 col-sm-8" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4><font key="i18n.created"></font></h4>
+                            </div>
+                            <div class="input-group input-medium date-picker input-daterange col-md-10"
+                                 data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+                                <input id="homeDoc_begincreated" type="text" class="form-control col-md-8 col-sm-8"
+                                       name="from">
+                                <span class="input-group-addon"> to </span>
+                                <input id="homeDoc_endcreated" type="text" class="form-control col-md-8 col-sm-8"
+                                       name="to"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4><font key="i18n.creator"></font></h4>
+                            </div>
+                            <div class="col-md-10">
+                                <!--<input  class="form-control col-md-8 col-sm-8" type="text">-->
+                                <div class="input-group">
+                                    <input id="homeDoc_creator" type="text" class="form-control"
+                                           placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                         <button searchType="creator" class="btn btn-default modalBtn_searchUser"
+                                                 type="button" data-toggle="modal" href="#choseUserModal"><font
+                                                 key="i18n.select"></font></button>
+                                    </span>
+                                </div><!-- /input-group -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4><font key="i18n.container"></font></h4>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <select id="homeDoc_container" class="form-control">
+                                        <!--存储库模板数据插入-->
+                                    </select>
+                                </div><!-- /input-group -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4><font key="i18n.softtype"></font></h4>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <select id="homeDoc_softtype" class="form-control">
+                                        <!--插入文档类型模板-->
+                                    </select>
+                                </div><!-- /input-group -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4><font key="i18n.checkoutUser"></font></h4>
+                            </div>
+                            <div class="col-md-10">
+                                <!--<input class="form-control col-md-8 col-sm-8" type="text">-->
+                                <div class="input-group">
+                                    <input id="homeDoc_checkoutUser" type="text" class="form-control"
+                                           placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                         <button searchType="checkoutUser" class="btn btn-default modalBtn_searchUser"
+                                                 type="button" data-toggle="modal" href="#choseUserModal"><font
+                                                 key="i18n.select"></font></button>
+                                    </span>
+                                </div><!-- /input-group -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="homeDoc_search" type="button" class="btn green"><font key="i18n.search"></font></button>
+            </div>
+            <table id="modal1_dataShow"
+                   class="table table-striped table-bordered table-hover table-checkable order-column">
+                <thead>
+                <tr>
+                    <th>
+                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                            <input id="modal_allChecked"  type="checkbox"
+                                   class="group-checkable homeDoc_checkBox"
+                                   data-set="#sample_1 .checkboxes"/>
+                            <span></span>
+                        </label>
+                    </th>
+                    <th><font key="i18n.number"></font></th>
+                    <th><font key="i18n.DocName"></font></th>
+                    <th><font key="i18n.lifeCycle"></font></th>
+                    <th><font key="i18n.created"></font></th>
+                    <th><font key="i18n.creator"></font></th>
+                    <th><font key="i18n.softtype"></font></th>
+                </tr>
+                </thead>
+                <tbody id="homeDoc_searchRes">
+                <!--搜索结果数据-->
+                </tbody>
+            </table>
+            <div class="modal-footer">
+                <button id="homeDoc_confChecked" type="button" class="btn green"><font key="i18n.conform"></font>
+                </button>
+                <button id="modal1_closeBtn" type="button" data-dismiss="modal" class="btn btn-outline dark">Close
+                </button>
+            </div>
+        </div>
+
+        <!--选择用户模态框-->
+        <div id="choseUserModal" class="modal fade" tabindex="-1" data-width="760">
+            <!--插入模板-->
+        </div>
+
+    </div>
+
+{{/each}}

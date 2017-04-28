@@ -1,0 +1,27 @@
+{{! 右上侧收藏栏 }}
+{{#each this}}
+<div class='mt-comment {{oid}}'>
+<div class='mt-comment-img'>
+<!-- <i class='iconfont icon-cnshu'></i> -->
+<i class='iconfont icon-{{FavoriteItemsShowIcon fileType}}'></i>
+</div>
+<div class='mt-comment-body'>
+<div class='mt-comment-info'>
+<span class='mt-comment-author'>{{name}}</span>
+<span class='mt-comment-date'>{{createdDate}}</span>
+</div>
+<div class='mt-comment-text'>
+备注XXXXXXXXXXXXXXXXXX
+</div>
+<div class='mt-comment-details'>
+<span class='mt-comment-status mt-comment-status-approved'>定稿</span>
+<ul class='mt-comment-actions'>
+<li><a href='#'>编辑</a></li>
+<li><a href='#'>查看</a></li>
+<li><a href='#'>取消收藏</a></li>
+</ul>
+</div>
+</div>
+</div>
+{{/each}}
+

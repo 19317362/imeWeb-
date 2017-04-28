@@ -9,6 +9,8 @@ pageNav.init = function(){
     pageNav.AllDataInit();
     pageNav.redirectAfterSeconds(20)
 }
+/* 导航页跳转首页的计数器 */
+pageNav.timerHome = '';
 
 /* nav页面各个区域容器html结构初始化 */
 pageNav.AllHtmlInit = function(){
@@ -129,18 +131,16 @@ pageNav.redirectAfterSeconds= function(seconds){
     var timestart=seconds||3;
     var count=$("#navpage span.count")
     count.html(''+timestart)
-    var t=setTimeout(function T(){
+    $.cookie('sidebar_closed',"1");
+    pageNav.timerHome=setInterval(function T(){
         timestart--;
         count.html(''+timestart)
-        if(timestart==1){
-            clearTimeout(t);
-            window.location="home"
-            return;
+        if(timestart==0){
+            clearInterval(pageNav.timerHome);
+            imeWeb.changeRoute('/imeWeb/home');
         }
-        setTimeout(T,1000)
     },1000)
 }
-
 
 
 

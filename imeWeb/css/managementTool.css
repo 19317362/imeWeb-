@@ -1,0 +1,16 @@
+.mt-element-step .step-line .mt-step-number {
+    font-size: 14px;
+    padding: 8px;
+    height: 40px;
+    width: 40px;
+    margin: auto auto 5px;
+}
+.mt-element-step .step-line .mt-step-title {
+    font-size: 14px;
+}
+.mt-element-step .step-line .mt-step-title:after, .mt-element-step .step-line .mt-step-title:before{
+    top: -25px;
+}
+.text-white{
+    color: white;!important;
+}

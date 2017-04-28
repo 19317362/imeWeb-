@@ -1,0 +1,41 @@
+{{!-- 首页站点事件·发布事件内容模板 --}}
+{{#each this}}
+<div class="timeline-item">
+	<div class="timeline-badge">
+		<div class="timeline-icon">
+			<img src="{{addUserImage actionerId}}" />
+		</div>
+	</div>
+	<div class="timeline-body">
+		<div class="timeline-body-arrow"> </div>
+		<div class="timeline-body-head">
+			<div class="timeline-body-head-caption">
+				<span class="timeline-body-alerttitle font-green-haze">{{docName}}</span>
+				<span class="timeline-body-time font-grey-cascade">{{actionDate}}</span>
+			</div>
+			<div class="timeline-body-head-actions">
+				<div class="btn-group dropup">
+					<button class="btn btn-circle red btn-sm dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 操 &nbsp&nbsp&nbsp作
+						<i class="fa fa-angle-down"></i>
+					</button>
+					<ul class="dropdown-menu pull-right" role="menu">
+						<li>
+							<a href="javascript:;">通过 </a>
+						</li>
+
+						<li class="divider"> </li>
+						<li>
+							<a href="javascript:;">驳回 </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="timeline-body-content">
+			<span class="font-grey-cascade"> 由
+				<a href="javascript:;">{{actionerId}}</a> 操作
+			</span>
+		</div>
+	</div>
+</div>
+{{/each}}

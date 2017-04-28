@@ -16,54 +16,62 @@
                         <div class="row">
                             <div class="col-md-12 ">
                                 <form class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label  class="col-md-3 col-sm-3 control-label"  ><font key="i18n.Softtype"></font></label>
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label class="col-md-3 control-label"><font key="i18n.Softtype"></font></label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="input" value="用户" readonly>
+                                                        <div class="input-group-btn">
+                                                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" >
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu pull-right">
+                                                                <li>
+                                                                    <a href="javascript:;"> <font key="i18n.group"></font> </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript:;"> <font key="i18n.user"></font> </a>
+                                                                </li>
+                                                            </ul>
 
-                                        <div class="col-md-6 col-sm-6 ">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" id="input" value="">
-                                                <div class="input-group-btn">
-                                                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" >
-                                                        <i class="fa fa-angle-down"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu pull-right">
-                                                        <li>
-                                                            <a href="javascript:;"> <font key="i18n.group"></font> </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:;"> <font key="i18n.user"></font> </a>
-                                                        </li>
-                                                    </ul>
-
+                                                        </div>
+                                                        <!-- /btn-group -->
+                                                    </div>
                                                 </div>
-                                                <!-- /btn-group -->
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
+                                            <div class="form-group col-md-4">
+                                                <label class="col-md-3 control-label">ID</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="groupPrincipalId" placeholder="请输入ID">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="col-md-3 control-label"><font key="i18n.name"><font key="i18n.name"></font> </font></label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="groupName" placeholder="请输入name">
+                                                </div>
+                                            </div>
 
-                                        <label for="principalId" class="col-md-3  col-sm-3 control-label" >ID:</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <input type="text" class="form-control" id="groupPrincipalId" placeholder="请输入ID">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="name" class="col-md-3 col-sm-3 control-label" ><font key="i18n.name"></font>:</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <input type="text" class="form-control" id="groupName" placeholder="请输入name">
-                                        </div>
+                                </form>
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group col-md-4" style="height: 0">
                                     </div>
-                                    <hr/>
-                                    <div class="form-group col-sm-4 col-md-4 clearfix pull-right">
-                                        <div class="col-sm-12 ">
-                                            <button type="button" class="btn green  pull-right col-sm-4" id="groupSearchMemOrGroup" ><font key="i18n.search"></font></button>
-                                        </div>
+                                    <div class="form-group col-md-4" style="height: 0">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <button type="button" id="groupSearchMemOrGroup" class="btn  green mt-ladda-btn ladda-button pull-right" data-style="slide-right" style="">
+                                            <span class="ladda-label"> <i class="fa  fa-search"></i> <font key="i18n.search">搜索</font></span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-                        <div class="portlet-body">
+                        <div class="portlet-body refresh_area" style="min-height: 500px;">
                             <table class="table table-striped table-bordered table-condensed table-hover table-checkable order-column table-responsive" id="search">
                                 <thead>
                                 <tr class="bg-green text-white" >
@@ -83,7 +91,8 @@
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" id="saveMem"><font key="i18n.add"></font></button>
+                            <button type="button"  class="btn default btn-outline" onclick="imeWeb.deleteChildPage();">取消</button>
+                            <button type="button" class="btn green" id="{{id}}">确定</button>
                         </div>
                     </div>
                 </div>

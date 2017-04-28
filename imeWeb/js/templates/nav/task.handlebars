@@ -1,0 +1,10 @@
+{{!-- nav导航容器任务容器 --}}
+{{#each this}}
+<div class="col-xs-6 content">
+    <a href="javascript:;" class="icon-btn col-xs-12">
+        <i class="iconfont icon-{{icon}}"></i>
+        <div> {{title}} </div>
+        <span class="badge badge-{{stateColor}}"> {{message}} </span>
+    </a>
+</div>
+{{/each}}
