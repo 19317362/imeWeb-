@@ -1,0 +1,16 @@
+{
+  "name": "myapp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-file-include": "^1.1.0",
+    "gulp-less": "^3.3.0",
+    "gulp-shell": "^0.6.3",
+    "run-sequence": "^1.2.2"
+  }
+}

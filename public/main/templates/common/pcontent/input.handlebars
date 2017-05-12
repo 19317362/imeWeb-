@@ -1,0 +1,17 @@
+ <div class="form-group col-md-{{caculate_group md}}">
+    <label class="col-md-{{caculate_label md}} control-label">
+        {{text}}
+        {{#if required}}
+        <span class="required" aria-required="true"> * </span>
+        {{/if}}
+    </label>
+    <div class="col-md-{{caculate_input md}}">
+        {{#if isselect}}
+        <select type="text"   class="form-control" name='{{name}}' id='{{id}}' {{disabled}}></select>
+        {{else if ispassword}}
+        <input type="password"   class="form-control" name='{{name}}' id='{{id}}' {{disabled}}>
+        {{else}}
+        <input type="text"   class="form-control" name='{{name}}' id='{{id}}' {{disabled}}>
+        {{/if}}
+    </div>
+</div>
