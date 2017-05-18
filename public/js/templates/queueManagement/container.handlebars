@@ -1,0 +1,61 @@
+<!--工作流容器-->
+{{#each this}}
+<div class="page-content  page-content-base" id='queueManagement'>
+    <ul class="page-breadcrumb breadcrumb">
+        <li>
+            <a href="index.html">首页</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span class="active"><font>队列管理</font></span>
+        </li>
+    </ul>
+    <div class='row'>
+        <!--表格插入区域-->
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+               <div class="portlet-title tabbable-line">
+                <div class="caption">
+                   <button type="button" class="btn  mt-ladda-btn ladda-button myblockbutton  blockui_TaskInit" data-style="contract" data-spinner-color="#697882">
+                    <span class="ladda-label"> <i class="icon-refresh"></i></span>
+                    <span class="ladda-spinner"></span>
+                    <span class="ladda-spinner"></span>
+                    <span class="ladda-spinner"></span>
+                </button>
+                <span class="caption-subject font-dark bold uppercase">队列管理</span>
+            </div>
+        </div>
+        <div class="portlet-body" style="min-height:300px">
+            <div class="inbox">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="inbox-sidebar">
+                            <a href="javascript:;" data-title="Compose" class="btn red compose-btn btn-block">
+                                <i class="fa fa-edit"></i>
+                                全部队列
+                            </a>
+                            <ul class="inbox-nav" id="queue_inbox_nav">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="inbox-body">
+                            <div class="inbox-header">
+                                <h1 class="pull-left">队列信息</h1>
+                            </div>
+                            <div class="inbox-content" id="queue_inbox_content" style="position: relative; zoom: 1;">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{{/each}}

@@ -14,6 +14,7 @@ imeWeb.page = {
     groupManagement: pageGroupManagement.init ,
     containerManagement: pagecontainerManagement.init ,
     workflowManagement: pageWorkflowManagement.init ,
+    queueManagement: pageQueueManagement.init ,
     //reportChart:pageReportchart.init,
     siteInfo: pageSiteInfo.init,
     userManagement: pageUserManagement.init,
@@ -32,7 +33,8 @@ imeWeb.router = new Router({
     '/imeWeb/groupManagement': 'groupManagement',
     '/imeWeb/containerManagement': 'containerManagement',
     '/imeWeb/workflowManagement': 'workflowManagement',
-    '/imeWeb/reportchart': 'reportChart',
+     '/imeWeb/queueManagement': 'queueManagement',
+   // '/imeWeb/reportchart': 'reportChart',
     '/imeWeb/siteInfo': 'siteInfo',
     '/imeWeb/userManagement': 'userManagement',
     '/imeWeb/systemInfo' : 'systemInfo'

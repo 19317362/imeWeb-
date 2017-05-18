@@ -1,0 +1,56 @@
+<!--容器-->
+{{#each this}}
+<form class="form-horizontal" role="form">
+    <div class="form-body myform-body">
+        <div class='row'>
+
+        <div class="form-group col-md-5">
+            <label class="control-label col-md-3">创建时间起止</label>
+            <div class="col-md-9">
+                <div class="input-group  date-picker input-daterange" data-orientation="right" data-date="10/11/2012" >
+                    <input type="text" class="form-control" name="from" id="queue_inbox_timefrom">
+                    <span class="input-group-addon"> 至</span>
+                    <input type="text" class="form-control" name="to" id="queue_inbox_timeto">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-5">
+                <label class="col-md-3 control-label">状态</label>
+                <div class="col-md-9">
+                    <div class="input-group">
+                        <input type="text" class="form-control my_input" id="queue_inbox_status">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right my_select" id="queue_inbox_statuslist">
+                              <li><a href="javascript:;">OPENED</a></li>
+                              <li><a href="javascript:;">EXCEPTION</a></li>
+                              <li><a href="javascript:;">CLOSED</a></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+        <div class="form-group col-md-2">
+            <label class="control-label col-md-3"></label>
+            <div class="col-md-9">
+                <button type="submit" class="btn btn-success mt-ladda-btn ladda-button" id="queue_inbox_search" data-style="zoom-in">
+                    <span class="ladda-label">
+                        <i class="fa fa-search"></i>  搜索
+                    </span>
+                    <span class="ladda-spinner">
+                    </span>
+                    <div class="ladda-progress" style="width: 0px;">
+                    </div>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</form>
+{{/each}}

@@ -21,6 +21,7 @@ var management=require('./managetools/management');//组管理
 var deskdoc=require('./managetools/deskdoc');//桌面文档
 var containerManagement=require('./managetools/containerManagement');//存储库管理
 var workflowManagement=require('./managetools/workflowManagement');//工作流管理
+var queueManagement=require('./managetools/queueManagement');//队列流管理
 var reportChart=require('./managetools/reportChart');//报表管理
 
 module.exports=function(app){
@@ -44,6 +45,7 @@ module.exports=function(app){
    app.use(deskdoc);
    app.use(containerManagement);
    app.use(workflowManagement);
+   app.use(queueManagement);
    app.use(reportChart);
 }
 

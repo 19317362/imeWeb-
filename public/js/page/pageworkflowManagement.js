@@ -8,7 +8,7 @@
        pageWorkflowManagement.contentInit()
        pageWorkflowManagement.control()
    }catch(err){
-    console.log(err);
+    //console.log(err);
 }finally{
     imeWeb.i18n.init();
 }
@@ -178,7 +178,7 @@ pageWorkflowManagement.ajaxevents_2_start_process=function(){
             },
             success: function (data, status) {
 
-                console.log(data)
+                //console.log(data)
                 if(!data.success){
                     imeWeb.Alert('#start_process_body','检查OID是否正确','preppend')
 
